@@ -5,32 +5,34 @@
 Summary:	A language for data analysis and graphics
 Summary(pl):	Jêzyk do analizy danych oraz grafiki
 Name:		R
-Version:	1.4.1
-Release:	2
+Version:	1.5.0
+Release:	1
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/%{name}-%{version}.tgz
 Source1:	ftp://stat.ethz.ch/R-CRAN/src/contrib/KernSmooth_2.22-7.tar.gz
-Source2:	ftp://stat.ethz.ch/R-CRAN/src/contrib/VR_6.3-2.tar.gz
+Source2:	ftp://stat.ethz.ch/R-CRAN/src/contrib/VR_7.0-1.tar.gz
 Source3:	ftp://stat.ethz.ch/R-CRAN/src/contrib/acepack_1.3.tar.gz
-Source4:	ftp://stat.ethz.ch/R-CRAN/src/contrib/boot_1.2-7.tar.gz
+Source4:	ftp://stat.ethz.ch/R-CRAN/src/contrib/boot_1.2-8.tar.gz
 Source5:	ftp://stat.ethz.ch/R-CRAN/src/contrib/bootstrap_1.0-9.tar.gz
-Source6:	ftp://stat.ethz.ch/R-CRAN/src/contrib/cluster_1.4-0.tar.gz
+Source6:	ftp://stat.ethz.ch/R-CRAN/src/contrib/cluster_1.4-2.tar.gz
 Source7:	ftp://stat.ethz.ch/R-CRAN/src/contrib/date_1.2-12.tar.gz
 Source8:	ftp://stat.ethz.ch/R-CRAN/src/contrib/e1071_1.2-1.tar.gz
-Source9:	ftp://stat.ethz.ch/R-CRAN/src/contrib/foreign_0.4-9.tar.gz
+Source9:	ftp://stat.ethz.ch/R-CRAN/src/contrib/foreign_0.5-3.tar.gz
 Source10:	ftp://stat.ethz.ch/R-CRAN/src/contrib/fracdiff_1.0-7.tar.gz
-Source11:	ftp://stat.ethz.ch/R-CRAN/src/contrib/gee_4.13-6.tar.gz
-Source12:	ftp://stat.ethz.ch/R-CRAN/src/contrib/leaps_2.4.tar.gz
-Source13:	ftp://stat.ethz.ch/R-CRAN/src/contrib/mgcv_0.7-1.tar.gz
-Source14:	ftp://stat.ethz.ch/R-CRAN/src/contrib/mlbench_0.5-4.tar.gz
-Source15:	ftp://stat.ethz.ch/R-CRAN/src/contrib/nlme_3.1-23.tar.gz
-Source16:	ftp://stat.ethz.ch/R-CRAN/src/contrib/oz_1.0-6.tar.gz
-Source17:	ftp://stat.ethz.ch/R-CRAN/src/contrib/polynom_1.1-8.tar.gz
-Source18:	ftp://stat.ethz.ch/R-CRAN/src/contrib/princurve_1.1-3.tar.gz
-Source19:	ftp://stat.ethz.ch/R-CRAN/src/contrib/quadprog_1.4-4.tar.gz
-Source20:	ftp://stat.ethz.ch/R-CRAN/src/contrib/rpart_3.1-5.tar.gz
-Source21:	ftp://stat.ethz.ch/R-CRAN/src/contrib/survival_2.8-2.tar.gz
-Source22:	ftp://stat.ethz.ch/R-CRAN/src/contrib/xgobi_1.2-5.tar.gz
-Source23:	ftp://stat.ethz.ch/R-CRAN/src/contrib/Archive/integrate_2.2-3.tar.gz
+Source11:	ftp://stat.ethz.ch/R-CRAN/src/contrib/gee_4.13-7.tar.gz
+Source12:	ftp://stat.ethz.ch/R-CRAN/src/contrib/grid_0.6.tar.gz
+Source13:	ftp://stat.ethz.ch/R-CRAN/src/contrib/lattice_0.5-1.tar.gz
+Source14:	ftp://stat.ethz.ch/R-CRAN/src/contrib/leaps_2.4.tar.gz
+Source15:	ftp://stat.ethz.ch/R-CRAN/src/contrib/mgcv_0.7-2.tar.gz
+Source16:	ftp://stat.ethz.ch/R-CRAN/src/contrib/mlbench_0.5-4.tar.gz
+Source17:	ftp://stat.ethz.ch/R-CRAN/src/contrib/nlme_3.1-27.tar.gz
+Source18:	ftp://stat.ethz.ch/R-CRAN/src/contrib/oz_1.0-6.tar.gz
+Source19:	ftp://stat.ethz.ch/R-CRAN/src/contrib/polynom_1.1-9.tar.gz
+Source20:	ftp://stat.ethz.ch/R-CRAN/src/contrib/princurve_1.1-3.tar.gz
+Source21:	ftp://stat.ethz.ch/R-CRAN/src/contrib/quadprog_1.4-4.tar.gz
+Source22:	ftp://stat.ethz.ch/R-CRAN/src/contrib/rpart_3.1-6.tar.gz
+Source23:	ftp://stat.ethz.ch/R-CRAN/src/contrib/survival_2.9-1.tar.gz
+Source24:	ftp://stat.ethz.ch/R-CRAN/src/contrib/xgobi_1.2-5.tar.gz
+Source25:	ftp://stat.ethz.ch/R-CRAN/src/contrib/Archive/integrate_2.2-3.tar.gz
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 URL:		http://stat.auckland.ac.nz/r/r.html
@@ -184,6 +186,8 @@ uczenia maszyny.
 %setup -q -c -n R-cran -T -D -b 21
 %setup -q -c -n R-cran -T -D -b 22
 %setup -q -c -n R-cran -T -D -b 23
+%setup -q -c -n R-cran -T -D -b 24
+%setup -q -c -n R-cran -T -D -b 25
 %setup -q 
 #%setup -q -T -D -a 14
 
@@ -332,6 +336,10 @@ fi
 %attr(-,root,root) %doc cluster
 %attr(-,root,root) %{_libdir}/R/library/foreign
 %attr(-,root,root) %doc foreign
+%attr(-,root,root) %{_libdir}/R/library/grid
+%attr(-,root,root) %doc grid
+%attr(-,root,root) %{_libdir}/R/library/lattice
+%attr(-,root,root) %doc lattice
 %attr(-,root,root) %{_libdir}/R/library/mgcv
 %attr(-,root,root) %doc mgcv
 %attr(-,root,root) %{_libdir}/R/library/nlme
