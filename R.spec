@@ -2,6 +2,7 @@
 # - add more contrib packages
 # - separate contrib packages to other specs
 # - (?) separate recomended packages to other specs (i'm not sure...)
+# - move perl R libraries to standard perl location
 #
 # Conditional build:
 # _without_gnome        - without GNOME support
