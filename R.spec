@@ -41,9 +41,11 @@ Source46:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/polymon.pdf
 Source51:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/survival5.pdf
 Source52:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/xgobi.pdf
 Source54:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/quadprog.pdf
-Patch0:		R-0.61.rpm.patch3
-Copyright:	GPL
+Patch0:		%{name}-0.61.rpm.patch3
+License:	GPL
 Group:		Development/Languages
+Group(de):	Entwicklung/Sprachen
+Group(pl):	Programowanie/Jêzyki
 URL:		http://stat.auckland.ac.nz/r/r.html
 Provides:	R-base R-contrib
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -55,13 +57,15 @@ to certain system functions, and the ability to run programs stored in
 script files.
 
 The design of R has been heavily influenced by two existing languages:
-Becker, Chambers & Wilks' S and Sussman's Scheme. Whereas the resulting
-language is very similar in appearance to S, the underlying implementation
-and semantics are derived from Scheme.
+Becker, Chambers & Wilks' S and Sussman's Scheme. Whereas the
+resulting language is very similar in appearance to S, the underlying
+implementation and semantics are derived from Scheme.
 
 %package base
 Summary:	The R base distribution
 Group:		Development/Languages
+Group(de):	Entwicklung/Sprachen
+Group(pl):	Programowanie/Jêzyki
 Provides:	R-acepack R-bootstrap R-class R-clus R-ctest R-date R-e1071 
 Provides:	R-fracdiff R-gee R-integrate R-jpn R-leaps R-mlbench R-nnet R-oz 
 Provides:	R-polynom R-principal.curve R-quadprog R-ratetables R-rational 
@@ -69,33 +73,38 @@ Provides:	R-spatial R-splines R-survival4 R-xgobi
 
 %description base
 R is a language and run-time environment for carrying out interactive
-statistical data analysis. It is not entirely dissimilar to the S language
-developed at AT&T Bell Laboratories (and now Lucent Technologies). Indeed,
-S users will find the environment quite familiar and a good deal of S
-software will run without change under R.
+statistical data analysis. It is not entirely dissimilar to the S
+language developed at AT&T Bell Laboratories (and now Lucent
+Technologies). Indeed, S users will find the environment quite
+familiar and a good deal of S software will run without change under
+R.
 
 %package contrib
 Summary:	contributed packages for the R language
 Group:		Development/Languages
+Group(de):	Entwicklung/Sprachen
+Group(pl):	Programowanie/Jêzyki
 Copyright:	Mixed
 URL:		http://www.ci.tuwien.ac.at/R/
 Requires:	R-base >= %{version}
 
 %description contrib
-Packages which extend the capabilities of the R base distribution
-and are distributed on the Comprehensive R Archive Network (CRAN).
+Packages which extend the capabilities of the R base distribution and
+are distributed on the Comprehensive R Archive Network (CRAN).
 
 %package mlbench
 Summary:	Machine learning benchmarks
 Group:		Development/Languages
-Copyright:	GPL
+Group(de):	Entwicklung/Sprachen
+Group(pl):	Programowanie/Jêzyki
+License:	GPL
 URL:		http://www.ics.uci.edu/~mlearn/MLRepository.html
 Requires:	R-base >= %{version}
 
 %description mlbench
 R package which contains a collection of real-world datasets and
-functions for creating artificial datasets that work as benchmarks
-for machine learning methods.
+functions for creating artificial datasets that work as benchmarks for
+machine learning methods.
 
 %prep
 %setup -q -c -n R-cran -T -b 2
@@ -141,13 +150,13 @@ RHOME=`pwd`;export RHOME
 cd ../R-cran
 for pkg in `ls`
 do
-	${RHOME}/etc/INSTALL -latex ${pkg}
+${RHOME}%{_sysconfdir}/INSTALL -latex ${pkg}
 done
 cd ${RHOME}
 
 # Install mlbench
 #
-${RHOME}/etc/INSTALL mlbench
+${RHOME}%{_sysconfdir}/INSTALL mlbench
 
 #Remove old template files.
 #
@@ -182,6 +191,7 @@ done
 cd ${RHOME}
 
 %install
+rm -rf $RPM_BUILD_ROOT
 install -d ${RPM_BUILD_ROOT}%{_mandir}/man1
 install R.1 ${RPM_BUILD_ROOT}%{_mandir}/man1/
 install -d ${RPM_BUILD_ROOT}%{_libdir}/R
@@ -198,7 +208,7 @@ install -m 755 bin/R ${RPM_BUILD_ROOT}%{_bindir}/R
 %attr(-,root,root) %{_libdir}/R/bin
 %attr(-,root,root) %{_libdir}/R/cmd
 %attr(-,root,root) %{_libdir}/R/demos
-%attr(-,root,root) %{_libdir}/R/etc
+%attr(-,root,root) %{_libdir}/R%{_sysconfdir}
 %attr(-,root,root) %{_libdir}/R/html
 %attr(-,root,root) %{_libdir}/R/include
 %attr(-,root,root) %dir %{_libdir}/R/library
