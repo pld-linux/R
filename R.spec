@@ -181,12 +181,12 @@ install -d ${RPM_BUILD_ROOT}%{_mandir}/man1
 install R.1 ${RPM_BUILD_ROOT}%{_mandir}/man1/
 install -d ${RPM_BUILD_ROOT}%{_libdir}/R
 cp -R afm bin cmd demos doc etc html include library ${RPM_BUILD_ROOT}%{_libdir}/R
-install -d ${RPM_BUILD_ROOT}/usr/bin
-install -m 755 bin/R ${RPM_BUILD_ROOT}/usr/bin/R
+install -d ${RPM_BUILD_ROOT}%{_bindir}
+install -m 755 bin/R ${RPM_BUILD_ROOT}%{_bindir}/R
 
 %files base
 %attr(-,root,root) %{_mandir}/man1/R.1
-%attr(-,root,root) /usr/bin/R
+%attr(-,root,root) %{_bindir}/R
 %attr(-,root,root) %dir %{_libdir}/R
 %attr(-,root,root) %{_libdir}/R/afm
 %attr(-,root,root) %{_libdir}/R/bin
@@ -261,7 +261,7 @@ install -m 755 bin/R ${RPM_BUILD_ROOT}/usr/bin/R
 # idiot (me) uses a build root of /. This leaves the directory structure
 # in place but removes the files owned by R.
 rm -f  ${RPM_BUILD_ROOT}%{_mandir}/man1/R.1
-rm -f  ${RPM_BUILD_ROOT}/usr/bin/R
+rm -f  ${RPM_BUILD_ROOT}%{_bindir}/R
 rm -rf ${RPM_BUILD_ROOT}%{_libdir}/R
 rm -rf ${RPM_BUILD_ROOT}/usr/doc/R-*
 
