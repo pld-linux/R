@@ -208,7 +208,6 @@ cp -f /usr/share/automake/config.* .
 %{__make} help
 %{__make} html
 %{__make} clean
-# %{__make} acclean
 
 # Install contrib packages
 #
@@ -258,17 +257,24 @@ cd ${R_HOME}
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/R}
 
-install doc/R.1 $RPM_BUILD_ROOT%{_mandir}/man1/
-install bin/R $RPM_BUILD_ROOT%{_bindir}/R
+mv doc/R.1 $RPM_BUILD_ROOT%{_mandir}/man1/
+sed "s,`pwd`,%{_libdir}/R,g" < bin/R > bin/R. ; mv bin/R. bin/R
+mv bin/R $RPM_BUILD_ROOT%{_bindir}/R
 
-# cp -R afm bin cmd demos doc etc html include library $RPM_BUILD_ROOT%{_libdir}/R
-cp -R afm bin doc etc include library modules $RPM_BUILD_ROOT%{_libdir}/R
+find . -name 'Makefile*' -exec rm -f {} \;
+rm -rf etc/*.old
+
+cp -R AUTHORS afm bin doc etc include library modules share \
+	$RPM_BUILD_ROOT%{_libdir}/R
+
+touch $RPM_BUILD_ROOT%{_libdir}/R/doc/html/search/index.html
 
 %clean
-# rm -rf $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT
 
 %post base
-(cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
+(cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
+ ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 %preun base
 # These files are not owned by any package, so we have to remove them
@@ -276,109 +282,131 @@ cp -R afm bin doc etc include library modules $RPM_BUILD_ROOT%{_libdir}/R
 #
 if [ "$1" = 0 ];
 then
-	rm -f %{_libdir}/R/library/LibIndex
-	rm -f %{_libdir}/R/library/index.html
+	rm -f %{_libdir}/R/doc/html/search/index.txt
+	rm -f %{_libdir}/R/doc/html/search/index.html
 fi
 
 %post contrib
-(cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
+(cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
+ ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 %postun contrib
-(cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
+(cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
+ ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
+
+%post recommended
+(cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
+ ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
+
+%postun recommended
+(cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
+ ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 %post mlbench
-(cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
+(cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
+ ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 %postun mlbench
-(cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
+(cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
+ ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 %files base
 %defattr(644,root,root,755)
-%attr(-,root,root) %{_mandir}/man1/R.1*
-%attr(-,root,root) %{_bindir}/R
-%attr(-,root,root) %dir %{_libdir}/R
-%attr(-,root,root) %{_libdir}/R/afm
-%attr(-,root,root) %{_libdir}/R/bin
-# %attr(-,root,root) %{_libdir}/R/cmd
-# %attr(-,root,root) %{_libdir}/R/demos
-%attr(-,root,root) %{_libdir}/R/etc
-%attr(-,root,root) %{_libdir}/R/include
-%attr(-,root,root) %dir %{_libdir}/R/library
-%attr(-,root,root) %{_libdir}/R/library/base
-%attr(-,root,root) %{_libdir}/R/library/ctest
-%attr(-,root,root) %{_libdir}/R/library/eda
-%attr(-,root,root) %{_libdir}/R/library/lqs
-%attr(-,root,root) %{_libdir}/R/library/methods
-%attr(-,root,root) %{_libdir}/R/library/modreg
-%attr(-,root,root) %{_libdir}/R/library/mva
-%attr(-,root,root) %{_libdir}/R/library/nls
-%attr(-,root,root) %{_libdir}/R/library/splines
-%attr(-,root,root) %{_libdir}/R/library/stepfun
-%attr(-,root,root) %{_libdir}/R/library/tcltk
-%attr(-,root,root) %{_libdir}/R/library/tools
-%attr(-,root,root) %{_libdir}/R/library/ts
-%attr(-,root,root) %{_libdir}/R/modules
-%attr(-,root,root) %doc CHANGES COPYING COPYRIGHTS MIRROR-SITES PROJECTS README RESOURCES TASKS
-%attr(-,root,root) %doc html
+%{_mandir}/man1/R.1*
+%attr(755,root,root) %{_bindir}/R
+%dir %{_libdir}/R
+%{_libdir}/R/afm
+%attr(755,root,root) %{_libdir}/R/bin
+%{_libdir}/R/etc
+%{_libdir}/R/include
+%{_libdir}/R/share
+%{_libdir}/R/AUTHORS
+%dir %{_libdir}/R/library
+%{_libdir}/R/library/base
+%{_libdir}/R/library/ctest
+%{_libdir}/R/library/eda
+%{_libdir}/R/library/lqs
+%{_libdir}/R/library/methods
+%{_libdir}/R/library/modreg
+%{_libdir}/R/library/mva
+%{_libdir}/R/library/nls
+%{_libdir}/R/library/splines
+%{_libdir}/R/library/stepfun
+%{_libdir}/R/library/tcltk
+%{_libdir}/R/library/tools
+%{_libdir}/R/library/ts
+%{_libdir}/R/modules
+%doc BUGS COPYRIGHTS FAQ NEWS README RESOURCES TASKS THANKS Y2K
+# %{_libdir}/R/doc %except %{_libdir}/R/doc/html/search/index.*
+%dir %{_libdir}/R/doc
+%{_libdir}/R/doc/[KRm]*
+%dir %{_libdir}/R/doc/html
+%{_libdir}/R/doc/html/*.css
+%{_libdir}/R/doc/html/*.html
+%{_libdir}/R/doc/html/*.jpg
+%dir %{_libdir}/R/doc/html/search
+%{_libdir}/R/doc/html/search/[A-Z]*
+%ghost %{_libdir}/R/doc/html/search/index.txt
+%ghost %{_libdir}/R/doc/html/search/index.html
 
 %files recommended
 %defattr(644,root,root,755)
-%attr(-,root,root) %{_libdir}/R/library/MASS
-%attr(-,root,root) %{_libdir}/R/library/class
-%attr(-,root,root) %{_libdir}/R/library/nnet
-%attr(-,root,root) %{_libdir}/R/library/spatial
-%attr(-,root,root) %doc VR
-%attr(-,root,root) %{_libdir}/R/library/KernSmooth
-%attr(-,root,root) %doc KernSmooth
-%attr(-,root,root) %{_libdir}/R/library/boot
-%attr(-,root,root) %doc boot
-%attr(-,root,root) %{_libdir}/R/library/cluster
-%attr(-,root,root) %doc cluster
-%attr(-,root,root) %{_libdir}/R/library/foreign
-%attr(-,root,root) %doc foreign
-%attr(-,root,root) %{_libdir}/R/library/grid
-%attr(-,root,root) %doc grid
-%attr(-,root,root) %{_libdir}/R/library/lattice
-%attr(-,root,root) %doc lattice
-%attr(-,root,root) %{_libdir}/R/library/mgcv
-%attr(-,root,root) %doc mgcv
-%attr(-,root,root) %{_libdir}/R/library/nlme
-%attr(-,root,root) %doc nlme
-%attr(-,root,root) %{_libdir}/R/library/rpart
-%attr(-,root,root) %doc rpart
-%attr(-,root,root) %{_libdir}/R/library/survival
-%attr(-,root,root) %doc survival
+%{_libdir}/R/library/MASS
+%{_libdir}/R/library/class
+%{_libdir}/R/library/nnet
+%{_libdir}/R/library/spatial
+%doc VR
+%{_libdir}/R/library/KernSmooth
+%doc KernSmooth
+%{_libdir}/R/library/boot
+%doc boot
+%{_libdir}/R/library/cluster
+%doc cluster
+%{_libdir}/R/library/foreign
+%doc foreign
+%{_libdir}/R/library/grid
+%doc grid
+%{_libdir}/R/library/lattice
+%doc lattice
+%{_libdir}/R/library/mgcv
+%doc mgcv
+%{_libdir}/R/library/nlme
+%doc nlme
+%{_libdir}/R/library/rpart
+%doc rpart
+%{_libdir}/R/library/survival
+%doc survival
 
 %files contrib
 %defattr(644,root,root,755)
-%attr(-,root,root) %{_libdir}/R/library/acepack
-%attr(-,root,root) %doc acepack
-%attr(-,root,root) %{_libdir}/R/library/bootstrap
-%attr(-,root,root) %doc bootstrap
-%attr(-,root,root) %{_libdir}/R/library/date
-%attr(-,root,root) %doc date
-%attr(-,root,root) %{_libdir}/R/library/e1071
-%attr(-,root,root) %doc e1071
-%attr(-,root,root) %{_libdir}/R/library/fracdiff
-%attr(-,root,root) %doc fracdiff
-%attr(-,root,root) %{_libdir}/R/library/gee
-%attr(-,root,root) %doc gee
-%attr(-,root,root) %{_libdir}/R/library/integrate
-%attr(-,root,root) %doc integrate
-%attr(-,root,root) %{_libdir}/R/library/leaps
-%attr(-,root,root) %doc leaps
-%attr(-,root,root) %{_libdir}/R/library/oz
-%attr(-,root,root) %doc oz
-%attr(-,root,root) %{_libdir}/R/library/polynom
-%attr(-,root,root) %doc polynom
-%attr(-,root,root) %{_libdir}/R/library/princurve
-%attr(-,root,root) %doc princurve
-%attr(-,root,root) %{_libdir}/R/library/quadprog
-%attr(-,root,root) %doc quadprog
-%attr(-,root,root) %{_libdir}/R/library/xgobi
-%attr(-,root,root) %doc xgobi
+%{_libdir}/R/library/acepack
+%doc acepack
+%{_libdir}/R/library/bootstrap
+%doc bootstrap
+%{_libdir}/R/library/date
+%doc date
+%{_libdir}/R/library/e1071
+%doc e1071
+%{_libdir}/R/library/fracdiff
+%doc fracdiff
+%{_libdir}/R/library/gee
+%doc gee
+%{_libdir}/R/library/integrate
+%doc integrate
+%{_libdir}/R/library/leaps
+%doc leaps
+%{_libdir}/R/library/oz
+%doc oz
+%{_libdir}/R/library/polynom
+%doc polynom
+%{_libdir}/R/library/princurve
+%doc princurve
+%{_libdir}/R/library/quadprog
+%doc quadprog
+%{_libdir}/R/library/xgobi
+%doc xgobi
 
 %files mlbench
 %defattr(644,root,root,755)
-%attr(-,root,root) %{_libdir}/R/library/mlbench
-%attr(-,root,root) %doc mlbench
+%{_libdir}/R/library/mlbench
+%doc mlbench
