@@ -49,6 +49,7 @@ BuildRequires:	tetex-dvips
 BuildRequires:	tetex-pdftex
 BuildRequires:	zip
 BuildRequires:	XFree86-devel
+BuildRequires:	blas-devel
 BuildRequires:	libpng-devel >= 1.0.5
 BuildRequires:	libjpeg-devel >= 6b
 BuildRequires:	libxml-devel
