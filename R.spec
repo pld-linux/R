@@ -9,6 +9,7 @@ Version:	1.6.1
 Release:	2
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
+# CRAN master site: ftp://cran.r-project.org/pub/R/src/
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/%{name}-%{version}.tgz
 # Source0-md5:	7c9b8e8582812448aedd0322bcc135eb
 Source1:	ftp://stat.ethz.ch/R-CRAN/src/contrib/KernSmooth_2.22-8.tar.gz
@@ -62,7 +63,7 @@ Source24:	ftp://stat.ethz.ch/R-CRAN/src/contrib/xgobi_1.2-7.tar.gz
 Source25:	ftp://stat.ethz.ch/R-CRAN/src/contrib/Archive/integrate_2.2-3.tar.gz
 # Source25-md5:	40cc14374a0992871dd651d41289b3e6
 Source26:	%{name}.desktop
-URL:		http://stat.auckland.ac.nz/r/r.html
+URL:		http://www.r-project.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libstdc++-devel
