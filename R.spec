@@ -73,17 +73,17 @@ Group:		Development/Languages
 Requires(post):	textutils
 Requires(post):	perl-base
 Provides:	R-cran-base
-Provides:       R-cran-datasets
-Provides:       R-cran-grid
-Provides:       R-cran-graphics
-Provides:       R-cran-grDevices
-Provides:       R-cran-methods
-Provides:       R-cran-utils
-Provides:       R-cran-tcltk
-Provides:       R-cran-splines
-Provides:       R-cran-stats
-Provides:       R-cran-stats4
-Provides:       R-cran-tools
+Provides:	R-cran-datasets
+Provides:	R-cran-grid
+Provides:	R-cran-graphics
+Provides:	R-cran-grDevices
+Provides:	R-cran-methods
+Provides:	R-cran-utils
+Provides:	R-cran-tcltk
+Provides:	R-cran-splines
+Provides:	R-cran-stats
+Provides:	R-cran-stats4
+Provides:	R-cran-tools
 
 %description base
 R is a language and run-time environment for carrying out interactive
