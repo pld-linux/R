@@ -5,29 +5,29 @@
 Summary:	A language for data analysis and graphics
 Summary(pl):	Jêzyk do analizy danych oraz grafiki
 Name:		R
-Version:	1.3.1
+Version:	1.4.0
 Release:	1
 Source0:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/base/%{name}-%{version}.tgz
-Source1:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/mlbench_0.5-2.tar.gz
-Source2:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/VR_6.2-9.tar.gz
+Source1:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/mlbench_0.5-4.tar.gz
+Source2:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/VR_6.3-1.tar.gz
 Source3:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/acepack_1.3.tar.gz
-Source4:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/bootstrap_1.0-7.tar.gz
-Source5:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/cluster_1.3-4.tar.gz
-Source6:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/date_1.2-9.tar.gz
-Source7:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/e1071_1.2-0.tar.gz
-Source8:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/fracdiff_1.0-6.tar.gz
-Source9:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/gee_4.13-5.tar.gz
-Source10:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/integrate_2.2-3.tar.gz
+Source4:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/bootstrap_1.0-9.tar.gz
+Source5:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/cluster_1.3-6.tar.gz
+Source6:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/date_1.2-11.tar.gz
+Source7:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/e1071_1.2-1.tar.gz
+Source8:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/fracdiff_1.0-7.tar.gz
+Source9:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/gee_4.13-6.tar.gz
+#Source10:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/integrate_2.2-3.tar.gz
 # Source11:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/jpn_1.0-1.tar.gz
 Source12:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/leaps_2.1-1.tar.gz
 Source13:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/oz_1.0-6.tar.gz
-Source14:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/polynom_1.1-7.tar.gz
-Source15:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/princurve_1.1-2.tar.gz
+Source14:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/polynom_1.1-8.tar.gz
+Source15:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/princurve_1.1-3.tar.gz
 Source16:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/quadprog_1.4-3.tar.gz
 # Source17:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/ratetables_1.0-2.tar.gz
 # Source18:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/rational_1.0-1.tar.gz
 Source19:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/survival_2.6.tar.gz
-Source20:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/xgobi_1.2-4.tar.gz
+Source20:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/xgobi_1.2-5.tar.gz
 Patch0:		R-destdir.patch
 # Patch0:		%{name}-0.61.rpm.patch3
 License:	GPL
@@ -51,7 +51,7 @@ BuildRequires:	libjpeg-devel >= 6b
 BuildRequires:	libxml-devel
 BuildRequires:	zlib >= 1.1.3
 BuildRequires:	readline-devel
-BuildRequires:	lpr
+#BuildRequires:	lpr
 %{!?_without_gnome:BuildRequires:	gnome-libs-devel}
 %{!?_without_gnome:BuildRequires:	ORBit-devel}
 %{!?_without_gnome:BuildRequires:	libglade-devel}
@@ -152,7 +152,7 @@ uczenia maszyny.
 %setup -q -c -n R-cran -T -D -b 7
 %setup -q -c -n R-cran -T -D -b 8
 %setup -q -c -n R-cran -T -D -b 9
-%setup -q -c -n R-cran -T -D -b 10
+#%setup -q -c -n R-cran -T -D -b 10
 # %setup -q -c -n R-cran -T -D -b 11
 %setup -q -c -n R-cran -T -D -b 12
 %setup -q -c -n R-cran -T -D -b 13
