@@ -113,7 +113,8 @@ Provides:	R-lattice R-mgcv R-nlme	R-rpart R-survival
 License:	GPL, free or free for non-commercial use
 URL:		http://www.ci.tuwien.ac.at/R/
 Requires:	R-base >= %{version}
-Requires(post,postun):	R-base
+Requires(post):	R-base
+Requires(postun):	R-base
 Obsoletes:	R-survival4 R-MASS R-clus R-class R-nnet R-spatial
 
 %description recommended
@@ -135,7 +136,8 @@ License:	Mixed
 URL:		http://www.ci.tuwien.ac.at/R/
 Requires:	R-base >= %{version}
 Requires:	R-VR
-Requires(post,postun):	R-base
+Requires(post):	R-base
+Requires(postun):	R-base
 Obsoletes:	R-principal.curve
 
 %description contrib
@@ -153,7 +155,8 @@ Group:		Development/Languages
 License:	GPL
 URL:		http://www.ics.uci.edu/~mlearn/MLRepository.html
 Requires:	R-base >= %{version}
-Requires(post,postun):	R-base
+Requires(post):	R-base
+Requires(postun):	R-base
 
 %description mlbench
 R package which contains a collection of real-world datasets and
@@ -270,8 +273,6 @@ rm -rf etc/*.old
 cp -R AUTHORS afm bin doc etc include library modules share \
 	$RPM_BUILD_ROOT%{_libdir}/R
 
-touch $RPM_BUILD_ROOT%{_libdir}/R/doc/html/search/index.html
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -279,15 +280,15 @@ rm -rf $RPM_BUILD_ROOT
 (cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
  R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
-%preun base
-# These files are not owned by any package, so we have to remove them
-# but only if this is the last version of R-base on the system.
-#
-if [ "$1" = 0 ];
-then
-	rm -f %{_libdir}/R/doc/html/search/index.txt
-	rm -f %{_libdir}/R/doc/html/search/index.html
-fi
+#%preun base
+## These files are not owned by any package, so we have to remove them
+## but only if this is the last version of R-base on the system.
+##
+#if [ "$1" = 0 ];
+#then
+#	rm -f %{_libdir}/R/doc/html/search/index.txt
+#	rm -f %{_libdir}/R/doc/html/packages.html
+#fi
 
 %post contrib
 (cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
@@ -339,18 +340,19 @@ fi
 %{_libdir}/R/library/tools
 %{_libdir}/R/library/ts
 %{_libdir}/R/modules
-%doc BUGS COPYRIGHTS FAQ NEWS README RESOURCES TASKS THANKS Y2K
-# %{_libdir}/R/doc %except %{_libdir}/R/doc/html/search/index.*
+%doc BUGS COPYRIGHTS FAQ NEWS README RESOURCES THANKS Y2K
+# %{_libdir}/R/doc %except %{_libdir}/R/doc/html/{packages.html,search/index.txt}
 %dir %{_libdir}/R/doc
 %{_libdir}/R/doc/[KRm]*
 %dir %{_libdir}/R/doc/html
 %{_libdir}/R/doc/html/*.css
-%{_libdir}/R/doc/html/*.html
+%{_libdir}/R/doc/html/[Ra-lr-u]*.html
+%{_libdir}/R/doc/html/packages-head.html
 %{_libdir}/R/doc/html/*.jpg
 %dir %{_libdir}/R/doc/html/search
 %{_libdir}/R/doc/html/search/[A-Z]*
 %ghost %{_libdir}/R/doc/html/search/index.txt
-%ghost %{_libdir}/R/doc/html/search/index.html
+%ghost %{_libdir}/R/doc/html/packages.html
 
 %files recommended
 %defattr(644,root,root,755)
