@@ -2,9 +2,9 @@ Summary:	A language for data analysis and graphics
 Summary(pl):	Jêzyk do analizy danych oraz grafiki
 Name:		R
 Version:	1.1.1
-Release:	1
+Release:	2
 Source0:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/base/%{name}-%{version}.tgz
-Source1:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/mlbench_0.4-1.tar.gz
+Source1:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/mlbench_0.5-2.tar.gz
 Source2:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/acepack_1.2-1.tar.gz
 Source3:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/bootstrap_1.0-5.tar.gz
 #Source4:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/class_VR5-4.tar.gz
