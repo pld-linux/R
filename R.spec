@@ -60,8 +60,6 @@ Source23:	ftp://stat.ethz.ch/R-CRAN/src/contrib/survival_2.9-15.tar.gz
 # Source23-md5:	88d086feec43c5a78f65c52eccd54713
 Source24:	ftp://stat.ethz.ch/R-CRAN/src/contrib/xgobi_1.2-10.tar.gz
 # Source24-md5:	1319f1efed55d79add90a5bd65bb32ca
-Source25:	ftp://stat.ethz.ch/R-CRAN/src/contrib/Archive/integrate_2.2-3.tar.gz
-# Source25-md5:	40cc14374a0992871dd651d41289b3e6
 Source26:	%{name}.desktop
 URL:		http://www.r-project.org/
 BuildRequires:	autoconf
@@ -170,7 +168,7 @@ Requires(post,postun):	perl
 Requires:	R-base >= %{version}
 Requires:	R-VR
 Provides:	R-acepack R-bootstrap R-date R-e1071 R-fracdiff R-gee
-Provides:	R-integrate R-leaps R-oz R-polynom R-princurve R-quadprog
+Provides:	R-leaps R-oz R-polynom R-princurve R-quadprog
 Provides:	R-xgobi
 Obsoletes:	R-principal.curve
 
@@ -228,7 +226,6 @@ uczenia maszyny.
 %setup -q -c -n R-cran -T -D -b 22
 %setup -q -c -n R-cran -T -D -b 23
 %setup -q -c -n R-cran -T -D -b 24
-#%%setup -q -c -n R-cran -T -D -b 25
 %setup -q
 #%setup -q -T -D -a 14
 
@@ -441,8 +438,6 @@ fi
 %doc fracdiff
 %{_libdir}/R/library/gee
 %doc gee
-%{_libdir}/R/library/integrate
-%doc integrate
 %{_libdir}/R/library/leaps
 %doc leaps
 %{_libdir}/R/library/oz
