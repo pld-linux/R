@@ -111,7 +111,7 @@ Summary(pl):	Dodatkowe pakiety do jêzyka R
 Group:		Development/Languages
 Group(de):	Entwicklung/Sprachen
 Group(pl):	Programowanie/Jêzyki
-Copyright:	Mixed
+License:	Mixed
 URL:		http://www.ci.tuwien.ac.at/R/
 Requires:	R-base >= %{version}
 
