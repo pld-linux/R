@@ -49,6 +49,7 @@ BuildRequires:	zip
 BuildRequires:	XFree86-devel
 BuildRequires:	libpng-devel >= 1.0.5
 BuildRequires:	libjpeg-devel >= 6b
+BuildRequires:	libxml-devel
 BuildRequires:	zlib >= 1.1.3
 BuildRequires:	readline-devel
 BuildRequires:	lpr
@@ -182,21 +183,22 @@ rm -f ./doc/keyword-test.orig ./etc/undoc/R-funs.orig ./etc/undoc/extrExamp.orig
 %{__make} help
 %{__make} html
 %{__make} clean
-%{__make} acclean
+# %{__make} acclean
 
 # Install contrib packages
 #
-RHOME=`pwd`;export RHOME
+R_HOME=`pwd`;export R_HOME
+PERL5LIB=`pwd`/share/perl;export PERL5LIB
 cd ../R-cran
 for pkg in `ls`
 do
-${RHOME}%{_sysconfdir}/INSTALL -latex ${pkg}
+${R_HOME}/bin/INSTALL ${pkg}
 done
-cd ${RHOME}
+cd ${R_HOME}
 
 # Install mlbench
 #
-${RHOME}%{_sysconfdir}/INSTALL mlbench
+${R_HOME}/bin/INSTALL mlbench
 
 #Remove old template files.
 #
@@ -209,11 +211,11 @@ done
 # Assume that anything not in one of the standard directories is
 # documentation, and copy it.
 #
-mkdir ${RHOME}/contrib
+mkdir ${R_HOME}/contrib
 cd ${RPM_BUILD_DIR}/R-cran
 for pkg in `ls`; do
         if [ -d ${pkg} ]; then
-		mkdir ${RHOME}/${pkg}
+		mkdir ${R_HOME}/${pkg}
                 for docfile in `ls ${pkg}`; do
                         case $docfile in
                                 INDEX) ;;
@@ -223,12 +225,12 @@ for pkg in `ls`; do
                                 src) ;;
                                 src-c) ;;
                                 data) ;;
-                                *) cp -R -P ${pkg}/${docfile} ${RHOME};;
+                                *) cp -R -P ${pkg}/${docfile} ${R_HOME};;
                         esac
                 done
         fi
 done
-cd ${RHOME}
+cd ${R_HOME}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -276,7 +278,7 @@ fi
 %attr(-,root,root) %{_libdir}/R/bin
 %attr(-,root,root) %{_libdir}/R/cmd
 %attr(-,root,root) %{_libdir}/R/demos
-%attr(-,root,root) %{_libdir}/R%{_sysconfdir}
+%attr(-,root,root) %{_libdir}/R/etc
 %attr(-,root,root) %{_libdir}/R/html
 %attr(-,root,root) %{_libdir}/R/include
 %attr(-,root,root) %dir %{_libdir}/R/library
