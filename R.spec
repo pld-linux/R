@@ -32,8 +32,6 @@ Patch0:		R-destdir.patch
 # Patch0:		%{name}-0.61.rpm.patch3
 License:	GPL
 Group:		Development/Languages
-Group(de):	Entwicklung/Sprachen
-Group(pl):	Programowanie/Jêzyki
 URL:		http://stat.auckland.ac.nz/r/r.html
 Provides:	R-base R-contrib
 BuildRequires:	libstdc++-devel
@@ -82,8 +80,6 @@ implementacja i semantyka wywodzi siê ze Scheme.
 Summary:	The R base distribution
 Summary(pl):	Podstawowa dystrybucja R
 Group:		Development/Languages
-Group(de):	Entwicklung/Sprachen
-Group(pl):	Programowanie/Jêzyki
 Provides:	R-acepack R-bootstrap R-VR R-cluster R-ctest R-date R-e1071
 Provides:	R-fracdiff R-gee R-integrate R-jpn R-leaps R-mlbench R-oz
 Provides:	R-polynom R-princurve R-quadprog R-ratetables R-rational
@@ -109,8 +105,6 @@ oprogramowania w S bêdzie dzia³a³a bez zmian w R.
 Summary:	Contributed packages for the R language
 Summary(pl):	Dodatkowe pakiety do jêzyka R
 Group:		Development/Languages
-Group(de):	Entwicklung/Sprachen
-Group(pl):	Programowanie/Jêzyki
 License:	Mixed
 URL:		http://www.ci.tuwien.ac.at/R/
 Requires:	R-base >= %{version}
@@ -127,8 +121,6 @@ dystrubuowane w archiwum CRAN (Comprehensive R Archive Network).
 Summary:	Machine learning benchmarks
 Summary(pl):	Testy wydajno¶ci uczenia maszyny
 Group:		Development/Languages
-Group(de):	Entwicklung/Sprachen
-Group(pl):	Programowanie/Jêzyki
 License:	GPL
 URL:		http://www.ics.uci.edu/~mlearn/MLRepository.html
 Requires:	R-base >= %{version}
