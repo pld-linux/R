@@ -1,6 +1,6 @@
 #
 # Conditional build:
-# _without_gnome        - without gnome support
+# _without_gnome        - without GNOME support
 #
 Summary:	A language for data analysis and graphics
 Summary(pl):	Jêzyk do analizy danych oraz grafiki
