@@ -22,6 +22,7 @@ BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	blas-devel
+BuildRequires:	bzip2-devel
 BuildRequires:	gcc-c++
 BuildRequires:	gcc-g77
 BuildRequires:	gettext-devel
@@ -32,9 +33,11 @@ BuildRequires:	libtool
 BuildRequires:	libxml-devel
 BuildRequires:	perl-base >= 1:5.6
 BuildRequires:	readline-devel
+BuildRequires:	tcl-devel
 BuildRequires:	tetex-latex
 BuildRequires:	tetex-dvips
 BuildRequires:	tetex-pdftex
+BuildRequires:	tk-devel
 BuildRequires:	zip
 BuildRequires:	zlib >= 1.1.3
 #BuildRequires:	lpr
