@@ -1,38 +1,37 @@
-Summary: A language for data analysis and graphics
-Name: R
-Version: 0.61.1
-Release: 3
-Source0: ftp.stat.math.ethz.ch:/R-CRAN/src/base/r-0_61_1.tgz
-Source1: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/mlbench_0.2-2.tar.gz
-Source2: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/acepack_1.0-2.tar.gz
-Source3: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/bootstrap_1.0-3.tar.gz
-Source4: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/class_VR5-4.tar.gz
-Source5: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/clus_1.0-2.tar.gz
-Source6: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/ctest_0.9-1.tar.gz
-Source7: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/date_1.0-3.tar.gz
-Source8: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/e1071_0.7-3.tar.gz
-Source9: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/fracdiff_1.0-2.tar.gz
-Source10: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/gee_3.13-2.tar.gz
-Source11: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/integrate_1.0-3.tar.gz
-Source12: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/jpn_1.0-1.tar.gz
-Source13: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/leaps_1.0-3.tar.gz
-Source14: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/nnet_VR5-3.tar.gz
-Source15: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/oz_1.0-1.tar.gz
-Source16: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/polynom_1.0-3.tar.gz
-Source17: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/ratetables_1.0-2.tar.gz
-Source18: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/rational_1.0-1.tar.gz
-Source19: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/spatial_VR5-2.tar.gz
-Source20: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/splines_2.0-1.tar.gz
-Source21: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/survival4_1.0-3.tar.gz
-Source22: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/xgobi_1.0-2.tar.gz
-Source23: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/principal.curve_1.0-2.tar.gz
-Source24: ftp.stat.math.ethz.ch:/R-CRAN/src/contrib/quadprog_1.0-2.tar.gz
-Patch0: R-0.61.rpm.patch3
-Copyright: gpl
-Group: Development/Languages
-Packager: Martyn Plummer <plummer@iarc.fr>
-URL: http://stat.auckland.ac.nz/r/r.html
-Provides: R-base R-contrib
+Summary:	A language for data analysis and graphics
+Name:		R
+Version:	0.61.1
+Release:	3
+Source0:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/base/r-0_61_1.tgz
+Source1:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/mlbench_0.2-2.tar.gz
+Source2:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/acepack_1.0-2.tar.gz
+Source3:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/bootstrap_1.0-3.tar.gz
+Source4:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/class_VR5-4.tar.gz
+Source5:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/clus_1.0-2.tar.gz
+Source6:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/ctest_0.9-1.tar.gz
+Source7:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/date_1.0-3.tar.gz
+Source8:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/e1071_0.7-3.tar.gz
+Source9:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/fracdiff_1.0-2.tar.gz
+Source10:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/gee_3.13-2.tar.gz
+Source11:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/integrate_1.0-3.tar.gz
+Source12:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/jpn_1.0-1.tar.gz
+Source13:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/leaps_1.0-3.tar.gz
+Source14:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/nnet_VR5-3.tar.gz
+Source15:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/oz_1.0-1.tar.gz
+Source16:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/polynom_1.0-3.tar.gz
+Source17:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/ratetables_1.0-2.tar.gz
+Source18:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/rational_1.0-1.tar.gz
+Source19:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/spatial_VR5-2.tar.gz
+Source20:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/splines_2.0-1.tar.gz
+Source21:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/survival4_1.0-3.tar.gz
+Source22:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/xgobi_1.0-2.tar.gz
+Source23:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/principal.curve_1.0-2.tar.gz
+Source24:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/quadprog_1.0-2.tar.gz
+Patch0:		R-0.61.rpm.patch3
+Copyright:	GPL
+Group:		Development/Languages
+URL:		http://stat.auckland.ac.nz/r/r.html
+Provides:	R-base R-contrib
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -47,14 +46,12 @@ language is very similar in appearance to S, the underlying implementation
 and semantics are derived from Scheme.
 
 %package base
-Summary: The R base distribution
-Group: Development/Languages
-Version: 0.61.1
-Conflicts: R-contrib < 1998.1.1
-Provides: R-acepack R-bootstrap R-class R-clus R-ctest R-date R-e1071 
-Provides: R-fracdiff R-gee R-integrate R-jpn R-leaps R-mlbench R-nnet R-oz 
-Provides: R-polynom R-principal.curve R-quadprog R-ratetables R-rational 
-Provides: R-spatial R-splines R-survival4 R-xgobi
+Summary:	The R base distribution
+Group:		Development/Languages
+Provides:	R-acepack R-bootstrap R-class R-clus R-ctest R-date R-e1071 
+Provides:	R-fracdiff R-gee R-integrate R-jpn R-leaps R-mlbench R-nnet R-oz 
+Provides:	R-polynom R-principal.curve R-quadprog R-ratetables R-rational 
+Provides:	R-spatial R-splines R-survival4 R-xgobi
 
 %description base
 R is a language and run-time environment for carrying out interactive
@@ -64,26 +61,22 @@ S users will find the environment quite familiar and a good deal of S
 software will run without change under R.
 
 %package contrib
-Summary: contributed packages for the R language
-Group: Development/Languages
-Copyright: Mixed
-URL: http://www.ci.tuwien.ac.at/R/
-Version: 1998.01.22
-Release: 3
-Requires: R-base >= 0.60
+Summary:	contributed packages for the R language
+Group:		Development/Languages
+Copyright:	Mixed
+URL:		http://www.ci.tuwien.ac.at/R/
+Requires:	R-base >= %{version}
 
 %description contrib
 Packages which extend the capabilities of the R base distribution
 and are distributed on the Comprehensive R Archive Network (CRAN).
 
 %package mlbench
-Summary: Machine learning benchmarks
-Group: Development/Languages
-Copyright: GPL
-URL: http://www.ics.uci.edu/~mlearn/MLRepository.html
-Version: 0.2.2
-Release: 3
-Requires: R-base >= 0.60
+Summary:	Machine learning benchmarks
+Group:		Development/Languages
+Copyright:	GPL
+URL:		http://www.ics.uci.edu/~mlearn/MLRepository.html
+Requires:	R-base >= %{version}
 
 %description mlbench
 R package which contains a collection of real-world datasets and
@@ -91,38 +84,37 @@ functions for creating artificial datasets that work as benchmarks
 for machine learning methods.
 
 %prep
-%setup -c -n R-cran -T -b 2
-%setup -c -n R-cran -T -D -b 3
-%setup -c -n R-cran -T -D -b 4
-%setup -c -n R-cran -T -D -b 5
-%setup -c -n R-cran -T -D -b 6
-%setup -c -n R-cran -T -D -b 7
-%setup -c -n R-cran -T -D -b 8
-%setup -c -n R-cran -T -D -b 9
-%setup -c -n R-cran -T -D -b 10
-%setup -c -n R-cran -T -D -b 11
-%setup -c -n R-cran -T -D -b 12
-%setup -c -n R-cran -T -D -b 13
-%setup -c -n R-cran -T -D -b 14
-%setup -c -n R-cran -T -D -b 15
-%setup -c -n R-cran -T -D -b 16
-%setup -c -n R-cran -T -D -b 17
-%setup -c -n R-cran -T -D -b 18
-%setup -c -n R-cran -T -D -b 19
-%setup -c -n R-cran -T -D -b 20
-%setup -c -n R-cran -T -D -b 21
-%setup -c -n R-cran -T -D -b 22
-%setup -c -n R-cran -T -D -b 23
-%setup -c -n R-cran -T -D -b 24
-%setup 
-%setup  -T -D -a 1
+%setup -q -c -n R-cran -T -b 2
+%setup -q -c -n R-cran -T -D -b 3
+%setup -q -c -n R-cran -T -D -b 4
+%setup -q -c -n R-cran -T -D -b 5
+%setup -q -c -n R-cran -T -D -b 6
+%setup -q -c -n R-cran -T -D -b 7
+%setup -q -c -n R-cran -T -D -b 8
+%setup -q -c -n R-cran -T -D -b 9
+%setup -q -c -n R-cran -T -D -b 10
+%setup -q -c -n R-cran -T -D -b 11
+%setup -q -c -n R-cran -T -D -b 12
+%setup -q -c -n R-cran -T -D -b 13
+%setup -q -c -n R-cran -T -D -b 14
+%setup -q -c -n R-cran -T -D -b 15
+%setup -q -c -n R-cran -T -D -b 16
+%setup -q -c -n R-cran -T -D -b 17
+%setup -q -c -n R-cran -T -D -b 18
+%setup -q -c -n R-cran -T -D -b 19
+%setup -q -c -n R-cran -T -D -b 20
+%setup -q -c -n R-cran -T -D -b 21
+%setup -q -c -n R-cran -T -D -b 22
+%setup -q -c -n R-cran -T -D -b 23
+%setup -q -c -n R-cran -T -D -b 24
+%setup -q 
+%setup -q -T -D -a 1
 %patch0 -p1
 # These files have the path for PERL hard-coded as /usr/local/bin/perl
 # We need to remove them to avoid dependency problems
 rm ./doc/keyword-test.orig ./etc/undoc/R-funs.orig ./etc/undoc/extrExamp.orig 
 
 %build
-
 make 
 make help
 make html
@@ -185,6 +177,7 @@ install -d ${RPM_BUILD_ROOT}%{_bindir}
 install -m 755 bin/R ${RPM_BUILD_ROOT}%{_bindir}/R
 
 %files base
+%defattr(644,root,root,755)
 %attr(-,root,root) %{_mandir}/man1/R.1
 %attr(-,root,root) %{_bindir}/R
 %attr(-,root,root) %dir %{_libdir}/R
@@ -203,6 +196,7 @@ install -m 755 bin/R ${RPM_BUILD_ROOT}%{_bindir}/R
 %attr(-,root,root) %doc CHANGES COPYING COPYRIGHTS MIRROR-SITES PROJECTS README RESOURCES TASKS
 
 %files contrib
+%defattr(644,root,root,755)
 %attr(-,root,root) %{_libdir}/R/library/acepack
 %attr(-,root,root) %doc acepack
 %attr(-,root,root) %{_libdir}/R/library/bootstrap
@@ -251,19 +245,14 @@ install -m 755 bin/R ${RPM_BUILD_ROOT}%{_bindir}/R
 %attr(-,root,root) %doc quadprog
 
 %files mlbench
+%defattr(644,root,root,755)
 %attr(-,root,root) %{_libdir}/R/library/mlbench
 %attr(-,root,root) %doc mlbench/COPYRIGHT
 %attr(-,root,root) %doc mlbench/ChangeLog
 %attr(-,root,root) %doc mlbench/README
 
 %clean
-# Tidy up after build. We have to be quite careful here in case some
-# idiot (me) uses a build root of /. This leaves the directory structure
-# in place but removes the files owned by R.
-rm -f  ${RPM_BUILD_ROOT}%{_mandir}/man1/R.1
-rm -f  ${RPM_BUILD_ROOT}%{_bindir}/R
-rm -rf ${RPM_BUILD_ROOT}%{_libdir}/R
-rm -rf ${RPM_BUILD_ROOT}/usr/doc/R-*
+rm -rf ${RPM_BUILD_ROOT}
 
 %post base
 (cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
