@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=R
+Comment=Language for interactive analysis of statistical data
+Comment[pl]=Język do interaktywnej analizy danych statystycznych
+Icon=
+Exec=R
+Terminal=true
+Type=Application
+Encoding=UTF-8
+# vi: encoding=utf-8
