@@ -71,18 +71,18 @@ License:	GPL v2 / LGPL
 Group:		Development/Languages
 Requires(post):	textutils
 Requires(post):	perl-base
-Provides:	R-base
-Provides:       R-datasets
-Provides:       R-grid
-Provides:       R-graphics
-Provides:       R-grDevices
-Provides:       R-methods
-Provides:       R-utils
-Provides:       R-tcltk
-Provides:       R-splines
-Provides:       R-stats
-Provides:       R-stats4
-Provides:       R-tools
+Provides:	R-cran-base
+Provides:       R-cran-datasets
+Provides:       R-cran-grid
+Provides:       R-cran-graphics
+Provides:       R-cran-grDevices
+Provides:       R-cran-methods
+Provides:       R-cran-utils
+Provides:       R-cran-tcltk
+Provides:       R-cran-splines
+Provides:       R-cran-stats
+Provides:       R-cran-stats4
+Provides:       R-cran-tools
 
 %description base
 R is a language and run-time environment for carrying out interactive
@@ -103,28 +103,22 @@ oprogramowania w S bêdzie dzia³a³a bez zmian w R.
 Summary:	Recommended contributed packages for the R language
 Summary(pl):	Zalecane dodatkowe pakiety do jêzyka R
 Group:		Development/Languages
-Provides:	R-KernSmooth
-Provides:	R-VR
-Provides:	R-boot
-Provides:	R-cluster
-Provides:	R-foreign
-Provides:	R-lattice
-Provides:	R-mgcv
-Provides:	R-nlme
-Provides:	R-rpart
-Provides:	R-survival
+Requires:	R-cran-KernSmooth
+Requires:	R-cran-VR
+Requires:	R-boot
+Requires:	R-cran-cluster
+Requires:	R-cran-foreign
+Requires:	R-cran-lattice
+Requires:	R-cran-mgcv
+Requires:	R-cran-nlme
+Requires:	R-cran-rpart
+Requires:	R-cran-survival
 License:	GPL, free or free for non-commercial use
 URL:		http://www.ci.tuwien.ac.at/R/
 Requires(post,postun):	R-base
 Requires(post,postun):	perl-base
 Requires(post,postun):	textutils
 Requires:	R-base = %{version}-%{release}
-Obsoletes:	R-survival4
-Obsoletes:	R-MASS
-Obsoletes:	R-clus
-Obsoletes:	R-class
-Obsoletes:	R-nnet
-Obsoletes:	R-spatial
 
 %description recommended
 Packages which extend the capabilities of the R base distribution and
@@ -133,60 +127,6 @@ are distributed on the Comprehensive R Archive Network (CRAN).
 %description recommended -l pl
 Pakiety rozszerzaj±ce mo¿liwo¶ci podstawowej dystrybucji jêzyka R,
 dystrubuowane w archiwum CRAN (Comprehensive R Archive Network).
-
-%package contrib
-Summary:	Contributed packages for the R language
-Summary(pl):	Dodatkowe pakiety do jêzyka R
-License:	Mixed
-Group:		Development/Languages
-URL:		http://www.ci.tuwien.ac.at/R/
-Requires(post,postun):	R-base
-Requires(post,postun):	perl-base
-Requires(post,postun):	textutils
-Requires:	R-base = %{version}-%{release}
-Requires:	R-VR
-Provides:	R-acepack
-Provides:	R-bootstrap
-Provides:	R-date
-Provides:	R-e1071
-Provides:	R-fracdiff
-Provides:	R-gee
-Provides:	R-leaps
-Provides:	R-oz
-Provides:	R-polynom
-Provides:	R-princurve
-Provides:	R-quadprog
-Provides:	R-xgobi
-Obsoletes:	R-principal.curve
-
-%description contrib
-Packages which extend the capabilities of the R base distribution and
-are distributed on the Comprehensive R Archive Network (CRAN).
-
-%description contrib -l pl
-Pakiety rozszerzaj±ce mo¿liwo¶ci podstawowej dystrybucji jêzyka R,
-dystrubuowane w archiwum CRAN (Comprehensive R Archive Network).
-
-%package mlbench
-Summary:	Machine learning benchmarks
-Summary(pl):	Testy wydajno¶ci uczenia maszyny
-Group:		Development/Languages
-License:	GPL
-URL:		http://www.ics.uci.edu/~mlearn/MLRepository.html
-Requires(post,postun):	R-base
-Requires(post,postun):	perl-base
-Requires(post,postun):	textutils
-Requires:	R-base = %{version}-%{release}
-
-%description mlbench
-R package which contains a collection of real-world datasets and
-functions for creating artificial datasets that work as benchmarks for
-machine learning methods.
-
-%description mlbench -l pl
-Ten podpakiet R zawiera zestaw rzeczywistych danych i funkcji do
-tworzenia sztucznych danych s³u¿±cych jako test wydajno¶ci metod
-uczenia maszyny.
 
 %prep
 %setup -q
@@ -289,3 +229,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/library/stats
 %{_libdir}/%{name}/library/stats4
 %{_libdir}/%{name}/library/tools
+
+%files recommended
