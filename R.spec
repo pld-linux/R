@@ -15,7 +15,6 @@ Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-2/%{name}-%{version}.tar.gz
 # Source0-md5:	fb47b1fdef4323031e24d541a2f36b2b
-# Source0-size:	10676072
 Source1:	%{name}.desktop
 URL:		http://www.r-project.org/
 BuildRequires:	XFree86-devel
