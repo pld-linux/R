@@ -6,7 +6,7 @@ Summary:	A language for data analysis and graphics
 Summary(pl):	Jêzyk do analizy danych oraz grafiki
 Name:		R
 Version:	1.4.1
-Release:	1
+Release:	2
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/%{name}-%{version}.tgz
 Source1:	ftp://stat.ethz.ch/R-CRAN/src/contrib/KernSmooth_2.22-7.tar.gz
 Source2:	ftp://stat.ethz.ch/R-CRAN/src/contrib/VR_6.3-2.tar.gz
@@ -35,6 +35,8 @@ License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 URL:		http://stat.auckland.ac.nz/r/r.html
 Provides:	R-base R-contrib
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	libstdc++-devel
 BuildRequires:	gcc-c++
 BuildRequires:	gcc-g77
@@ -190,7 +192,10 @@ uczenia maszyny.
 rm -f ./doc/keyword-test.orig ./etc/undoc/R-funs.orig ./etc/undoc/extrExamp.orig 
 
 %build
-%configure2_13 \
+aclocal
+autoconf
+%configure \
+#%configure2_13 \
 	%{!?_without_gnome:--with-gnome} \
 	%{?_without_gnome:--without-gnome} \
 	--without-tcltk
