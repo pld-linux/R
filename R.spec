@@ -58,7 +58,7 @@ BuildRequires:	readline-devel
 #BuildRequires:	lpr
 %{!?_without_gnome:BuildRequires:	gnome-libs-devel}
 %{!?_without_gnome:BuildRequires:	ORBit-devel}
-%{!?_without_gnome:BuildRequires:	libglade-devel}
+%{!?_without_gnome:BuildRequires:	libglade-gnome-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
