@@ -179,79 +179,79 @@ cd ${RHOME}
 %install
 install -d ${RPM_BUILD_ROOT}%{_mandir}/man1
 install R.1 ${RPM_BUILD_ROOT}%{_mandir}/man1/
-install -d ${RPM_BUILD_ROOT}/usr/lib/R
-cp -R afm bin cmd demos doc etc html include library ${RPM_BUILD_ROOT}/usr/lib/R
+install -d ${RPM_BUILD_ROOT}%{_libdir}/R
+cp -R afm bin cmd demos doc etc html include library ${RPM_BUILD_ROOT}%{_libdir}/R
 install -d ${RPM_BUILD_ROOT}/usr/bin
 install -m 755 bin/R ${RPM_BUILD_ROOT}/usr/bin/R
 
 %files base
 %attr(-,root,root) %{_mandir}/man1/R.1
 %attr(-,root,root) /usr/bin/R
-%attr(-,root,root) %dir /usr/lib/R
-%attr(-,root,root) /usr/lib/R/afm
-%attr(-,root,root) /usr/lib/R/bin
-%attr(-,root,root) /usr/lib/R/cmd
-%attr(-,root,root) /usr/lib/R/demos
-%attr(-,root,root) /usr/lib/R/etc
-%attr(-,root,root) /usr/lib/R/html
-%attr(-,root,root) /usr/lib/R/include
-%attr(-,root,root) %dir /usr/lib/R/library
-%attr(-,root,root) /usr/lib/R/library/base/
-%attr(-,root,root) /usr/lib/R/library/eda/
-%attr(-,root,root) /usr/lib/R/library/mva/
-%attr(-,root,root) /usr/lib/R/library/stepfun/
+%attr(-,root,root) %dir %{_libdir}/R
+%attr(-,root,root) %{_libdir}/R/afm
+%attr(-,root,root) %{_libdir}/R/bin
+%attr(-,root,root) %{_libdir}/R/cmd
+%attr(-,root,root) %{_libdir}/R/demos
+%attr(-,root,root) %{_libdir}/R/etc
+%attr(-,root,root) %{_libdir}/R/html
+%attr(-,root,root) %{_libdir}/R/include
+%attr(-,root,root) %dir %{_libdir}/R/library
+%attr(-,root,root) %{_libdir}/R/library/base/
+%attr(-,root,root) %{_libdir}/R/library/eda/
+%attr(-,root,root) %{_libdir}/R/library/mva/
+%attr(-,root,root) %{_libdir}/R/library/stepfun/
 %attr(-,root,root) %doc CHANGES COPYING COPYRIGHTS MIRROR-SITES PROJECTS README RESOURCES TASKS
 
 %files contrib
-%attr(-,root,root) /usr/lib/R/library/acepack
+%attr(-,root,root) %{_libdir}/R/library/acepack
 %attr(-,root,root) %doc acepack
-%attr(-,root,root) /usr/lib/R/library/bootstrap
+%attr(-,root,root) %{_libdir}/R/library/bootstrap
 %attr(-,root,root) %doc bootstrap
-%attr(-,root,root) /usr/lib/R/library/class
+%attr(-,root,root) %{_libdir}/R/library/class
 %attr(-,root,root) %doc class
-%attr(-,root,root) /usr/lib/R/library/clus
+%attr(-,root,root) %{_libdir}/R/library/clus
 %attr(-,root,root) %doc clus
-%attr(-,root,root) /usr/lib/R/library/ctest
+%attr(-,root,root) %{_libdir}/R/library/ctest
 %attr(-,root,root) %doc ctest
-%attr(-,root,root) /usr/lib/R/library/date
+%attr(-,root,root) %{_libdir}/R/library/date
 %attr(-,root,root) %doc date
-%attr(-,root,root) /usr/lib/R/library/e1071
+%attr(-,root,root) %{_libdir}/R/library/e1071
 %attr(-,root,root) %doc e1071
-%attr(-,root,root) /usr/lib/R/library/fracdiff
+%attr(-,root,root) %{_libdir}/R/library/fracdiff
 %attr(-,root,root) %doc fracdiff
-%attr(-,root,root) /usr/lib/R/library/gee
+%attr(-,root,root) %{_libdir}/R/library/gee
 %attr(-,root,root) %doc gee
-%attr(-,root,root) /usr/lib/R/library/integrate
+%attr(-,root,root) %{_libdir}/R/library/integrate
 %attr(-,root,root) %doc integrate
-%attr(-,root,root) /usr/lib/R/library/jpn
+%attr(-,root,root) %{_libdir}/R/library/jpn
 %attr(-,root,root) %doc jpn
-%attr(-,root,root) /usr/lib/R/library/leaps
+%attr(-,root,root) %{_libdir}/R/library/leaps
 %attr(-,root,root) %doc leaps
-%attr(-,root,root) /usr/lib/R/library/nnet
+%attr(-,root,root) %{_libdir}/R/library/nnet
 %attr(-,root,root) %doc nnet
-%attr(-,root,root) /usr/lib/R/library/oz
+%attr(-,root,root) %{_libdir}/R/library/oz
 %attr(-,root,root) %doc oz
-%attr(-,root,root) /usr/lib/R/library/polynom
+%attr(-,root,root) %{_libdir}/R/library/polynom
 %attr(-,root,root) %doc polynom
-%attr(-,root,root) /usr/lib/R/library/ratetables
+%attr(-,root,root) %{_libdir}/R/library/ratetables
 %attr(-,root,root) %doc ratetables
-%attr(-,root,root) /usr/lib/R/library/rational
+%attr(-,root,root) %{_libdir}/R/library/rational
 %attr(-,root,root) %doc rational
-%attr(-,root,root) /usr/lib/R/library/spatial
+%attr(-,root,root) %{_libdir}/R/library/spatial
 %attr(-,root,root) %doc spatial
-%attr(-,root,root) /usr/lib/R/library/splines
+%attr(-,root,root) %{_libdir}/R/library/splines
 %attr(-,root,root) %doc splines
-%attr(-,root,root) /usr/lib/R/library/survival4
+%attr(-,root,root) %{_libdir}/R/library/survival4
 %attr(-,root,root) %doc survival4
-%attr(-,root,root) /usr/lib/R/library/xgobi
+%attr(-,root,root) %{_libdir}/R/library/xgobi
 %attr(-,root,root) %doc xgobi
-%attr(-,root,root) /usr/lib/R/library/principal.curve
+%attr(-,root,root) %{_libdir}/R/library/principal.curve
 %attr(-,root,root) %doc principal.curve
-%attr(-,root,root) /usr/lib/R/library/quadprog
+%attr(-,root,root) %{_libdir}/R/library/quadprog
 %attr(-,root,root) %doc quadprog
 
 %files mlbench
-%attr(-,root,root) /usr/lib/R/library/mlbench
+%attr(-,root,root) %{_libdir}/R/library/mlbench
 %attr(-,root,root) %doc mlbench/COPYRIGHT
 %attr(-,root,root) %doc mlbench/ChangeLog
 %attr(-,root,root) %doc mlbench/README
@@ -262,11 +262,11 @@ install -m 755 bin/R ${RPM_BUILD_ROOT}/usr/bin/R
 # in place but removes the files owned by R.
 rm -f  ${RPM_BUILD_ROOT}%{_mandir}/man1/R.1
 rm -f  ${RPM_BUILD_ROOT}/usr/bin/R
-rm -rf ${RPM_BUILD_ROOT}/usr/lib/R
+rm -rf ${RPM_BUILD_ROOT}%{_libdir}/R
 rm -rf ${RPM_BUILD_ROOT}/usr/doc/R-*
 
 %post base
-(cd /usr/lib/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
+(cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
 
 %preun base
 # These files are not owned by any package, so we have to remove them
@@ -274,18 +274,18 @@ rm -rf ${RPM_BUILD_ROOT}/usr/doc/R-*
 #
 if [ "$1" = 0 ];
 then
-	rm -f /usr/lib/R/library/LibIndex
-	rm -f /usr/lib/R/library/index.html
+	rm -f %{_libdir}/R/library/LibIndex
+	rm -f %{_libdir}/R/library/index.html
 fi
 
 %post contrib
-(cd /usr/lib/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
+(cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
 
 %postun contrib
-(cd /usr/lib/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
+(cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
 
 %post mlbench
-(cd /usr/lib/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
+(cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
 
 %postun mlbench
-(cd /usr/lib/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
+(cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
