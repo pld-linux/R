@@ -2,7 +2,7 @@
 # - move perl R libraries to standard perl location
 #
 # Conditional build:
-# _without_gnome        - without GNOME support
+%bcond_without	gnome	# without GNOME support
 #
 Summary:	A language for data analysis and graphics
 Summary(pl):	Jêzyk do analizy danych oraz grafiki
@@ -37,9 +37,9 @@ BuildRequires:	zip
 BuildRequires:	zlib >= 1.1.3
 #BuildRequires:	lpr
 #Requires:	lpr
-%{!?_without_gnome:BuildRequires:	gnome-libs-devel}
-%{!?_without_gnome:BuildRequires:	ORBit-devel}
-%{!?_without_gnome:BuildRequires:	libglade-gnome-devel}
+%{?with_gnome:BuildRequires:	gnome-libs-devel}
+%{?with_gnome:BuildRequires:	ORBit-devel}
+%{?with_gnome:BuildRequires:	libglade-gnome-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -69,7 +69,7 @@ Summary(pl):	Podstawowa dystrybucja R
 License:	GPL v2 / LGPL
 Group:		Development/Languages
 Requires(post):	textutils
-Requires(post):	perl
+Requires(post):	perl-base
 Provides:	R-base
 Provides:       R-datasets
 Provides:       R-grid
@@ -102,15 +102,28 @@ oprogramowania w S bêdzie dzia³a³a bez zmian w R.
 Summary:	Recommended contributed packages for the R language
 Summary(pl):	Zalecane dodatkowe pakiety do jêzyka R
 Group:		Development/Languages
-Provides:	R-KernSmooth R-VR R-boot R-cluster R-foreign
-Provides:	R-lattice R-mgcv R-nlme	R-rpart R-survival
+Provides:	R-KernSmooth
+Provides:	R-VR
+Provides:	R-boot
+Provides:	R-cluster
+Provides:	R-foreign
+Provides:	R-lattice
+Provides:	R-mgcv
+Provides:	R-nlme
+Provides:	R-rpart
+Provides:	R-survival
 License:	GPL, free or free for non-commercial use
 URL:		http://www.ci.tuwien.ac.at/R/
 Requires(post,postun):	R-base
+Requires(post,postun):	perl-base
 Requires(post,postun):	textutils
-Requires(post,postun):	perl
 Requires:	R-base = %{version}-%{release}
-Obsoletes:	R-survival4 R-MASS R-clus R-class R-nnet R-spatial
+Obsoletes:	R-survival4
+Obsoletes:	R-MASS
+Obsoletes:	R-clus
+Obsoletes:	R-class
+Obsoletes:	R-nnet
+Obsoletes:	R-spatial
 
 %description recommended
 Packages which extend the capabilities of the R base distribution and
@@ -127,12 +140,21 @@ License:	Mixed
 Group:		Development/Languages
 URL:		http://www.ci.tuwien.ac.at/R/
 Requires(post,postun):	R-base
+Requires(post,postun):	perl-base
 Requires(post,postun):	textutils
-Requires(post,postun):	perl
 Requires:	R-base = %{version}-%{release}
 Requires:	R-VR
-Provides:	R-acepack R-bootstrap R-date R-e1071 R-fracdiff R-gee
-Provides:	R-leaps R-oz R-polynom R-princurve R-quadprog
+Provides:	R-acepack
+Provides:	R-bootstrap
+Provides:	R-date
+Provides:	R-e1071
+Provides:	R-fracdiff
+Provides:	R-gee
+Provides:	R-leaps
+Provides:	R-oz
+Provides:	R-polynom
+Provides:	R-princurve
+Provides:	R-quadprog
 Provides:	R-xgobi
 Obsoletes:	R-principal.curve
 
@@ -151,8 +173,8 @@ Group:		Development/Languages
 License:	GPL
 URL:		http://www.ics.uci.edu/~mlearn/MLRepository.html
 Requires(post,postun):	R-base
+Requires(post,postun):	perl-base
 Requires(post,postun):	textutils
-Requires(post,postun):	perl
 Requires:	R-base = %{version}-%{release}
 
 %description mlbench
@@ -164,6 +186,7 @@ machine learning methods.
 Ten podpakiet R zawiera zestaw rzeczywistych danych i funkcji do
 tworzenia sztucznych danych s³u¿±cych jako test wydajno¶ci metod
 uczenia maszyny.
+
 %prep
 %setup -q
 
@@ -176,8 +199,7 @@ rm -f ./doc/keyword-test.orig ./etc/undoc/R-funs.orig ./etc/undoc/extrExamp.orig
 %{__autoconf}
 cp -f /usr/share/automake/config.* .
 %configure \
-	%{!?_without_gnome:--with-gnome} \
-	%{?_without_gnome:--without-gnome} \
+	--with%{!?with_gnome:out}-gnome \
 	--enable-R-shlib \
 	--enable-linux-lfs \
 	--with-zlib \
