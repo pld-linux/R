@@ -6,7 +6,7 @@ Summary:	A language for data analysis and graphics
 Summary(pl):	Jêzyk do analizy danych oraz grafiki
 Name:		R
 Version:	1.6.1
-Release:	1
+Release:	2
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/%{name}-%{version}.tgz
@@ -305,24 +305,30 @@ rm -rf $RPM_BUILD_ROOT
  R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 %postun contrib
+if [ -f ../bin/Rcmd ];then
 (cd %{_libdir}/R/library; umask 022; cat */CONTENTS > ../doc/html/search/index.txt
  R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
+fi
 
 %post recommended
 (cd %{_libdir}/R/library; umask 022; cat */CONTENTS > ../doc/html/search/index.txt
  R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 %postun recommended
+if [ -f ../bin/Rcmd ];then
 (cd %{_libdir}/R/library; umask 022; cat */CONTENTS > ../doc/html/search/index.txt
  R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
+fi
 
 %post mlbench
 (cd %{_libdir}/R/library; umask 022; cat */CONTENTS > ../doc/html/search/index.txt
  R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 %postun mlbench
+if [ -f ../bin/Rcmd ];then
 (cd %{_libdir}/R/library; umask 022; cat */CONTENTS > ../doc/html/search/index.txt
  R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
+fi
 
 %files base
 %defattr(644,root,root,755)
