@@ -1,54 +1,60 @@
+#
+# Conditional build:
+# _without_gnome        - without gnome support
+#
 Summary:	A language for data analysis and graphics
 Summary(pl):	Jêzyk do analizy danych oraz grafiki
 Name:		R
-Version:	1.1.1
-Release:	2
+Version:	1.3.1
+Release:	1
 Source0:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/base/%{name}-%{version}.tgz
 Source1:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/mlbench_0.5-2.tar.gz
-Source2:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/acepack_1.2-1.tar.gz
-Source3:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/bootstrap_1.0-5.tar.gz
-#Source4:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/class_VR5-4.tar.gz
-#Source5:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/clus_1.0-2.tar.gz
-#Source6:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/ctest_0.9-1.tar.gz
-Source7:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/date_1.2-4.tar.gz
-Source8:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/e1071_0.9-2.tar.gz
+Source2:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/acepack_1.3.tar.gz
+Source3:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/bootstrap_1.0-7.tar.gz
+Source4:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/VR_6.2-9.tar.gz
+Source5:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/cluster_1.3-4.tar.gz
+# Source6:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/ctest_0.9-1.tar.gz
+Source7:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/date_1.2-9.tar.gz
+Source8:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/e1071_1.2-0.tar.gz
 Source9:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/fracdiff_1.0-6.tar.gz
-Source10:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/gee_4.13-3.tar.gz
-Source11:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/integrate_2.2-2.tar.gz
-#Source12:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/jpn_1.0-1.tar.gz
-Source13:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/leaps_2.0.tar.gz
-#Source14:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/nnet_VR5-3.tar.gz
-Source15:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/oz_1.0-3.tar.gz
-Source16:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/polynom_1.1-3.tar.gz
-#Source17:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/ratetables_1.0-2.tar.gz
-#Source18:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/rational_1.0-1.tar.gz
-#Source19:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/spatial_VR5-2.tar.gz
-#Source20:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/splines_2.0-1.tar.gz
-Source21:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/survival5_1.1-5.tar.gz
-Source22:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/xgobi_1.2-2.tar.gz
-#Source23:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/principal.curve_1.0-2.tar.gz
-Source24:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/quadprog_1.4-1.tar.gz
-Source31:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/mlbench.pdf
-Source32:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/acepack.pdf
-Source33:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/bootstrap.pdf
-Source37:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/date.pdf
-Source38:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/e1071.pdf
-Source39:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/fracdiff.pdf
-Source40:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/gee.pdf
-Source41:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/intergate.pdf
-Source43:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/leaps.pdf
-Source45:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/oz.pdf
-Source46:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/polymon.pdf
-Source51:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/survival5.pdf
-Source52:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/xgobi.pdf
-Source54:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/quadprog.pdf
-Patch0:		%{name}-0.61.rpm.patch3
+Source10:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/gee_4.13-5.tar.gz
+Source11:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/integrate_2.2-3.tar.gz
+# Source12:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/jpn_1.0-1.tar.gz
+Source13:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/leaps_2.1-1.tar.gz
+Source15:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/oz_1.0-6.tar.gz
+Source16:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/polynom_1.1-7.tar.gz
+# Source17:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/ratetables_1.0-2.tar.gz
+# Source18:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/rational_1.0-1.tar.gz
+# Source20:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/splines_2.0-1.tar.gz
+Source21:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/survival_2.6.tar.gz
+Source22:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/xgobi_1.2-4.tar.gz
+Source23:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/princurve_1.1-2.tar.gz
+Source24:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/quadprog_1.4-3.tar.gz
+# Patch0:		%{name}-0.61.rpm.patch3
 License:	GPL
 Group:		Development/Languages
 Group(de):	Entwicklung/Sprachen
 Group(pl):	Programowanie/Jêzyki
 URL:		http://stat.auckland.ac.nz/r/r.html
 Provides:	R-base R-contrib
+BuildRequires:	libstdc++-devel
+BuildRequires:	gcc-c++
+BuildRequires:	gcc-g77
+BuildRequires:	perl >= 5
+BuildRequires:	libtool
+BuildRequires:	tetex-latex
+BuildRequires:	tetex-dvips
+BuildRequires:	tetex-pdftex
+BuildRequires:	zip
+BuildRequires:	XFree86-devel
+BuildRequires:	libpng-devel >= 1.0.5
+BuildRequires:	libjpeg-devel >= 6b
+BuildRequires:	zlib >= 1.1.3
+BuildRequires:	readline-devel
+BuildRequires:	lpr
+%{!?_without_gnome:BuildRequires:	gnome-libs-devel}
+%{!?_without_gnome:BuildRequires:	ORBit-devel}
+%{!?_without_gnome:BuildRequires:	libglade-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -78,10 +84,11 @@ Summary(pl):	Podstawowa dystrybucja R
 Group:		Development/Languages
 Group(de):	Entwicklung/Sprachen
 Group(pl):	Programowanie/Jêzyki
-Provides:	R-acepack R-bootstrap R-class R-clus R-ctest R-date R-e1071 
-Provides:	R-fracdiff R-gee R-integrate R-jpn R-leaps R-mlbench R-nnet R-oz 
-Provides:	R-polynom R-principal.curve R-quadprog R-ratetables R-rational 
-Provides:	R-spatial R-splines R-survival4 R-xgobi
+Provides:	R-acepack R-bootstrap R-VR R-cluster R-ctest R-date R-e1071
+Provides:	R-fracdiff R-gee R-integrate R-jpn R-leaps R-mlbench R-oz
+Provides:	R-polynom R-princurve R-quadprog R-ratetables R-rational
+Provides:	R-splines R-survival R-xgobi
+Obsoletes:	R-principal.curve R-survival4 R-clus R-class R-nnet R-spatial
 
 %description base
 R is a language and run-time environment for carrying out interactive
@@ -135,33 +142,36 @@ machine learning methods.
 %setup -q -c -n R-cran -T -D -b 3
 %setup -q -c -n R-cran -T -D -b 4
 %setup -q -c -n R-cran -T -D -b 5
-%setup -q -c -n R-cran -T -D -b 6
+# %setup -q -c -n R-cran -T -D -b 6
 %setup -q -c -n R-cran -T -D -b 7
 %setup -q -c -n R-cran -T -D -b 8
 %setup -q -c -n R-cran -T -D -b 9
 %setup -q -c -n R-cran -T -D -b 10
 %setup -q -c -n R-cran -T -D -b 11
-%setup -q -c -n R-cran -T -D -b 12
+# %setup -q -c -n R-cran -T -D -b 12
 %setup -q -c -n R-cran -T -D -b 13
-%setup -q -c -n R-cran -T -D -b 14
 %setup -q -c -n R-cran -T -D -b 15
 %setup -q -c -n R-cran -T -D -b 16
-%setup -q -c -n R-cran -T -D -b 17
-%setup -q -c -n R-cran -T -D -b 18
-%setup -q -c -n R-cran -T -D -b 19
-%setup -q -c -n R-cran -T -D -b 20
+# %setup -q -c -n R-cran -T -D -b 17
+# %setup -q -c -n R-cran -T -D -b 18
+# %setup -q -c -n R-cran -T -D -b 20
 %setup -q -c -n R-cran -T -D -b 21
 %setup -q -c -n R-cran -T -D -b 22
 %setup -q -c -n R-cran -T -D -b 23
 %setup -q -c -n R-cran -T -D -b 24
 %setup -q 
 %setup -q -T -D -a 1
-%patch0 -p1
+# %patch0 -p1
 # These files have the path for PERL hard-coded as /usr/local/bin/perl
 # We need to remove them to avoid dependency problems
 rm -f ./doc/keyword-test.orig ./etc/undoc/R-funs.orig ./etc/undoc/extrExamp.orig 
 
 %build
+%configure2_13 \
+	%{!?_without_gnome:--with-gnome} \
+	%{?_without_gnome:--without-gnome} \
+	--without-tcltk
+
 %{__make} 
 %{__make} help
 %{__make} html
