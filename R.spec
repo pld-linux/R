@@ -196,7 +196,7 @@ uczenia maszyny.
 rm -f ./doc/keyword-test.orig ./etc/undoc/R-funs.orig ./etc/undoc/extrExamp.orig
 
 %build
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 cp -f /usr/share/automake/config.* .
 %configure \
