@@ -233,7 +233,7 @@ uczenia maszyny.
 
 # These files have the path for PERL hard-coded as /usr/local/bin/perl
 # We need to remove them to avoid dependency problems
-rm -f ./doc/keyword-test.orig ./etc/undoc/R-funs.orig ./etc/undoc/extrExamp.orig 
+rm -f ./doc/keyword-test.orig ./etc/undoc/R-funs.orig ./etc/undoc/extrExamp.orig
 
 %build
 %{__aclocal}
@@ -244,7 +244,7 @@ cp -f /usr/share/automake/config.* .
 	%{?_without_gnome:--without-gnome} \
 	--without-tcltk
 
-%{__make} 
+%{__make}
 %{__make} help
 %{__make} html
 %{__make} clean
