@@ -9,27 +9,26 @@ Version:	1.3.1
 Release:	1
 Source0:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/base/%{name}-%{version}.tgz
 Source1:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/mlbench_0.5-2.tar.gz
-Source2:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/acepack_1.3.tar.gz
-Source3:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/bootstrap_1.0-7.tar.gz
-Source4:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/VR_6.2-9.tar.gz
+Source2:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/VR_6.2-9.tar.gz
+Source3:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/acepack_1.3.tar.gz
+Source4:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/bootstrap_1.0-7.tar.gz
 Source5:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/cluster_1.3-4.tar.gz
-# Source6:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/ctest_0.9-1.tar.gz
-Source7:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/date_1.2-9.tar.gz
-Source8:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/e1071_1.2-0.tar.gz
-Source9:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/fracdiff_1.0-6.tar.gz
-Source10:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/gee_4.13-5.tar.gz
-Source11:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/integrate_2.2-3.tar.gz
-# Source12:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/jpn_1.0-1.tar.gz
-Source13:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/leaps_2.1-1.tar.gz
-Source15:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/oz_1.0-6.tar.gz
-Source16:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/polynom_1.1-7.tar.gz
+Source6:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/date_1.2-9.tar.gz
+Source7:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/e1071_1.2-0.tar.gz
+Source8:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/fracdiff_1.0-6.tar.gz
+Source9:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/gee_4.13-5.tar.gz
+Source10:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/integrate_2.2-3.tar.gz
+# Source11:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/jpn_1.0-1.tar.gz
+Source12:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/leaps_2.1-1.tar.gz
+Source13:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/oz_1.0-6.tar.gz
+Source14:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/polynom_1.1-7.tar.gz
+Source15:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/princurve_1.1-2.tar.gz
+Source16:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/quadprog_1.4-3.tar.gz
 # Source17:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/ratetables_1.0-2.tar.gz
 # Source18:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/rational_1.0-1.tar.gz
-# Source20:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/splines_2.0-1.tar.gz
-Source21:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/survival_2.6.tar.gz
-Source22:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/xgobi_1.2-4.tar.gz
-Source23:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/princurve_1.1-2.tar.gz
-Source24:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/quadprog_1.4-3.tar.gz
+Source19:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/survival_2.6.tar.gz
+Source20:	ftp://ftp.stat.math.ethz.ch/R-CRAN/src/contrib/xgobi_1.2-4.tar.gz
+Patch0:		R-destdir.patch
 # Patch0:		%{name}-0.61.rpm.patch3
 License:	GPL
 Group:		Development/Languages
@@ -149,25 +148,24 @@ uczenia maszyny.
 %setup -q -c -n R-cran -T -D -b 3
 %setup -q -c -n R-cran -T -D -b 4
 %setup -q -c -n R-cran -T -D -b 5
-# %setup -q -c -n R-cran -T -D -b 6
+%setup -q -c -n R-cran -T -D -b 6
 %setup -q -c -n R-cran -T -D -b 7
 %setup -q -c -n R-cran -T -D -b 8
 %setup -q -c -n R-cran -T -D -b 9
 %setup -q -c -n R-cran -T -D -b 10
-%setup -q -c -n R-cran -T -D -b 11
-# %setup -q -c -n R-cran -T -D -b 12
+# %setup -q -c -n R-cran -T -D -b 11
+%setup -q -c -n R-cran -T -D -b 12
 %setup -q -c -n R-cran -T -D -b 13
+%setup -q -c -n R-cran -T -D -b 14
 %setup -q -c -n R-cran -T -D -b 15
 %setup -q -c -n R-cran -T -D -b 16
 # %setup -q -c -n R-cran -T -D -b 17
 # %setup -q -c -n R-cran -T -D -b 18
-# %setup -q -c -n R-cran -T -D -b 20
-%setup -q -c -n R-cran -T -D -b 21
-%setup -q -c -n R-cran -T -D -b 22
-%setup -q -c -n R-cran -T -D -b 23
-%setup -q -c -n R-cran -T -D -b 24
+%setup -q -c -n R-cran -T -D -b 19
+%setup -q -c -n R-cran -T -D -b 20
 %setup -q 
 %setup -q -T -D -a 1
+%patch0 -p0
 # %patch0 -p1
 # These files have the path for PERL hard-coded as /usr/local/bin/perl
 # We need to remove them to avoid dependency problems
@@ -204,7 +202,8 @@ ${R_HOME}/bin/INSTALL mlbench
 #
 for oldinfile in `find . -name '*.in' -print`
 do
-	rm ${oldinfile}
+	mv ${oldinfile} ${oldinfile}.old
+#	rm ${oldinfile}
 done
 
 # Gather documentation from contrib packages in one directory
@@ -235,14 +234,15 @@ cd ${R_HOME}
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d ${RPM_BUILD_ROOT}%{_mandir}/man1
-install R.1 ${RPM_BUILD_ROOT}%{_mandir}/man1/
+install doc/R.1 ${RPM_BUILD_ROOT}%{_mandir}/man1/
 install -d ${RPM_BUILD_ROOT}%{_libdir}/R
-cp -R afm bin cmd demos doc etc html include library ${RPM_BUILD_ROOT}%{_libdir}/R
+# cp -R afm bin cmd demos doc etc html include library ${RPM_BUILD_ROOT}%{_libdir}/R
+cp -R afm bin doc etc include library modules ${RPM_BUILD_ROOT}%{_libdir}/R
 install -d ${RPM_BUILD_ROOT}%{_bindir}
 install -m 755 bin/R ${RPM_BUILD_ROOT}%{_bindir}/R
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+# rm -rf $RPM_BUILD_ROOT
 
 %post base
 (cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
@@ -271,35 +271,39 @@ fi
 
 %files base
 %defattr(644,root,root,755)
-%attr(-,root,root) %{_mandir}/man1/R.1
+%attr(-,root,root) %{_mandir}/man1/R.1*
 %attr(-,root,root) %{_bindir}/R
 %attr(-,root,root) %dir %{_libdir}/R
 %attr(-,root,root) %{_libdir}/R/afm
 %attr(-,root,root) %{_libdir}/R/bin
-%attr(-,root,root) %{_libdir}/R/cmd
-%attr(-,root,root) %{_libdir}/R/demos
+# %attr(-,root,root) %{_libdir}/R/cmd
+# %attr(-,root,root) %{_libdir}/R/demos
 %attr(-,root,root) %{_libdir}/R/etc
-%attr(-,root,root) %{_libdir}/R/html
 %attr(-,root,root) %{_libdir}/R/include
 %attr(-,root,root) %dir %{_libdir}/R/library
 %attr(-,root,root) %{_libdir}/R/library/base/
+%attr(-,root,root) %{_libdir}/R/library/ctest
 %attr(-,root,root) %{_libdir}/R/library/eda/
 %attr(-,root,root) %{_libdir}/R/library/mva/
+%attr(-,root,root) %{_libdir}/R/library/splines
 %attr(-,root,root) %{_libdir}/R/library/stepfun/
+%attr(-,root,root) %{_libdir}/R/modules
 %attr(-,root,root) %doc CHANGES COPYING COPYRIGHTS MIRROR-SITES PROJECTS README RESOURCES TASKS
+%attr(-,root,root) %doc html
 
 %files contrib
 %defattr(644,root,root,755)
+%attr(-,root,root) %{_libdir}/R/library/MASS
+%attr(-,root,root) %{_libdir}/R/library/class
+%attr(-,root,root) %{_libdir}/R/library/spatial
+%attr(-,root,root) %{_libdir}/R/library/nnet
+%attr(-,root,root) %doc VR
 %attr(-,root,root) %{_libdir}/R/library/acepack
 %attr(-,root,root) %doc acepack
 %attr(-,root,root) %{_libdir}/R/library/bootstrap
 %attr(-,root,root) %doc bootstrap
-%attr(-,root,root) %{_libdir}/R/library/class
-%attr(-,root,root) %doc class
-%attr(-,root,root) %{_libdir}/R/library/clus
-%attr(-,root,root) %doc clus
-%attr(-,root,root) %{_libdir}/R/library/ctest
-%attr(-,root,root) %doc ctest
+%attr(-,root,root) %{_libdir}/R/library/cluster
+%attr(-,root,root) %doc cluster
 %attr(-,root,root) %{_libdir}/R/library/date
 %attr(-,root,root) %doc date
 %attr(-,root,root) %{_libdir}/R/library/e1071
@@ -310,32 +314,26 @@ fi
 %attr(-,root,root) %doc gee
 %attr(-,root,root) %{_libdir}/R/library/integrate
 %attr(-,root,root) %doc integrate
-%attr(-,root,root) %{_libdir}/R/library/jpn
-%attr(-,root,root) %doc jpn
+# %attr(-,root,root) %{_libdir}/R/library/jpn
+# %attr(-,root,root) %doc jpn
 %attr(-,root,root) %{_libdir}/R/library/leaps
 %attr(-,root,root) %doc leaps
-%attr(-,root,root) %{_libdir}/R/library/nnet
-%attr(-,root,root) %doc nnet
 %attr(-,root,root) %{_libdir}/R/library/oz
 %attr(-,root,root) %doc oz
 %attr(-,root,root) %{_libdir}/R/library/polynom
 %attr(-,root,root) %doc polynom
-%attr(-,root,root) %{_libdir}/R/library/ratetables
-%attr(-,root,root) %doc ratetables
-%attr(-,root,root) %{_libdir}/R/library/rational
-%attr(-,root,root) %doc rational
-%attr(-,root,root) %{_libdir}/R/library/spatial
-%attr(-,root,root) %doc spatial
-%attr(-,root,root) %{_libdir}/R/library/splines
-%attr(-,root,root) %doc splines
-%attr(-,root,root) %{_libdir}/R/library/survival4
-%attr(-,root,root) %doc survival4
-%attr(-,root,root) %{_libdir}/R/library/xgobi
-%attr(-,root,root) %doc xgobi
-%attr(-,root,root) %{_libdir}/R/library/principal.curve
-%attr(-,root,root) %doc principal.curve
+%attr(-,root,root) %{_libdir}/R/library/princurve
+%attr(-,root,root) %doc princurve
 %attr(-,root,root) %{_libdir}/R/library/quadprog
 %attr(-,root,root) %doc quadprog
+# %attr(-,root,root) %{_libdir}/R/library/ratetables
+# %attr(-,root,root) %doc ratetables
+# %attr(-,root,root) %{_libdir}/R/library/rational
+# %attr(-,root,root) %doc rational
+%attr(-,root,root) %{_libdir}/R/library/survival
+%attr(-,root,root) %doc survival
+%attr(-,root,root) %{_libdir}/R/library/xgobi
+%attr(-,root,root) %doc xgobi
 
 %files mlbench
 %defattr(644,root,root,755)
