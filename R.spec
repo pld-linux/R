@@ -7,6 +7,8 @@ Summary(pl):	Jêzyk do analizy danych oraz grafiki
 Name:		R
 Version:	1.6.1
 Release:	1
+License:	Mixed (distributable), mostly GPL
+Group:		Development/Languages
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/%{name}-%{version}.tgz
 Source1:	ftp://stat.ethz.ch/R-CRAN/src/contrib/KernSmooth_2.22-8.tar.gz
 Source2:	ftp://stat.ethz.ch/R-CRAN/src/contrib/VR_7.0-9.tar.gz
@@ -34,10 +36,7 @@ Source23:	ftp://stat.ethz.ch/R-CRAN/src/contrib/survival_2.9-6.tar.gz
 Source24:	ftp://stat.ethz.ch/R-CRAN/src/contrib/xgobi_1.2-7.tar.gz
 Source25:	ftp://stat.ethz.ch/R-CRAN/src/contrib/Archive/integrate_2.2-3.tar.gz
 Source26:	%{name}.desktop
-License:	Mixed (distributable), mostly GPL
-Group:		Development/Languages
 URL:		http://stat.auckland.ac.nz/r/r.html
-Provides:	R-base R-contrib
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libstdc++-devel
@@ -60,6 +59,8 @@ BuildRequires:	readline-devel
 %{!?_without_gnome:BuildRequires:	gnome-libs-devel}
 %{!?_without_gnome:BuildRequires:	ORBit-devel}
 %{!?_without_gnome:BuildRequires:	libglade-gnome-devel}
+Provides:	R-base
+Provides:	R-contrib
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -86,10 +87,12 @@ implementacja i semantyka wywodzi siê ze Scheme.
 %package base
 Summary:	The R base distribution
 Summary(pl):	Podstawowa dystrybucja R
+License:	GPL v2 / LGPL
 Group:		Development/Languages
+Requires(post):	textutils
+Requires(post):	perl
 Provides:	R-ctest R-eda R-lqs R-methods R-modreg R-mva R-nls R-splines
 Provides:	R-stepfun R-tcltk R-tools R-ts
-License:	GPL v2 / LGPL
 
 %description base
 R is a language and run-time environment for carrying out interactive
@@ -114,9 +117,10 @@ Provides:	R-KernSmooth R-VR R-boot R-cluster R-foreign R-grid
 Provides:	R-lattice R-mgcv R-nlme	R-rpart R-survival
 License:	GPL, free or free for non-commercial use
 URL:		http://www.ci.tuwien.ac.at/R/
+Requires(post,postun):	R-base
+Requires(post,postun):	textutils
+Requires(post,postun):	perl
 Requires:	R-base >= %{version}
-Requires(post):	R-base
-Requires(postun):	R-base
 Obsoletes:	R-survival4 R-MASS R-clus R-class R-nnet R-spatial
 
 %description recommended
@@ -130,16 +134,17 @@ dystrubuowane w archiwum CRAN (Comprehensive R Archive Network).
 %package contrib
 Summary:	Contributed packages for the R language
 Summary(pl):	Dodatkowe pakiety do jêzyka R
+License:	Mixed
 Group:		Development/Languages
+URL:		http://www.ci.tuwien.ac.at/R/
+Requires(post,postun):	R-base
+Requires(post,postun):	textutils
+Requires(post,postun):	perl
+Requires:	R-base >= %{version}
+Requires:	R-VR
 Provides:	R-acepack R-bootstrap R-date R-e1071 R-fracdiff R-gee
 Provides:	R-integrate R-leaps R-oz R-polynom R-princurve R-quadprog
 Provides:	R-xgobi
-License:	Mixed
-URL:		http://www.ci.tuwien.ac.at/R/
-Requires:	R-base >= %{version}
-Requires:	R-VR
-Requires(post):	R-base
-Requires(postun):	R-base
 Obsoletes:	R-principal.curve
 
 %description contrib
@@ -156,9 +161,10 @@ Summary(pl):	Testy wydajno¶ci uczenia maszyny
 Group:		Development/Languages
 License:	GPL
 URL:		http://www.ics.uci.edu/~mlearn/MLRepository.html
+Requires(post,postun):	R-base
+Requires(post,postun):	textutils
+Requires(post,postun):	perl
 Requires:	R-base >= %{version}
-Requires(post):	R-base
-Requires(postun):	R-base
 
 %description mlbench
 R package which contains a collection of real-world datasets and
@@ -196,7 +202,7 @@ uczenia maszyny.
 %setup -q -c -n R-cran -T -D -b 23
 %setup -q -c -n R-cran -T -D -b 24
 %setup -q -c -n R-cran -T -D -b 25
-%setup -q 
+%setup -q
 #%setup -q -T -D -a 14
 
 # These files have the path for PERL hard-coded as /usr/local/bin/perl
@@ -281,7 +287,7 @@ cp -R AUTHORS afm bin doc etc include library modules share \
 rm -rf $RPM_BUILD_ROOT
 
 %post base
-(cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
+(cd %{_libdir}/R/library; umask 022; cat */CONTENTS > ../doc/html/search/index.txt
  R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 #%preun base
@@ -295,27 +301,27 @@ rm -rf $RPM_BUILD_ROOT
 #fi
 
 %post contrib
-(cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
+(cd %{_libdir}/R/library; umask 022; cat */CONTENTS > ../doc/html/search/index.txt
  R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 %postun contrib
-(cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
+(cd %{_libdir}/R/library; umask 022; cat */CONTENTS > ../doc/html/search/index.txt
  R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 %post recommended
-(cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
+(cd %{_libdir}/R/library; umask 022; cat */CONTENTS > ../doc/html/search/index.txt
  R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 %postun recommended
-(cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
+(cd %{_libdir}/R/library; umask 022; cat */CONTENTS > ../doc/html/search/index.txt
  R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 %post mlbench
-(cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
+(cd %{_libdir}/R/library; umask 022; cat */CONTENTS > ../doc/html/search/index.txt
  R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 %postun mlbench
-(cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
+(cd %{_libdir}/R/library; umask 022; cat */CONTENTS > ../doc/html/search/index.txt
  R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 %files base
