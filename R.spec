@@ -33,7 +33,7 @@ Group: Development/Languages
 Packager: Martyn Plummer <plummer@iarc.fr>
 URL: http://stat.auckland.ac.nz/r/r.html
 Provides: R-base R-contrib
-BuildRoot: /tmp/R
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 A system for statistical computation and graphics. R consists of a
