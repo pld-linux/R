@@ -9,7 +9,7 @@ Summary:	A language for data analysis and graphics
 Summary(pl):	Jêzyk do analizy danych oraz grafiki
 Name:		R
 Version:	2.0.1
-Release:	1
+Release:	2
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
@@ -106,7 +106,7 @@ Summary(pl):	Zalecane dodatkowe pakiety do jêzyka R
 Group:		Development/Languages
 Requires:	R-cran-KernSmooth
 Requires:	R-cran-VR
-Requires:	R-boot
+Requires:	R-cran-boot
 Requires:	R-cran-cluster
 Requires:	R-cran-foreign
 Requires:	R-cran-lattice
