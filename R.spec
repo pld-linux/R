@@ -6,7 +6,7 @@ Summary:	A language for data analysis and graphics
 Summary(pl):	Jêzyk do analizy danych oraz grafiki
 Name:		R
 Version:	1.8.0
-Release:	2
+Release:	3
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
@@ -62,24 +62,24 @@ Source24:	ftp://stat.ethz.ch/R-CRAN/src/contrib/xgobi_1.2-10.tar.gz
 # Source24-md5:	1319f1efed55d79add90a5bd65bb32ca
 Source26:	%{name}.desktop
 URL:		http://www.r-project.org/
+BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libstdc++-devel
+BuildRequires:	blas-devel
 BuildRequires:	gcc-c++
 BuildRequires:	gcc-g77
-BuildRequires:	perl >= 5.004
+BuildRequires:	libjpeg-devel >= 6b
+BuildRequires:	libpng-devel >= 1.0.5
+BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
+BuildRequires:	libxml-devel
+BuildRequires:	perl-base >= 1:5.6
+BuildRequires:	readline-devel
 BuildRequires:	tetex-latex
 BuildRequires:	tetex-dvips
 BuildRequires:	tetex-pdftex
 BuildRequires:	zip
-BuildRequires:	XFree86-devel
-BuildRequires:	blas-devel
-BuildRequires:	libpng-devel >= 1.0.5
-BuildRequires:	libjpeg-devel >= 6b
-BuildRequires:	libxml-devel
 BuildRequires:	zlib >= 1.1.3
-BuildRequires:	readline-devel
 #BuildRequires:	lpr
 %{!?_without_gnome:BuildRequires:	gnome-libs-devel}
 %{!?_without_gnome:BuildRequires:	ORBit-devel}
