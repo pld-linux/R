@@ -125,6 +125,7 @@ dystrubuowane w archiwum CRAN (Comprehensive R Archive Network).
 
 %package mlbench
 Summary:	Machine learning benchmarks
+Summary(pl):	Testy wydajno¶ci uczenia maszyny
 Group:		Development/Languages
 Group(de):	Entwicklung/Sprachen
 Group(pl):	Programowanie/Jêzyki
@@ -136,6 +137,11 @@ Requires:	R-base >= %{version}
 R package which contains a collection of real-world datasets and
 functions for creating artificial datasets that work as benchmarks for
 machine learning methods.
+
+%description mlbench -l pl
+Ten podpakiet R zawiera zestaw rzeczywistych danych i funkcji do
+zrobienia sztucznych danych dzia³aj±cych jako test wydajno¶ci metod
+uczenia maszyny.
 
 %prep
 %setup -q -c -n R-cran -T -b 2
