@@ -1,4 +1,5 @@
 Summary:	A language for data analysis and graphics
+Summary(pl):	Jêzyk do analizy danych oraz grafiki
 Name:		R
 Version:	1.1.1
 Release:	1
@@ -61,8 +62,19 @@ Becker, Chambers & Wilks' S and Sussman's Scheme. Whereas the
 resulting language is very similar in appearance to S, the underlying
 implementation and semantics are derived from Scheme.
 
+%description -l pl
+System do obliczeñ statystycznych i grafiki. R sk³ada siê z jêzyka
+oraz ¶rodowiska uruchomieniowego z grafik±, debuggerem, dostêpem do
+niektórych funkcji systemowych oraz mo¿liwo¶ci± uruchamiania programów
+zapisanych w skryptach.
+
+Jêzyk R by³ zainspirowany dwoma istniej±cymi jêzykami: S (Beckera,
+Chambersa i Wilksa) oraz Scheme (Sussmana). R jest podobny do S, ale
+implementacja i semantyka wywodzi siê ze Scheme.
+
 %package base
 Summary:	The R base distribution
+Summary(pl):	Podstawowa dystrybucja R
 Group:		Development/Languages
 Group(de):	Entwicklung/Sprachen
 Group(pl):	Programowanie/Jêzyki
@@ -79,8 +91,16 @@ Technologies). Indeed, S users will find the environment quite
 familiar and a good deal of S software will run without change under
 R.
 
+%description base -l pl
+R jest jêzykiem i ¶rodowiskiem uruchomieniowym do interaktywnej
+analizy danych statystycznych. R nie jest ca³kowicie zgodny z jêzykiem
+S opracowanym w AT&T Bell Laboratiories (a teraz Lucent Technologies),
+mimo to u¿ytkownicy S zauwa¿± zbli¿one ¶rodowisko, a du¿a czê¶æ
+oprogramowania w S bêdzie dzia³a³a bez zmian w R.
+
 %package contrib
-Summary:	contributed packages for the R language
+Summary:	Contributed packages for the R language
+Summary(pl):	Dodatkowe pakiety do jêzyka R
 Group:		Development/Languages
 Group(de):	Entwicklung/Sprachen
 Group(pl):	Programowanie/Jêzyki
@@ -91,6 +111,10 @@ Requires:	R-base >= %{version}
 %description contrib
 Packages which extend the capabilities of the R base distribution and
 are distributed on the Comprehensive R Archive Network (CRAN).
+
+%description contrib -l pl
+Pakiety rozszerzaj±ce mo¿liwo¶ci podstawowej dystrybucji jêzyka R,
+dystrubuowane w archiwum CRAN (Comprehensive R Archive Network).
 
 %package mlbench
 Summary:	Machine learning benchmarks
@@ -135,7 +159,7 @@ machine learning methods.
 %patch0 -p1
 # These files have the path for PERL hard-coded as /usr/local/bin/perl
 # We need to remove them to avoid dependency problems
-rm ./doc/keyword-test.orig ./etc/undoc/R-funs.orig ./etc/undoc/extrExamp.orig 
+rm -f ./doc/keyword-test.orig ./etc/undoc/R-funs.orig ./etc/undoc/extrExamp.orig 
 
 %build
 %{__make} 
@@ -198,6 +222,34 @@ install -d ${RPM_BUILD_ROOT}%{_libdir}/R
 cp -R afm bin cmd demos doc etc html include library ${RPM_BUILD_ROOT}%{_libdir}/R
 install -d ${RPM_BUILD_ROOT}%{_bindir}
 install -m 755 bin/R ${RPM_BUILD_ROOT}%{_bindir}/R
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%post base
+(cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
+
+%preun base
+# These files are not owned by any package, so we have to remove them
+# but only if this is the last version of R-base on the system.
+#
+if [ "$1" = 0 ];
+then
+	rm -f %{_libdir}/R/library/LibIndex
+	rm -f %{_libdir}/R/library/index.html
+fi
+
+%post contrib
+(cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
+
+%postun contrib
+(cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
+
+%post mlbench
+(cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
+
+%postun mlbench
+(cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
 
 %files base
 %defattr(644,root,root,755)
@@ -273,31 +325,3 @@ install -m 755 bin/R ${RPM_BUILD_ROOT}%{_bindir}/R
 %attr(-,root,root) %doc mlbench/COPYRIGHT
 %attr(-,root,root) %doc mlbench/ChangeLog
 %attr(-,root,root) %doc mlbench/README
-
-%clean
-rm -rf ${RPM_BUILD_ROOT}
-
-%post base
-(cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
-
-%preun base
-# These files are not owned by any package, so we have to remove them
-# but only if this is the last version of R-base on the system.
-#
-if [ "$1" = 0 ];
-then
-	rm -f %{_libdir}/R/library/LibIndex
-	rm -f %{_libdir}/R/library/index.html
-fi
-
-%post contrib
-(cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
-
-%postun contrib
-(cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
-
-%post mlbench
-(cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
-
-%postun mlbench
-(cd %{_libdir}/R/library; cat */TITLE > LibIndex; ../etc/build-htmlpkglist)
