@@ -6,7 +6,7 @@ Summary:	A language for data analysis and graphics
 Summary(pl):	Jêzyk do analizy danych oraz grafiki
 Name:		R
 Version:	1.5.0
-Release:	1
+Release:	2
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/%{name}-%{version}.tgz
 Source1:	ftp://stat.ethz.ch/R-CRAN/src/contrib/KernSmooth_2.22-7.tar.gz
 Source2:	ftp://stat.ethz.ch/R-CRAN/src/contrib/VR_7.0-1.tar.gz
@@ -108,8 +108,8 @@ oprogramowania w S bêdzie dzia³a³a bez zmian w R.
 Summary:	Recommended contributed packages for the R language
 Summary(pl):	Zalecane dodatkowe pakiety do jêzyka R
 Group:		Development/Languages
-Provides:	R-KernSmooth R-VR R-boot R-cluster R-foreign R-mgcv R-nlme
-Provides:	R-rpart R-survival
+Provides:	R-KernSmooth R-VR R-boot R-cluster R-foreign R-grid
+Provides:	R-lattice R-mgcv R-nlme	R-rpart R-survival
 License:	GPL, free or free for non-commercial use
 URL:		http://www.ci.tuwien.ac.at/R/
 Requires:	R-base >= %{version}
