@@ -190,7 +190,7 @@ uczenia maszyny.
 %prep
 %setup -q
 
-# These files have the path for PERL hard-coded as /usr/local/bin/perl
+# These files have the path for Perl hard-coded as /usr/local/bin/perl
 # We need to remove them to avoid dependency problems
 rm -f ./doc/keyword-test.orig ./etc/undoc/R-funs.orig ./etc/undoc/extrExamp.orig
 
