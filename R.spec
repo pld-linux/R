@@ -115,11 +115,11 @@ for machine learning methods.
 rm ./doc/keyword-test.orig ./etc/undoc/R-funs.orig ./etc/undoc/extrExamp.orig 
 
 %build
-make 
-make help
-make html
-make clean
-make acclean
+%{__make} 
+%{__make} help
+%{__make} html
+%{__make} clean
+%{__make} acclean
 
 # Install contrib packages
 #
