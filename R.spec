@@ -204,7 +204,7 @@ rm -f ./doc/keyword-test.orig ./etc/undoc/R-funs.orig ./etc/undoc/extrExamp.orig
 
 %build
 aclocal
-autoconf
+%{__autoconf}
 cp -f /usr/share/automake/config.* .
 %configure \
 	%{!?_without_gnome:--with-gnome} \
