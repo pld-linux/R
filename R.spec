@@ -10,7 +10,7 @@ Summary:	A language for data analysis and graphics
 Summary(pl):	Jêzyk do analizy danych oraz grafiki
 Name:		R
 Version:	1.9.1
-Release:	2
+Release:	3
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
@@ -317,9 +317,11 @@ ln -sf %{_includedir}/R $RPM_BUILD_ROOT%{_libdir}/R/include
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%pre base
+%triggerun -- R-base < 1.9.1-2
 if [ -d %{_libdir}/R/include -a ! -L %{_libdir}/R/include ]; then
-	mv %{_libdir}/R/include %{_includedir}/R
+	install -d %{_includedir}/R
+	mv %{_libdir}/R/include/* %{_includedir}/R
+	rm -rf %{_libdir}/R/include
 	ln -sf %{_includedir}/R %{_libdir}/R/include
 fi
 
