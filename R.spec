@@ -10,7 +10,7 @@ Summary:	A language for data analysis and graphics
 Summary(pl):	Jêzyk do analizy danych oraz grafiki
 Name:		R
 Version:	1.9.1
-Release:	3
+Release:	4
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
@@ -300,11 +300,11 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/R,%{_includedir
 install %{SOURCE26} $RPM_BUILD_ROOT%{_desktopdir}
 
 cp doc/R.1 $RPM_BUILD_ROOT%{_mandir}/man1/
-sed "s,`pwd`,%{_libdir}/R,g" < bin/R > $RPM_BUILD_ROOT%{_bindir}/R
-
 
 cp -R AUTHORS afm bin doc etc library modules share \
 	$RPM_BUILD_ROOT%{_libdir}/R
+sed "s,`pwd`,%{_libdir}/R,g" < bin/R > $RPM_BUILD_ROOT%{_libdir}/R/bin/R
+ln -sf %{_libdir}/R/bin/R $RPM_BUILD_ROOT%{_bindir}/R
 
 find $RPM_BUILD_ROOT%{_libdir}/R -name 'Makefile*' -exec rm -f {} \;
 rm -rf $RPM_BUILD_ROOT%{_libdir}/R/etc/*.old
