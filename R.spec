@@ -1,5 +1,6 @@
 # TODO:
 # - move perl R libraries to standard perl location
+# - script for rpm to autoprovides/autorequires R internals
 #
 # Conditional build:
 %bcond_without	gnome	# without GNOME support
@@ -8,7 +9,7 @@ Summary:	A language for data analysis and graphics
 Summary(pl):	Jêzyk do analizy danych oraz grafiki
 Name:		R
 Version:	2.0.1
-Release:	0.1
+Release:	1
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
