@@ -10,31 +10,57 @@ Release:	2
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/%{name}-%{version}.tgz
+# Source0-md5:	7c9b8e8582812448aedd0322bcc135eb
 Source1:	ftp://stat.ethz.ch/R-CRAN/src/contrib/KernSmooth_2.22-8.tar.gz
+# Source1-md5:	6b1c0627c534e9229110dbde30dbeeec
 Source2:	ftp://stat.ethz.ch/R-CRAN/src/contrib/VR_7.0-9.tar.gz
+# Source2-md5:	95755187724901757f94d20875a1ea6c
 Source3:	ftp://stat.ethz.ch/R-CRAN/src/contrib/acepack_1.3-2.tar.gz
+# Source3-md5:	334452ea1a1ba351154aea9c4eb9912d
 Source4:	ftp://stat.ethz.ch/R-CRAN/src/contrib/boot_1.2-8.tar.gz
+# Source4-md5:	48f5bfbdd3b81dece8b206a660cd8e08
 Source5:	ftp://stat.ethz.ch/R-CRAN/src/contrib/bootstrap_1.0-11.tar.gz
+# Source5-md5:	7deba906ab0e88349c47a2fb3e8c5a9e
 Source6:	ftp://stat.ethz.ch/R-CRAN/src/contrib/cluster_1.6-2.tar.gz
+# Source6-md5:	4922165554622775c21889596041fe6c
 Source7:	ftp://stat.ethz.ch/R-CRAN/src/contrib/date_1.2-12.tar.gz
+# Source7-md5:	fbc71aba3c8401d7aede6f33d8c5c1aa
 Source8:	ftp://stat.ethz.ch/R-CRAN/src/contrib/e1071_1.3-5.tar.gz
+# Source8-md5:	c835647201dbe4d908841f733a735c33
 Source9:	ftp://stat.ethz.ch/R-CRAN/src/contrib/foreign_0.5-6.tar.gz
+# Source9-md5:	4a79983be6920326242f468a9184fccb
 Source10:	ftp://stat.ethz.ch/R-CRAN/src/contrib/fracdiff_1.0-8.tar.gz
+# Source10-md5:	58e196dcd8512e021bdb687b071c6dfb
 Source11:	ftp://stat.ethz.ch/R-CRAN/src/contrib/gee_4.13-10.tar.gz
+# Source11-md5:	7f32a7f7b022dd366d27482a3561d2a6
 Source12:	ftp://stat.ethz.ch/R-CRAN/src/contrib/grid_0.7-1.tar.gz
+# Source12-md5:	01cfb0d1c1fa134bb05b2844572edf8e
 Source13:	ftp://stat.ethz.ch/R-CRAN/src/contrib/lattice_0.6-6.tar.gz
+# Source13-md5:	588deaa2f8189dfdcc9ce0f3eafce6e2
 Source14:	ftp://stat.ethz.ch/R-CRAN/src/contrib/leaps_2.5.tar.gz
+# Source14-md5:	47567135b492a9ee3308b710e46264e5
 Source15:	ftp://stat.ethz.ch/R-CRAN/src/contrib/mgcv_0.8-6.tar.gz
+# Source15-md5:	eeb171868243db04f0f5300df7dedbe6
 Source16:	ftp://stat.ethz.ch/R-CRAN/src/contrib/mlbench_0.5-7.tar.gz
+# Source16-md5:	00ea4e9ab190ff5c86fc692947d85667
 Source17:	ftp://stat.ethz.ch/R-CRAN/src/contrib/nlme_3.1-33.tar.gz
+# Source17-md5:	25870da409c0d6e0ef1b220e420dba0f
 Source18:	ftp://stat.ethz.ch/R-CRAN/src/contrib/oz_1.0-6.tar.gz
+# Source18-md5:	0582275bed974be04ad8c194d3c61b54
 Source19:	ftp://stat.ethz.ch/R-CRAN/src/contrib/polynom_1.1-10.tar.gz
+# Source19-md5:	427e486a667e051dab899e3580072c0f
 Source20:	ftp://stat.ethz.ch/R-CRAN/src/contrib/princurve_1.1-5.tar.gz
+# Source20-md5:	d0092745f92687c54b055e2770fd6e5b
 Source21:	ftp://stat.ethz.ch/R-CRAN/src/contrib/quadprog_1.4-5.tar.gz
+# Source21-md5:	00c6b832f35632c80eadbaa700d54c73
 Source22:	ftp://stat.ethz.ch/R-CRAN/src/contrib/rpart_3.1-8.tar.gz
+# Source22-md5:	4b827ca24b940c86601df81ca19b55c8
 Source23:	ftp://stat.ethz.ch/R-CRAN/src/contrib/survival_2.9-6.tar.gz
+# Source23-md5:	f50fdeb0574953b4deff399450cd0edd
 Source24:	ftp://stat.ethz.ch/R-CRAN/src/contrib/xgobi_1.2-7.tar.gz
+# Source24-md5:	6d1c3fb1c8f3bdcc00263ef21875c0eb
 Source25:	ftp://stat.ethz.ch/R-CRAN/src/contrib/Archive/integrate_2.2-3.tar.gz
+# Source25-md5:	40cc14374a0992871dd651d41289b3e6
 Source26:	%{name}.desktop
 URL:		http://stat.auckland.ac.nz/r/r.html
 BuildRequires:	autoconf
