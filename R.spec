@@ -23,6 +23,7 @@ BuildRequires:	automake
 BuildRequires:	blas-devel
 BuildRequires:	gcc-c++
 BuildRequires:	gcc-g77
+BuildRequires:	gettext-devel
 BuildRequires:	libjpeg-devel >= 6b
 BuildRequires:	libpng-devel >= 1.0.5
 BuildRequires:	libstdc++-devel
