@@ -32,7 +32,7 @@ Copyright:	GPL
 Group:		Development/Languages
 URL:		http://stat.auckland.ac.nz/r/r.html
 Provides:	R-base R-contrib
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 A system for statistical computation and graphics. R consists of a
@@ -166,7 +166,6 @@ for pkg in `ls`; do
         fi
 done
 cd ${RHOME}
-
 
 %install
 install -d ${RPM_BUILD_ROOT}%{_mandir}/man1
