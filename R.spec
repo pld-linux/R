@@ -6,7 +6,7 @@ Summary:	A language for data analysis and graphics
 Summary(pl):	Jêzyk do analizy danych oraz grafiki
 Name:		R
 Version:	1.5.0
-Release:	2
+Release:	3
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/%{name}-%{version}.tgz
 Source1:	ftp://stat.ethz.ch/R-CRAN/src/contrib/KernSmooth_2.22-7.tar.gz
 Source2:	ftp://stat.ethz.ch/R-CRAN/src/contrib/VR_7.0-1.tar.gz
@@ -33,6 +33,7 @@ Source22:	ftp://stat.ethz.ch/R-CRAN/src/contrib/rpart_3.1-6.tar.gz
 Source23:	ftp://stat.ethz.ch/R-CRAN/src/contrib/survival_2.9-1.tar.gz
 Source24:	ftp://stat.ethz.ch/R-CRAN/src/contrib/xgobi_1.2-5.tar.gz
 Source25:	ftp://stat.ethz.ch/R-CRAN/src/contrib/Archive/integrate_2.2-3.tar.gz
+Source26:	%{name}.desktop
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 URL:		http://stat.auckland.ac.nz/r/r.html
@@ -262,7 +263,9 @@ cd ${R_HOME}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/R}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/R,%{_applnkdir}/Scientific/Numerics}
+
+install %{SOURCE26} $RPM_BUILD_ROOT%{_applnkdir}/Scientific/Numerics/%{name}.desktop
 
 mv doc/R.1 $RPM_BUILD_ROOT%{_mandir}/man1/
 sed "s,`pwd`,%{_libdir}/R,g" < bin/R > bin/R. ; mv bin/R. bin/R
@@ -354,6 +357,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/R/doc/html/search/[A-Z]*
 %ghost %{_libdir}/R/doc/html/search/index.txt
 %ghost %{_libdir}/R/doc/html/packages.html
+%{_applnkdir}/Scientific/Numerics/*
 
 %files recommended
 %defattr(644,root,root,755)
