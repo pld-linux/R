@@ -113,6 +113,7 @@ Provides:	R-lattice R-mgcv R-nlme	R-rpart R-survival
 License:	GPL, free or free for non-commercial use
 URL:		http://www.ci.tuwien.ac.at/R/
 Requires:	R-base >= %{version}
+Requires(post,postun):	R-base
 Obsoletes:	R-survival4 R-MASS R-clus R-class R-nnet R-spatial
 
 %description recommended
@@ -134,6 +135,7 @@ License:	Mixed
 URL:		http://www.ci.tuwien.ac.at/R/
 Requires:	R-base >= %{version}
 Requires:	R-VR
+Requires(post,postun):	R-base
 Obsoletes:	R-principal.curve
 
 %description contrib
@@ -151,6 +153,7 @@ Group:		Development/Languages
 License:	GPL
 URL:		http://www.ics.uci.edu/~mlearn/MLRepository.html
 Requires:	R-base >= %{version}
+Requires(post,postun):	R-base
 
 %description mlbench
 R package which contains a collection of real-world datasets and
@@ -274,7 +277,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %post base
 (cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
- ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
+ R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 %preun base
 # These files are not owned by any package, so we have to remove them
@@ -288,27 +291,27 @@ fi
 
 %post contrib
 (cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
- ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
+ R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 %postun contrib
 (cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
- ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
+ R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 %post recommended
 (cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
- ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
+ R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 %postun recommended
 (cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
- ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
+ R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 %post mlbench
 (cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
- ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
+ R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 %postun mlbench
 (cd %{_libdir}/R/library; cat */CONTENTS > ../doc/html/search/index.txt
- ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
+ R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
 
 %files base
 %defattr(644,root,root,755)
