@@ -228,7 +228,7 @@ uczenia maszyny.
 %setup -q -c -n R-cran -T -D -b 22
 %setup -q -c -n R-cran -T -D -b 23
 %setup -q -c -n R-cran -T -D -b 24
-%setup -q -c -n R-cran -T -D -b 25
+#%%setup -q -c -n R-cran -T -D -b 25
 %setup -q
 #%setup -q -T -D -a 14
 
