@@ -10,7 +10,7 @@ Summary:	A language for data analysis and graphics
 Summary(pl):	Jêzyk do analizy danych oraz grafiki
 Name:		R
 Version:	1.9.1
-Release:	1
+Release:	2
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
@@ -241,7 +241,8 @@ cp -f /usr/share/automake/config.* .
 %configure \
 	%{!?_without_gnome:--with-gnome} \
 	%{?_without_gnome:--without-gnome} \
-	--without-tcltk
+	--without-tcltk \
+	--enable-R-shlib
 
 %{__make}
 %{__make} help
@@ -294,19 +295,24 @@ cd ${R_HOME}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/R,%{_applnkdir}/Scientific/Numerics}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/R,%{_includedir},%{_desktopdir}}
 
-install %{SOURCE26} $RPM_BUILD_ROOT%{_applnkdir}/Scientific/Numerics/%{name}.desktop
+install %{SOURCE26} $RPM_BUILD_ROOT%{_desktopdir}
 
-mv doc/R.1 $RPM_BUILD_ROOT%{_mandir}/man1/
-sed "s,`pwd`,%{_libdir}/R,g" < bin/R > bin/R. ; mv bin/R. bin/R
-mv bin/R $RPM_BUILD_ROOT%{_bindir}/R
+cp doc/R.1 $RPM_BUILD_ROOT%{_mandir}/man1/
+sed "s,`pwd`,%{_libdir}/R,g" < bin/R > $RPM_BUILD_ROOT%{_bindir}/R
 
-find . -name 'Makefile*' -exec rm -f {} \;
-rm -rf etc/*.old
 
-cp -R AUTHORS afm bin doc etc include library modules share \
+cp -R AUTHORS afm bin doc etc library modules share \
 	$RPM_BUILD_ROOT%{_libdir}/R
+
+find $RPM_BUILD_ROOT%{_libdir}/R -name 'Makefile*' -exec rm -f {} \;
+rm -rf $RPM_BUILD_ROOT%{_libdir}/R/etc/*.old
+
+mv $RPM_BUILD_ROOT%{_libdir}/R/bin/libR*.so $RPM_BUILD_ROOT%{_libdir}
+
+cp -R include $RPM_BUILD_ROOT%{_includedir}/R
+ln -sf %{_includedir}/R $RPM_BUILD_ROOT%{_libdir}/R/include
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -314,6 +320,9 @@ rm -rf $RPM_BUILD_ROOT
 %post base
 (cd %{_libdir}/R/library; umask 022; cat */CONTENTS > ../doc/html/search/index.txt
  R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
+/sbin/ldconfig
+
+%postun	base	-p /sbin/ldconfig
 
 #%preun base
 ## These files are not owned by any package, so we have to remove them
@@ -362,8 +371,10 @@ fi
 %dir %{_libdir}/R
 %{_libdir}/R/afm
 %attr(755,root,root) %{_libdir}/R/bin
+%attr(755,root,root) %{_libdir}/libR*.so
 %{_libdir}/R/etc
 %{_libdir}/R/include
+%{_includedir}/R
 %{_libdir}/R/share
 %{_libdir}/R/AUTHORS
 %dir %{_libdir}/R/library
@@ -401,7 +412,7 @@ fi
 %{_libdir}/R/doc/html/search/[A-Z]*
 %ghost %{_libdir}/R/doc/html/search/index.txt
 %ghost %{_libdir}/R/doc/html/packages.html
-%{_applnkdir}/Scientific/Numerics/*
+%{_desktopdir}/*
 
 %files recommended
 %defattr(644,root,root,755)
