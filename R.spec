@@ -194,8 +194,8 @@ rm -f ./doc/keyword-test.orig ./etc/undoc/R-funs.orig ./etc/undoc/extrExamp.orig
 %build
 aclocal
 autoconf
+cp -f /usr/share/automake/config.* .
 %configure \
-#%configure2_13 \
 	%{!?_without_gnome:--with-gnome} \
 	%{?_without_gnome:--without-gnome} \
 	--without-tcltk
@@ -252,13 +252,13 @@ cd ${R_HOME}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d ${RPM_BUILD_ROOT}%{_mandir}/man1
-install doc/R.1 ${RPM_BUILD_ROOT}%{_mandir}/man1/
-install -d ${RPM_BUILD_ROOT}%{_libdir}/R
-# cp -R afm bin cmd demos doc etc html include library ${RPM_BUILD_ROOT}%{_libdir}/R
-cp -R afm bin doc etc include library modules ${RPM_BUILD_ROOT}%{_libdir}/R
-install -d ${RPM_BUILD_ROOT}%{_bindir}
-install -m 755 bin/R ${RPM_BUILD_ROOT}%{_bindir}/R
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/R}
+
+install doc/R.1 $RPM_BUILD_ROOT%{_mandir}/man1/
+install bin/R $RPM_BUILD_ROOT%{_bindir}/R
+
+# cp -R afm bin cmd demos doc etc html include library $RPM_BUILD_ROOT%{_libdir}/R
+cp -R afm bin doc etc include library modules $RPM_BUILD_ROOT%{_libdir}/R
 
 %clean
 # rm -rf $RPM_BUILD_ROOT
