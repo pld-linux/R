@@ -119,6 +119,7 @@ URL:		http://www.ci.tuwien.ac.at/R/
 Requires(post,postun):	R-base
 Requires(post,postun):	perl-base
 Requires(post,postun):	textutils
+Obsoletes:	R-contrib
 Requires:	R-base = %{version}-%{release}
 
 %description recommended
