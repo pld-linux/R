@@ -147,7 +147,7 @@ URL:		http://www.ci.tuwien.ac.at/R/
 Requires(post,postun):	R-base
 Requires(post,postun):	textutils
 Requires(post,postun):	perl
-Requires:	R-base >= %{version}
+Requires:	R-base = %{version}-%{release}
 Obsoletes:	R-survival4 R-MASS R-clus R-class R-nnet R-spatial
 
 %description recommended
@@ -167,7 +167,7 @@ URL:		http://www.ci.tuwien.ac.at/R/
 Requires(post,postun):	R-base
 Requires(post,postun):	textutils
 Requires(post,postun):	perl
-Requires:	R-base >= %{version}
+Requires:	R-base = %{version}-%{release}
 Requires:	R-VR
 Provides:	R-acepack R-bootstrap R-date R-e1071 R-fracdiff R-gee
 Provides:	R-leaps R-oz R-polynom R-princurve R-quadprog
@@ -191,7 +191,7 @@ URL:		http://www.ics.uci.edu/~mlearn/MLRepository.html
 Requires(post,postun):	R-base
 Requires(post,postun):	textutils
 Requires(post,postun):	perl
-Requires:	R-base >= %{version}
+Requires:	R-base = %{version}-%{release}
 
 %description mlbench
 R package which contains a collection of real-world datasets and
@@ -316,6 +316,12 @@ ln -sf %{_includedir}/R $RPM_BUILD_ROOT%{_libdir}/R/include
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%pre base
+if [ -d %{_libdir}/R/include -a ! -L %{_libdir}/R/include ]; then
+	mv %{_libdir}/R/include %{_includedir}/R
+	ln -sf %{_includedir}/R %{_libdir}/R/include
+fi
 
 %post base
 (cd %{_libdir}/R/library; umask 022; cat */CONTENTS > ../doc/html/search/index.txt
