@@ -5,11 +5,12 @@
 # Conditional build:
 %bcond_without	gnome	# without GNOME support
 #
+%include	/usr/lib/rpm/macros.perl
 Summary:	A language for data analysis and graphics
 Summary(pl):	Jêzyk do analizy danych oraz grafiki
 Name:		R
 Version:	2.1.0
-Release:	1
+Release:	2
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
