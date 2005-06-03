@@ -33,6 +33,7 @@ BuildRequires:	libtool
 BuildRequires:	libxml-devel
 BuildRequires:	perl-base >= 1:5.6
 BuildRequires:	readline-devel
+BuildRequires:	rpm-perlprov
 BuildRequires:	tcl-devel
 BuildRequires:	tetex-latex
 BuildRequires:	tetex-dvips
