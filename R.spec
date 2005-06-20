@@ -9,13 +9,13 @@
 Summary:	A language for data analysis and graphics
 Summary(pl):	Jêzyk do analizy danych oraz grafiki
 Name:		R
-Version:	2.1.0
-Release:	2
+Version:	2.1.1
+Release:	1
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-2/%{name}-%{version}.tar.gz
-# Source0-md5:	270f7a7382e8cb10a353148598f91096
+# Source0-md5:	e755b0ba5851ec261000af6b5c510335
 Source1:	%{name}.desktop
 URL:		http://www.r-project.org/
 BuildRequires:	XFree86-devel
