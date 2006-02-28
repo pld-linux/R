@@ -18,6 +18,7 @@ Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-2/%{name}-%{version}.tar.gz
 # Source0-md5:	42542290c6d1585af7ded330f811385c
 Source1:	%{name}.desktop
 URL:		http://www.r-project.org/
+%{?with_gnome:BuildRequires:	ORBit-devel}
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -26,26 +27,25 @@ BuildRequires:	bzip2-devel
 BuildRequires:	gcc-c++
 BuildRequires:	gcc-g77
 BuildRequires:	gettext-devel
+%{?with_gnome:BuildRequires:	gnome-libs-devel}
+%{?with_gnome:BuildRequires:	libglade-gnome-devel}
 BuildRequires:	libjpeg-devel >= 6b
 BuildRequires:	libpng-devel >= 1.0.5
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	libxml-devel
+#BuildRequires:	lpr
 BuildRequires:	perl-base >= 1:5.6
 BuildRequires:	readline-devel
 BuildRequires:	rpm-perlprov
 BuildRequires:	tcl-devel
-BuildRequires:	tetex-latex
 BuildRequires:	tetex-dvips
+BuildRequires:	tetex-latex
 BuildRequires:	tetex-pdftex
 BuildRequires:	tk-devel
 BuildRequires:	zip
 BuildRequires:	zlib >= 1.1.3
-#BuildRequires:	lpr
 #Requires:	lpr
-%{?with_gnome:BuildRequires:	gnome-libs-devel}
-%{?with_gnome:BuildRequires:	ORBit-devel}
-%{?with_gnome:BuildRequires:	libglade-gnome-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -74,20 +74,20 @@ Summary:	The R base distribution
 Summary(pl):	Podstawowa dystrybucja R
 License:	GPL v2 / LGPL
 Group:		Development/Languages
-Requires(post):	textutils
 Requires(post):	perl-base
+Requires(post):	textutils
 Provides:	R-cran-base
 Provides:	R-cran-datasets
-Provides:	R-cran-grid
-Provides:	R-cran-graphics
 Provides:	R-cran-grDevices
+Provides:	R-cran-graphics
+Provides:	R-cran-grid
 Provides:	R-cran-methods
-Provides:	R-cran-utils
-Provides:	R-cran-tcltk
 Provides:	R-cran-splines
 Provides:	R-cran-stats
 Provides:	R-cran-stats4
+Provides:	R-cran-tcltk
 Provides:	R-cran-tools
+Provides:	R-cran-utils
 
 %description base
 R is a language and run-time environment for carrying out interactive
@@ -107,7 +107,13 @@ oprogramowania w S bêdzie dzia³a³a bez zmian w R.
 %package recommended
 Summary:	Recommended contributed packages for the R language
 Summary(pl):	Zalecane dodatkowe pakiety do jêzyka R
+License:	GPL, free or free for non-commercial use
 Group:		Development/Languages
+URL:		http://www.ci.tuwien.ac.at/R/
+Requires(post,postun):	R-base
+Requires(post,postun):	perl-base
+Requires(post,postun):	textutils
+Requires:	R-base = %{version}-%{release}
 Requires:	R-cran-KernSmooth
 Requires:	R-cran-VR
 Requires:	R-cran-boot
@@ -118,13 +124,7 @@ Requires:	R-cran-mgcv
 Requires:	R-cran-nlme
 Requires:	R-cran-rpart
 Requires:	R-cran-survival
-License:	GPL, free or free for non-commercial use
-URL:		http://www.ci.tuwien.ac.at/R/
-Requires(post,postun):	R-base
-Requires(post,postun):	perl-base
-Requires(post,postun):	textutils
 Obsoletes:	R-contrib
-Requires:	R-base = %{version}-%{release}
 
 %description recommended
 Packages which extend the capabilities of the R base distribution and
@@ -169,7 +169,7 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/R,%{_includedir
 	rhome=$RPM_BUILD_ROOT%{_libdir}/R \
 	mandir=$RPM_BUILD_ROOT%{_mandir} \
 	bindir=$RPM_BUILD_ROOT%{_bindir} \
-	
+
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 
@@ -236,3 +236,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/library/tools
 
 %files recommended
+%defattr(644,root,root,755)
