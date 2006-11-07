@@ -218,7 +218,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/R/doc/html/search/[A-Z]*
 %ghost %{_libdir}/R/doc/html/search/index.txt
 %ghost %{_libdir}/R/doc/html/packages.html
-%{_desktopdir}/*
+%{_desktopdir}/*.desktop
 
 %attr(755,root,root) %{_libdir}/%{name}/modules
 
