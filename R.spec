@@ -23,12 +23,14 @@ BuildRequires:	bzip2-devel
 BuildRequires:	gcc-c++
 BuildRequires:	gcc-g77
 BuildRequires:	gettext-devel
+BuildRequires:	lapack-devel
 BuildRequires:	libjpeg-devel >= 6b
 BuildRequires:	libpng-devel >= 1.0.5
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.6.26
 #BuildRequires:	lpr
+BuildRequires:	pcre-devel
 BuildRequires:	perl-base >= 1:5.6
 BuildRequires:	readline-devel
 BuildRequires:	rpm-perlprov
@@ -38,7 +40,7 @@ BuildRequires:	tetex-latex
 BuildRequires:	tetex-pdftex
 BuildRequires:	tk-devel
 BuildRequires:	zip
-BuildRequires:	zlib >= 1.1.3
+BuildRequires:	zlib-devel >= 1.1.3
 #Requires:	lpr
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -142,9 +144,15 @@ cp -f /usr/share/automake/config.* .
 %configure \
 	--enable-R-shlib \
 	--enable-linux-lfs \
-	--with-zlib \
-	--with-bzlib \
-	--with-pcre \
+	--with-system-zlib \
+	--with-system-bzlib \
+	--with-system-pcre \
+	--with-libpng \
+	--with-jpeglib \
+	--with-blas \
+	--with-lapack \
+	--with-readline \
+	--with-tcltk \
 	--without-recommended-packages
 
 %{__make}
