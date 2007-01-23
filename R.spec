@@ -2,23 +2,19 @@
 # - move perl R libraries to standard perl location
 # - script for rpm to autoprovides/autorequires R internals
 #
-# Conditional build:
-%bcond_without	gnome	# without GNOME support
-#
 %include	/usr/lib/rpm/macros.perl
 Summary:	A language for data analysis and graphics
 Summary(pl):	Jêzyk do analizy danych oraz grafiki
 Name:		R
-Version:	2.2.1
-Release:	1
+Version:	2.4.1
+Release:	0.1
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-2/%{name}-%{version}.tar.gz
-# Source0-md5:	42542290c6d1585af7ded330f811385c
+# Source0-md5:	92b33fd2c3e770d595c1a472889230d5
 Source1:	%{name}.desktop
 URL:		http://www.r-project.org/
-%{?with_gnome:BuildRequires:	ORBit-devel}
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -27,13 +23,11 @@ BuildRequires:	bzip2-devel
 BuildRequires:	gcc-c++
 BuildRequires:	gcc-g77
 BuildRequires:	gettext-devel
-%{?with_gnome:BuildRequires:	gnome-libs-devel}
-%{?with_gnome:BuildRequires:	libglade-gnome-devel}
 BuildRequires:	libjpeg-devel >= 6b
 BuildRequires:	libpng-devel >= 1.0.5
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-BuildRequires:	libxml-devel
+BuildRequires:	libxml2-devel >= 2.6.26
 #BuildRequires:	lpr
 BuildRequires:	perl-base >= 1:5.6
 BuildRequires:	readline-devel
@@ -146,7 +140,6 @@ rm -f ./doc/keyword-test.orig ./etc/undoc/R-funs.orig ./etc/undoc/extrExamp.orig
 %{__autoconf}
 cp -f /usr/share/automake/config.* .
 %configure \
-	--with%{!?with_gnome:out}-gnome \
 	--enable-R-shlib \
 	--enable-linux-lfs \
 	--with-zlib \
