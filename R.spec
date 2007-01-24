@@ -120,35 +120,35 @@ Requires(post,postun):	R-base
 Requires(post,postun):	perl-base
 Requires(post,postun):	textutils
 Requires:	R-base = %{version}-%{release}
-Obsoletes:	R-cran-KernSmooth
-Obsoletes:	R-cran-VR
-Obsoletes:	R-cran-MASS
-Obsoletes:	R-cran-class
-Obsoletes:	R-cran-nnet
-Obsoletes:	R-cran-spatial
-Obsoletes:	R-cran-boot
-Obsoletes:	R-cran-cluster
-Obsoletes:	R-cran-foreign
-Obsoletes:	R-cran-lattice
-Obsoletes:	R-cran-mgcv
-Obsoletes:	R-cran-nlme
-Obsoletes:	R-cran-rpart
-Obsoletes:	R-cran-survival
 Provides:	R-cran-KernSmooth = %{KernSmooth_version}
-Provides:	R-cran-VR = %{VR_version}
 Provides:	R-cran-MASS = %{VR_version}
-Provides:	R-cran-class = %{VR_version}
-Provides:	R-cran-nnet = %{VR_version}
-Provides:	R-cran-spatial = %{VR_version}
+Provides:	R-cran-VR = %{VR_version}
 Provides:	R-cran-boot = %{boot_version}
+Provides:	R-cran-class = %{VR_version}
 Provides:	R-cran-cluster = %{cluster_version}
 Provides:	R-cran-foreign = %{foreign_version}
 Provides:	R-cran-lattice = %{lattice_version}
 Provides:	R-cran-mgcv = %{mgcv_version}
 Provides:	R-cran-nlme = %{nlme_version}
+Provides:	R-cran-nnet = %{VR_version}
 Provides:	R-cran-rpart = %{rpart_version}
+Provides:	R-cran-spatial = %{VR_version}
 Provides:	R-cran-survival = %{survival_version}
 Obsoletes:	R-contrib
+Obsoletes:	R-cran-KernSmooth
+Obsoletes:	R-cran-MASS
+Obsoletes:	R-cran-VR
+Obsoletes:	R-cran-boot
+Obsoletes:	R-cran-class
+Obsoletes:	R-cran-cluster
+Obsoletes:	R-cran-foreign
+Obsoletes:	R-cran-lattice
+Obsoletes:	R-cran-mgcv
+Obsoletes:	R-cran-nlme
+Obsoletes:	R-cran-nnet
+Obsoletes:	R-cran-rpart
+Obsoletes:	R-cran-spatial
+Obsoletes:	R-cran-survival
 
 %description recommended
 Packages which extend the capabilities of the R base distribution and
