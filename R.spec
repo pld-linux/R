@@ -205,9 +205,13 @@ sed -i -e "s#$RPM_BUILD_ROOT##g" $RPM_BUILD_ROOT%{_libdir}/%{name}/bin/%{name}
 ln -sf %{_libdir}/%{name}/bin/%{name} $RPM_BUILD_ROOT%{_bindir}/%{name}
 
 (cd $RPM_BUILD_ROOT%{_libdir}/%{name}/share/perl/R/
-ln -s * $RPM_BUILD_ROOT%{perl_vendorlib}/R/)
+for f in * ; do
+  ln -s %{_libdir}/%{name}/share/perl/R/$f $RPM_BUILD_ROOT%{perl_vendorlib}/R/
+done)
 (cd $RPM_BUILD_ROOT%{_libdir}/%{name}/share/perl/Text
-ln -s * $RPM_BUILD_ROOT%{perl_vendorlib}/Text/)
+for f in * ; do
+  ln -s %{_libdir}/%{name}/share/perl/Text/$f $RPM_BUILD_ROOT%{perl_vendorlib}/Text/
+done)
 
 %clean
 rm -rf $RPM_BUILD_ROOT
