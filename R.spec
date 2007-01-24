@@ -1,8 +1,6 @@
 # TODO:
-# - move perl R libraries to standard perl location
 # - script for rpm to autoprovides/autorequires R internals
 #
-
 %define	KernSmooth_version	2.22r19
 %define	VR_version		7.2r30
 %define	boot_version		1.2r27
@@ -19,7 +17,7 @@ Summary:	A language for data analysis and graphics
 Summary(pl):	Jêzyk do analizy danych oraz grafiki
 Name:		R
 Version:	2.4.1
-Release:	0.1
+Release:	0.2
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
@@ -188,6 +186,7 @@ LANG=C LC_ALL=C %{__make} check
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/R,%{_includedir},%{_desktopdir}}
+install -d $RPM_BUILD_ROOT%{perl_vendorlib}/{R,Text}
 
 %{__make} install \
 	rhome=$RPM_BUILD_ROOT%{_libdir}/R \
@@ -204,6 +203,9 @@ ln -sf %{_includedir}/R $RPM_BUILD_ROOT%{_libdir}/R/include
 rm $RPM_BUILD_ROOT%{_bindir}/%{name}
 sed -i -e "s#$RPM_BUILD_ROOT##g" $RPM_BUILD_ROOT%{_libdir}/%{name}/bin/%{name}
 ln -sf %{_libdir}/%{name}/bin/%{name} $RPM_BUILD_ROOT%{_bindir}/%{name}
+
+ln -s %{_libdir}/%{name}/perl/R/* $RPM_BUILD_ROOT%{perl_vendorlib/R/
+ln -s %{_libdir}/%{name}/perl/Text/* $RPM_BUILD_ROOT%{perl_vendorlib}/Text/
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -246,6 +248,10 @@ rm -rf $RPM_BUILD_ROOT
 %ghost %{_libdir}/R/doc/html/search/index.txt
 %ghost %{_libdir}/R/doc/html/packages.html
 %{_desktopdir}/*.desktop
+
+%dir %{perl_vendorlib}/R
+%{perl_vendorlib}/R/*
+%{perl_vendorlib}/Text/*
 
 %attr(755,root,root) %{_libdir}/%{name}/modules
 
