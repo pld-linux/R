@@ -218,7 +218,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 (cd %{_libdir}/R/library; umask 022; cat */CONTENTS > ../doc/html/search/index.txt
- R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --htmllist)
+ R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --index)
 /sbin/ldconfig
 
 %postun	-p /sbin/ldconfig
