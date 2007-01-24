@@ -2,6 +2,18 @@
 # - move perl R libraries to standard perl location
 # - script for rpm to autoprovides/autorequires R internals
 #
+
+%define	KernSmooth_version	2.22r19
+%define	VR_version		7.2r30
+%define	boot_version		1.2r27
+%define	cluster_version		1.11.4
+%define	foreign_version		0.8r18
+%define	lattice_version		0.14r16
+%define	mgcv_version		1.3r22
+%define	nlme_version		3.1r78
+%define	rpart_version		3.1r33
+%define	survival_version	2.30
+
 %include	/usr/lib/rpm/macros.perl
 Summary:	A language for data analysis and graphics
 Summary(pl):	Jêzyk do analizy danych oraz grafiki
@@ -110,16 +122,34 @@ Requires(post,postun):	R-base
 Requires(post,postun):	perl-base
 Requires(post,postun):	textutils
 Requires:	R-base = %{version}-%{release}
-Requires:	R-cran-KernSmooth
-Requires:	R-cran-VR
-Requires:	R-cran-boot
-Requires:	R-cran-cluster
-Requires:	R-cran-foreign
-Requires:	R-cran-lattice
-Requires:	R-cran-mgcv
-Requires:	R-cran-nlme
-Requires:	R-cran-rpart
-Requires:	R-cran-survival
+Obsoletes:	R-cran-KernSmooth
+Obsoletes:	R-cran-VR
+Obsoletes:	R-cran-MASS
+Obsoletes:	R-cran-class
+Obsoletes:	R-cran-nnet
+Obsoletes:	R-cran-spatial
+Obsoletes:	R-cran-boot
+Obsoletes:	R-cran-cluster
+Obsoletes:	R-cran-foreign
+Obsoletes:	R-cran-lattice
+Obsoletes:	R-cran-mgcv
+Obsoletes:	R-cran-nlme
+Obsoletes:	R-cran-rpart
+Obsoletes:	R-cran-survival
+Provides:	R-cran-KernSmooth = %{KernSmooth_version}
+Provides:	R-cran-VR = %{VR_version}
+Provides:	R-cran-MASS = %{VR_version}
+Provides:	R-cran-class = %{VR_version}
+Provides:	R-cran-nnet = %{VR_version}
+Provides:	R-cran-spatial = %{VR_version}
+Provides:	R-cran-boot = %{boot_version}
+Provides:	R-cran-cluster = %{cluster_version}
+Provides:	R-cran-foreign = %{foreign_version}
+Provides:	R-cran-lattice = %{lattice_version}
+Provides:	R-cran-mgcv = %{mgcv_version}
+Provides:	R-cran-nlme = %{nlme_version}
+Provides:	R-cran-rpart = %{rpart_version}
+Provides:	R-cran-survival = %{survival_version}
 Obsoletes:	R-contrib
 
 %description recommended
@@ -133,14 +163,7 @@ dystrubuowane w archiwum CRAN (Comprehensive R Archive Network).
 %prep
 %setup -q
 
-# These files have the path for Perl hard-coded as /usr/local/bin/perl
-# We need to remove them to avoid dependency problems
-rm -f ./doc/keyword-test.orig ./etc/undoc/R-funs.orig ./etc/undoc/extrExamp.orig
-
 %build
-%{__aclocal} -I m4
-%{__autoconf}
-cp -f /usr/share/automake/config.* .
 %configure \
 	--enable-R-shlib \
 	--enable-linux-lfs \
@@ -153,10 +176,10 @@ cp -f /usr/share/automake/config.* .
 	--with-lapack \
 	--with-readline \
 	--with-tcltk \
-	--without-recommended-packages
+	--with-recommended-packages
 
 %{__make}
-%{__make} check
+LANG=C LC_ALL=C %{__make} check
 %{__make} docs
 %{__make} help
 %{__make} html
@@ -194,7 +217,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files base
 %defattr(644,root,root,755)
-%doc COPYRIGHTS FAQ NEWS README RESOURCES THANKS Y2K
+%doc NEWS README doc/{AUTHORS,COPYRIGHTS,FAQ,RESOURCES,THANKS}
 
 %{_mandir}/man1/R.1*
 %attr(755,root,root) %{_bindir}/R
@@ -205,8 +228,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/R/include
 %{_includedir}/R
 %{_libdir}/R/share
-%{_libdir}/R/AUTHORS
+%{_libdir}/R/COPYING
+%{_libdir}/R/NEWS
+%{_libdir}/R/SVN-REVISION
 %dir %{_libdir}/R/library
+%{_libdir}/%{name}/library/R.css
 # %{_libdir}/R/doc %except %{_libdir}/R/doc/html/{packages.html,search/index.txt}
 %dir %{_libdir}/R/doc
 %{_libdir}/R/doc/[KRm]*
@@ -223,18 +249,31 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) %{_libdir}/%{name}/modules
 
+%{_libdir}/%{name}/library/KernSmooth
+%{_libdir}/%{name}/library/MASS
 %{_libdir}/%{name}/library/base
+%{_libdir}/%{name}/library/boot
+%{_libdir}/%{name}/library/class
+%{_libdir}/%{name}/library/cluster
 %{_libdir}/%{name}/library/datasets
-%{_libdir}/%{name}/library/grid
-%{_libdir}/%{name}/library/graphics
+%{_libdir}/%{name}/library/foreign
 %{_libdir}/%{name}/library/grDevices
+%{_libdir}/%{name}/library/graphics
+%{_libdir}/%{name}/library/grid
+%{_libdir}/%{name}/library/lattice
 %{_libdir}/%{name}/library/methods
-%{_libdir}/%{name}/library/utils
-%{_libdir}/%{name}/library/tcltk
+%{_libdir}/%{name}/library/mgcv
+%{_libdir}/%{name}/library/nlme
+%{_libdir}/%{name}/library/nnet
+%{_libdir}/%{name}/library/rpart
+%{_libdir}/%{name}/library/spatial
+%{_libdir}/%{name}/library/survival
 %{_libdir}/%{name}/library/splines
 %{_libdir}/%{name}/library/stats
 %{_libdir}/%{name}/library/stats4
+%{_libdir}/%{name}/library/tcltk
 %{_libdir}/%{name}/library/tools
+%{_libdir}/%{name}/library/utils
 
 %files recommended
 %defattr(644,root,root,755)
