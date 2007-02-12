@@ -14,7 +14,7 @@
 
 %include	/usr/lib/rpm/macros.perl
 Summary:	A language for data analysis and graphics
-Summary(pl):	Jêzyk do analizy danych oraz grafiki
+Summary(pl.UTF-8):   JÄ™zyk do analizy danych oraz grafiki
 Name:		R
 Version:	2.4.1
 Release:	0.2
@@ -65,19 +65,19 @@ Becker, Chambers & Wilks' S and Sussman's Scheme. Whereas the
 resulting language is very similar in appearance to S, the underlying
 implementation and semantics are derived from Scheme.
 
-%description -l pl
-System do obliczeñ statystycznych i grafiki. R sk³ada siê z jêzyka
-oraz ¶rodowiska uruchomieniowego z grafik±, debuggerem, dostêpem do
-niektórych funkcji systemowych oraz mo¿liwo¶ci± uruchamiania programów
+%description -l pl.UTF-8
+System do obliczeÅ„ statystycznych i grafiki. R skÅ‚ada siÄ™ z jÄ™zyka
+oraz Å›rodowiska uruchomieniowego z grafikÄ…, debuggerem, dostÄ™pem do
+niektÃ³rych funkcji systemowych oraz moÅ¼liwoÅ›ciÄ… uruchamiania programÃ³w
 zapisanych w skryptach.
 
-Jêzyk R by³ zainspirowany dwoma istniej±cymi jêzykami: S (Beckera,
+JÄ™zyk R byÅ‚ zainspirowany dwoma istniejÄ…cymi jÄ™zykami: S (Beckera,
 Chambersa i Wilksa) oraz Scheme (Sussmana). R jest podobny do S, ale
-implementacja i semantyka wywodzi siê ze Scheme.
+implementacja i semantyka wywodzi siÄ™ ze Scheme.
 
 %package base
 Summary:	The R base distribution
-Summary(pl):	Podstawowa dystrybucja R
+Summary(pl.UTF-8):   Podstawowa dystrybucja R
 License:	GPL v2 / LGPL
 Group:		Development/Languages
 Requires(post):	perl-base
@@ -103,16 +103,16 @@ Technologies). Indeed, S users will find the environment quite
 familiar and a good deal of S software will run without change under
 R.
 
-%description base -l pl
-R jest jêzykiem i ¶rodowiskiem uruchomieniowym do interaktywnej
-analizy danych statystycznych. R nie jest ca³kowicie zgodny z jêzykiem
+%description base -l pl.UTF-8
+R jest jÄ™zykiem i Å›rodowiskiem uruchomieniowym do interaktywnej
+analizy danych statystycznych. R nie jest caÅ‚kowicie zgodny z jÄ™zykiem
 S opracowanym w AT&T Bell Laboratiories (a teraz Lucent Technologies),
-mimo to u¿ytkownicy S zauwa¿± zbli¿one ¶rodowisko, a du¿a czê¶æ
-oprogramowania w S bêdzie dzia³a³a bez zmian w R.
+mimo to uÅ¼ytkownicy S zauwaÅ¼Ä… zbliÅ¼one Å›rodowisko, a duÅ¼a czÄ™Å›Ä‡
+oprogramowania w S bÄ™dzie dziaÅ‚aÅ‚a bez zmian w R.
 
 %package recommended
 Summary:	Recommended contributed packages for the R language
-Summary(pl):	Zalecane dodatkowe pakiety do jêzyka R
+Summary(pl.UTF-8):   Zalecane dodatkowe pakiety do jÄ™zyka R
 License:	GPL, free or free for non-commercial use
 Group:		Development/Languages
 URL:		http://www.ci.tuwien.ac.at/R/
@@ -154,8 +154,8 @@ Obsoletes:	R-cran-survival
 Packages which extend the capabilities of the R base distribution and
 are distributed on the Comprehensive R Archive Network (CRAN).
 
-%description recommended -l pl
-Pakiety rozszerzaj±ce mo¿liwo¶ci podstawowej dystrybucji jêzyka R,
+%description recommended -l pl.UTF-8
+Pakiety rozszerzajÄ…ce moÅ¼liwoÅ›ci podstawowej dystrybucji jÄ™zyka R,
 dystrubuowane w archiwum CRAN (Comprehensive R Archive Network).
 
 %prep
