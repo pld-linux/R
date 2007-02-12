@@ -14,7 +14,7 @@
 
 %include	/usr/lib/rpm/macros.perl
 Summary:	A language for data analysis and graphics
-Summary(pl.UTF-8):   Język do analizy danych oraz grafiki
+Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
 Version:	2.4.1
 Release:	0.2
@@ -77,7 +77,7 @@ implementacja i semantyka wywodzi się ze Scheme.
 
 %package base
 Summary:	The R base distribution
-Summary(pl.UTF-8):   Podstawowa dystrybucja R
+Summary(pl.UTF-8):	Podstawowa dystrybucja R
 License:	GPL v2 / LGPL
 Group:		Development/Languages
 Requires(post):	perl-base
@@ -112,7 +112,7 @@ oprogramowania w S będzie działała bez zmian w R.
 
 %package recommended
 Summary:	Recommended contributed packages for the R language
-Summary(pl.UTF-8):   Zalecane dodatkowe pakiety do języka R
+Summary(pl.UTF-8):	Zalecane dodatkowe pakiety do języka R
 License:	GPL, free or free for non-commercial use
 Group:		Development/Languages
 URL:		http://www.ci.tuwien.ac.at/R/
