@@ -1,3 +1,7 @@
+
+# Conditional build
+%bcond_without	tcl		# disable tcl support
+
 # TODO:
 # - script for rpm to autoprovides/autorequires R internals
 #
@@ -16,39 +20,39 @@
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
-Version:	2.4.1
+Version:	2.5.1
 Release:	0.2
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-2/%{name}-%{version}.tar.gz
-# Source0-md5:	92b33fd2c3e770d595c1a472889230d5
+# Source0-md5:	162f6d5a1bd7c60fd652145e050f3f3c
 Source1:	%{name}.desktop
+Patch0:		%{name}-asneeded.patch
 URL:		http://www.r-project.org/
-BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	blas-devel
+BuildRequires:	blas-devel >= 3.1.1
 BuildRequires:	bzip2-devel
 BuildRequires:	gcc-c++
-BuildRequires:	gcc-g77
+BuildRequires:	gcc-fortran
 BuildRequires:	gettext-devel
-BuildRequires:	lapack-devel
+BuildRequires:	lapack-devel >= 3.1.1
 BuildRequires:	libjpeg-devel >= 6b
 BuildRequires:	libpng-devel >= 1.0.5
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.6.26
-#BuildRequires:	lpr
 BuildRequires:	pcre-devel
 BuildRequires:	perl-base >= 1:5.6
 BuildRequires:	readline-devel
 BuildRequires:	rpm-perlprov
-BuildRequires:	tcl-devel
+%{?with_tcl:BuildRequires:	tcl-devel}
 BuildRequires:	tetex-dvips
 BuildRequires:	tetex-latex
 BuildRequires:	tetex-pdftex
-BuildRequires:	tk-devel
+%{?with_tcl:BuildRequires:	tk-devel}
+BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	zip
 BuildRequires:	zlib-devel >= 1.1.3
 #Requires:	lpr
@@ -160,6 +164,7 @@ dystrubuowane w archiwum CRAN (Comprehensive R Archive Network).
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %configure \
@@ -173,7 +178,7 @@ dystrubuowane w archiwum CRAN (Comprehensive R Archive Network).
 	--with-blas \
 	--with-lapack \
 	--with-readline \
-	--with-tcltk \
+	--with%{!?with_tcl:out}-tcltk \
 	--with-recommended-packages
 
 %{__make}
@@ -189,10 +194,7 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/R,%{_includedir
 install -d $RPM_BUILD_ROOT%{perl_vendorlib}/{R,Text}
 
 %{__make} install \
-	rhome=$RPM_BUILD_ROOT%{_libdir}/R \
-	mandir=$RPM_BUILD_ROOT%{_mandir} \
-	bindir=$RPM_BUILD_ROOT%{_bindir} \
-
+	DESTDIR=${RPM_BUILD_ROOT}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 
@@ -228,7 +230,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc NEWS README doc/{AUTHORS,COPYRIGHTS,FAQ,RESOURCES,THANKS}
 
 %{_mandir}/man1/R.1*
+%{_mandir}/man1/Rscript*
 %attr(755,root,root) %{_bindir}/R
+%attr(755,root,root) %{_bindir}/Rscript
 %dir %{_libdir}/R
 %attr(755,root,root) %{_libdir}/R/bin
 %attr(755,root,root) %{_libdir}/libR*.so
@@ -247,7 +251,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/R/doc/html
 %{_libdir}/R/doc/html/*.css
 %{_libdir}/R/doc/html/[Ra-lr-u]*.html
-%{_libdir}/R/doc/html/packages-head.html
+%{_libdir}/R/doc/html/packages-head*.html
 %{_libdir}/R/doc/html/*.jpg
 %dir %{_libdir}/R/doc/html/search
 %{_libdir}/R/doc/html/search/[A-Z]*
@@ -267,6 +271,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/library/boot
 %{_libdir}/%{name}/library/class
 %{_libdir}/%{name}/library/cluster
+%{_libdir}/%{name}/library/codetools
 %{_libdir}/%{name}/library/datasets
 %{_libdir}/%{name}/library/foreign
 %{_libdir}/%{name}/library/grDevices
@@ -277,6 +282,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/library/mgcv
 %{_libdir}/%{name}/library/nlme
 %{_libdir}/%{name}/library/nnet
+%{_libdir}/%{name}/library/rcompgen
 %{_libdir}/%{name}/library/rpart
 %{_libdir}/%{name}/library/spatial
 %{_libdir}/%{name}/library/survival
