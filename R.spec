@@ -32,7 +32,6 @@ Patch0:		%{name}-asneeded.patch
 URL:		http://www.r-project.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	blas-devel >= 3.1.1
 BuildRequires:	bzip2-devel
 BuildRequires:	gcc-c++
 BuildRequires:	gcc-fortran
