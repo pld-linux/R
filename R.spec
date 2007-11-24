@@ -22,7 +22,7 @@ Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
 Version:	2.6.0
-Release:	0.1
+Release:	0.2
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
@@ -212,8 +212,9 @@ for f in * ; do
   ln -s %{_libdir}/%{name}/share/perl/Text/$f $RPM_BUILD_ROOT%{perl_vendorlib}/Text/
 done)
 
-rm -r $RPM_BUILD_ROOT%{_libdir}/R/share/perl/{R,File,Text}
-rm -r $RPM_BUILD_ROOT%{perl_vendorlib}/Text
+rm -r $RPM_BUILD_ROOT%{perl_vendorlib}/{Text,R}
+rm -r $RPM_BUILD_ROOT%{_libdir}/R/share/perl/{File,Text}
+mv    $RPM_BUILD_ROOT%{_libdir}/R/share/perl/R $RPM_BUILD_ROOT%{perl_vendorlib}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
