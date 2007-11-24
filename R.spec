@@ -20,23 +20,23 @@
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
-Version:	2.5.1
-Release:	0.2
+Version:	2.6.0
+Release:	0.1
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-2/%{name}-%{version}.tar.gz
-# Source0-md5:	162f6d5a1bd7c60fd652145e050f3f3c
+# Source0-md5:	97e5d2542349925962b7469456d45731
 Source1:	%{name}.desktop
-Patch0:		%{name}-asneeded.patch
 URL:		http://www.r-project.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	blas-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	gcc-c++
 BuildRequires:	gcc-fortran
 BuildRequires:	gettext-devel
-BuildRequires:	lapack-devel >= 3.1.1
+#BuildRequires:	lapack-devel >= 3.1.1
 BuildRequires:	libjpeg-devel >= 6b
 BuildRequires:	libpng-devel >= 1.0.5
 BuildRequires:	libstdc++-devel
@@ -163,7 +163,6 @@ dystrubuowane w archiwum CRAN (Comprehensive R Archive Network).
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %configure \
@@ -175,17 +174,15 @@ dystrubuowane w archiwum CRAN (Comprehensive R Archive Network).
 	--with-libpng \
 	--with-jpeglib \
 	--with-blas \
-	--with-lapack \
 	--with-readline \
 	--with%{!?with_tcl:out}-tcltk \
 	--with-recommended-packages
 
+# R gets into infinite loop in src/library/grDevices when this is enabled
+#	--with-lapack \
+
 %{__make}
-LANG=C LC_ALL=C %{__make} check
-%{__make} docs
-%{__make} help
-%{__make} html
-%{__make} info
+%{__make} check docs help html info
 
 %install
 rm -rf $RPM_BUILD_ROOT
