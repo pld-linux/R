@@ -1,6 +1,7 @@
 
 # Conditional build
 %bcond_without	tcl		# disable tcl support
+%bcond_without	tests		# do not run "make check"
 
 # TODO:
 # - script for rpm to autoprovides/autorequires R internals
@@ -182,7 +183,7 @@ dystrubuowane w archiwum CRAN (Comprehensive R Archive Network).
 #	--with-lapack \
 
 %{__make}
-%{__make} check docs help html info
+%{__make} %{?with_tests:check} docs help html info
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -210,6 +211,9 @@ done)
 for f in * ; do
   ln -s %{_libdir}/%{name}/share/perl/Text/$f $RPM_BUILD_ROOT%{perl_vendorlib}/Text/
 done)
+
+rm -r $RPM_BUILD_ROOT%{_libdir}/R/share/perl/{R,File,Text}
+rm -r $RPM_BUILD_ROOT%{perl_vendorlib}/Text
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -255,9 +259,7 @@ rm -rf $RPM_BUILD_ROOT
 %ghost %{_libdir}/R/doc/html/packages.html
 %{_desktopdir}/*.desktop
 
-%dir %{perl_vendorlib}/R
-%{perl_vendorlib}/R/*
-%{perl_vendorlib}/Text/*
+%{perl_vendorlib}/R
 
 %attr(755,root,root) %{_libdir}/%{name}/modules
 
@@ -288,6 +290,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/library/tcltk
 %{_libdir}/%{name}/library/tools
 %{_libdir}/%{name}/library/utils
+
+%{_pkgconfigdir}/*.pc
 
 %files recommended
 %defattr(644,root,root,755)
