@@ -21,13 +21,13 @@
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
-Version:	2.6.0
-Release:	0.2
+Version:	2.6.1
+Release:	1
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-2/%{name}-%{version}.tar.gz
-# Source0-md5:	97e5d2542349925962b7469456d45731
+# Source0-md5:	19c35a69e1afa73f5f70f91ff9939233
 Source1:	%{name}.desktop
 URL:		http://www.r-project.org/
 BuildRequires:	autoconf
@@ -37,7 +37,7 @@ BuildRequires:	bzip2-devel
 BuildRequires:	gcc-c++
 BuildRequires:	gcc-fortran
 BuildRequires:	gettext-devel
-#BuildRequires:	lapack-devel >= 3.1.1
+BuildRequires:	lapack-devel >= 3.1.1
 BuildRequires:	libjpeg-devel >= 6b
 BuildRequires:	libpng-devel >= 1.0.5
 BuildRequires:	libstdc++-devel
@@ -175,12 +175,10 @@ dystrubuowane w archiwum CRAN (Comprehensive R Archive Network).
 	--with-libpng \
 	--with-jpeglib \
 	--with-blas \
+	--with-lapack \
 	--with-readline \
 	--with%{!?with_tcl:out}-tcltk \
 	--with-recommended-packages
-
-# R gets into infinite loop in src/library/grDevices when this is enabled
-#	--with-lapack \
 
 %{__make}
 %if %{with tests}
