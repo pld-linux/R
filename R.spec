@@ -22,7 +22,7 @@ Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
 Version:	2.6.1
-Release:	1
+Release:	2
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
@@ -37,7 +37,7 @@ BuildRequires:	bzip2-devel
 BuildRequires:	gcc-c++
 BuildRequires:	gcc-fortran
 BuildRequires:	gettext-devel
-BuildRequires:	lapack-devel >= 3.1.1
+BuildRequires:	lapack-devel >= 3.1.1-4
 BuildRequires:	libjpeg-devel >= 6b
 BuildRequires:	libpng-devel >= 1.0.5
 BuildRequires:	libstdc++-devel
