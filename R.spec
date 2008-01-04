@@ -4,6 +4,7 @@
 %bcond_without	tests		# do not run "make check"
 #
 # TODO:
+# - WTF is empty -recommended package with P/O which belong to -base ???
 # - script for rpm to autoprovides/autorequires R internals
 #
 %define	KernSmooth_version	2.22r19
@@ -53,6 +54,8 @@ BuildRequires:	tetex-latex
 BuildRequires:	tetex-pdftex
 %{?with_tcl:BuildRequires:	tk-devel}
 BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXmu-devel
+BuildRequires:	xorg-lib-libXt-devel
 BuildRequires:	zip
 BuildRequires:	zlib-devel >= 1.1.3
 #Requires:	lpr
@@ -120,7 +123,7 @@ Summary(pl.UTF-8):	Zalecane dodatkowe pakiety do języka R
 License:	GPL, free or free for non-commercial use
 Group:		Development/Languages
 URL:		http://www.ci.tuwien.ac.at/R/
-Requires(post,postun):	R-base
+Requires(post,postun):	R-base = %{version}-%{release}
 Requires(post,postun):	perl-base
 Requires(post,postun):	textutils
 Requires:	R-base = %{version}-%{release}
