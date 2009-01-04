@@ -7,43 +7,46 @@
 # - WTF is empty -recommended package with P/O which belong to -base ???
 # - script for rpm to autoprovides/autorequires R internals
 #
-%define	KernSmooth_version	2.22r19
-%define	VR_version		7.2r30
-%define	boot_version		1.2r27
-%define	cluster_version		1.11.4
-%define	foreign_version		0.8r18
-%define	lattice_version		0.14r16
-%define	mgcv_version		1.3r22
-%define	nlme_version		3.1r78
-%define	rpart_version		3.1r33
-%define	survival_version	2.30
+%define	KernSmooth_version	2.22r22
+%define	VR_version		7.2r45
+%define	boot_version		1.2r34
+%define	cluster_version		1.11.11
+%define	foreign_version		0.8r29
+%define	lattice_version		0.17r17
+%define	mgcv_version		1.4r1.1
+%define	nlme_version		3.1r89
+%define	rpart_version		3.1r42
+%define	survival_version	2.34r1
 
 %include	/usr/lib/rpm/macros.perl
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
-Version:	2.6.2
-Release:	1
+Version:	2.8.1
+Release:	0.1
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-2/%{name}-%{version}.tar.gz
-# Source0-md5:	1099cbf02c624ceb459d9bbc4d0d1448
+# Source0-md5:	acd40621b8942a2464daa2f9cef3273d
 Source1:	%{name}.desktop
 URL:		http://www.r-project.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	blas-devel
 BuildRequires:	bzip2-devel
+BuildRequires:	cairo-devel
 BuildRequires:	gcc-c++
 BuildRequires:	gcc-fortran
 BuildRequires:	gettext-devel
 BuildRequires:	lapack-devel >= 3.1.1-4
+BuildRequires:	libicu-devel
 BuildRequires:	libjpeg-devel >= 6b
 BuildRequires:	libpng-devel >= 1.0.5
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.6.26
+BuildRequires:	pango-devel
 BuildRequires:	pcre-devel
 BuildRequires:	perl-base >= 1:5.6
 BuildRequires:	readline-devel
@@ -181,6 +184,15 @@ dystrubuowane w archiwum CRAN (Comprehensive R Archive Network).
 	--with-lapack \
 	--with-readline \
 	--with%{!?with_tcl:out}-tcltk \
+	--with-cairo \
+	--with-libpng \
+	--with-jpeglib \
+	--with-system-zlib \
+	--with-system-bzlib \
+	--with-system-pcre \
+	--with-iconv \
+	--with-ICU \
+	--with-x \
 	--with-recommended-packages
 
 %{__make}
