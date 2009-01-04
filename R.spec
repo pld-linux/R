@@ -3,6 +3,9 @@
 %bcond_without	tcl		# disable tcl support
 %bcond_without	tests		# do not run "make check"
 #
+# NOTE:
+# - /etc/localtime must be present for tests to work
+#
 # TODO:
 # - script for rpm to autoprovides/autorequires R internals
 #
