@@ -131,13 +131,9 @@ install -d $RPM_BUILD_ROOT%{perl_vendorlib}/{R,Text}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 
-find $RPM_BUILD_ROOT%{_libdir}/R -name 'Makefile*' -exec rm -f {} \;
 mv $RPM_BUILD_ROOT%{_libdir}/R/lib/libR*.so $RPM_BUILD_ROOT%{_libdir}
 mv $RPM_BUILD_ROOT%{_libdir}/%{name}/include $RPM_BUILD_ROOT%{_includedir}/R
 ln -sf %{_includedir}/R $RPM_BUILD_ROOT%{_libdir}/R/include
-rm $RPM_BUILD_ROOT%{_bindir}/%{name}
-sed -i -e "s#$RPM_BUILD_ROOT##g" $RPM_BUILD_ROOT%{_libdir}/%{name}/bin/%{name}
-ln -sf %{_libdir}/%{name}/bin/%{name} $RPM_BUILD_ROOT%{_bindir}/%{name}
 
 (cd $RPM_BUILD_ROOT%{_libdir}/%{name}/share/perl/R/
 for f in * ; do
@@ -155,12 +151,8 @@ mv    $RPM_BUILD_ROOT%{_libdir}/R/share/perl/R $RPM_BUILD_ROOT%{perl_vendorlib}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-(cd %{_libdir}/R/library; umask 022; cat */CONTENTS > ../doc/html/search/index.txt
- R_HOME=%{_libdir}/R ../bin/Rcmd perl ../share/perl/build-help.pl --index)
-/sbin/ldconfig
-
-%postun	-p /sbin/ldconfig
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
