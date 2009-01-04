@@ -1,0 +1,15 @@
+--- R-2.8.1/configure.ac~	2008-09-22 00:05:30.000000000 +0200
++++ R-2.8.1/configure.ac	2009-01-04 02:58:40.000000000 +0100
+@@ -1956,9 +1956,9 @@
+   AC_CHECK_LIB(icui18n, ucol_open_3_8, [], [
+     AC_CHECK_LIB(icui18n, ucol_open_3_6, [], [
+       AC_CHECK_LIB(icui18n, ucol_open_3_4, [], 
+-        [AC_MSG_ERROR([library 'icui18n' is required for ICU])])
+-    ])
+-  ])
++        [AC_MSG_ERROR([library 'icui18n' is required for ICU])], -licuuc)
++    ], -licuuc)
++  ], -licuuc)
+   AC_CHECK_LIB(icuuc, ucnv_fromUChars_3_8, [], [
+     AC_CHECK_LIB(icuuc, ucnv_fromUChars_3_6, [], [
+       AC_CHECK_LIB(icuuc, ucnv_fromUChars_3_4, [], 
