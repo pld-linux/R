@@ -28,7 +28,7 @@
  	@if test -f $@; then mv $@ $@.prev; fi
  	@$(ECHO) $(ECHO_N) "running code in '$<' ...$(ECHO_C)"
 -	@$(R) < $< > $@ 2>&1 || (mv $@ $@.fail && exit 1)
-+	$(R) < $< > $@ 2>&1 || (mv $@ $@.fail && exit 1)
++	$(R) < $< > $@ 2>&1 || (cat $@ ; mv $@ $@.fail && exit 1)
  	@$(ECHO) "$(ECHO_T) OK"
  	@if test -f $@.prev; then \
  	  mv $@ $@.fail; \
