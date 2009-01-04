@@ -4,7 +4,6 @@
 %bcond_without	tests		# do not run "make check"
 #
 # TODO:
-# - WTF is empty -recommended package with P/O which belong to -base ???
 # - script for rpm to autoprovides/autorequires R internals
 #
 %define	KernSmooth_version	2.22r22
@@ -94,17 +93,47 @@ Group:		Development/Languages
 Requires(post):	perl-base
 Requires(post):	textutils
 Provides:	R-cran-base
+Provides:	R-cran-boot = %{boot_version}
+Provides:	R-cran-class = %{VR_version}
+Provides:	R-cran-cluster = %{cluster_version}
 Provides:	R-cran-datasets
-Provides:	R-cran-grDevices
+Provides:	R-cran-foreign = %{foreign_version}
 Provides:	R-cran-graphics
+Provides:	R-cran-grDevices
 Provides:	R-cran-grid
+Provides:	R-cran-KernSmooth = %{KernSmooth_version}
+Provides:	R-cran-lattice = %{lattice_version}
+Provides:	R-cran-MASS = %{VR_version}
 Provides:	R-cran-methods
+Provides:	R-cran-mgcv = %{mgcv_version}
+Provides:	R-cran-nlme = %{nlme_version}
+Provides:	R-cran-nnet = %{VR_version}
+Provides:	R-cran-rpart = %{rpart_version}
+Provides:	R-cran-spatial = %{VR_version}
 Provides:	R-cran-splines
 Provides:	R-cran-stats
 Provides:	R-cran-stats4
+Provides:	R-cran-survival = %{survival_version}
 Provides:	R-cran-tcltk
 Provides:	R-cran-tools
 Provides:	R-cran-utils
+Provides:	R-cran-VR = %{VR_version}
+Obsoletes:	R-contrib
+Obsoletes:	R-cran-boot
+Obsoletes:	R-cran-class
+Obsoletes:	R-cran-cluster
+Obsoletes:	R-cran-foreign
+Obsoletes:	R-cran-KernSmooth
+Obsoletes:	R-cran-lattice
+Obsoletes:	R-cran-MASS
+Obsoletes:	R-cran-mgcv
+Obsoletes:	R-cran-nlme
+Obsoletes:	R-cran-nnet
+Obsoletes:	R-cran-rpart
+Obsoletes:	R-cran-spatial
+Obsoletes:	R-cran-survival
+Obsoletes:	R-cran-VR
+Obsoletes:	R-recommended
 
 %description base
 R is a language and run-time environment for carrying out interactive
@@ -120,54 +149,6 @@ analizy danych statystycznych. R nie jest całkowicie zgodny z językiem
 S opracowanym w AT&T Bell Laboratiories (a teraz Lucent Technologies),
 mimo to użytkownicy S zauważą zbliżone środowisko, a duża część
 oprogramowania w S będzie działała bez zmian w R.
-
-%package recommended
-Summary:	Recommended contributed packages for the R language
-Summary(pl.UTF-8):	Zalecane dodatkowe pakiety do języka R
-License:	GPL, free or free for non-commercial use
-Group:		Development/Languages
-URL:		http://www.ci.tuwien.ac.at/R/
-Requires(post,postun):	R-base = %{version}-%{release}
-Requires(post,postun):	perl-base
-Requires(post,postun):	textutils
-Requires:	R-base = %{version}-%{release}
-Provides:	R-cran-KernSmooth = %{KernSmooth_version}
-Provides:	R-cran-MASS = %{VR_version}
-Provides:	R-cran-VR = %{VR_version}
-Provides:	R-cran-boot = %{boot_version}
-Provides:	R-cran-class = %{VR_version}
-Provides:	R-cran-cluster = %{cluster_version}
-Provides:	R-cran-foreign = %{foreign_version}
-Provides:	R-cran-lattice = %{lattice_version}
-Provides:	R-cran-mgcv = %{mgcv_version}
-Provides:	R-cran-nlme = %{nlme_version}
-Provides:	R-cran-nnet = %{VR_version}
-Provides:	R-cran-rpart = %{rpart_version}
-Provides:	R-cran-spatial = %{VR_version}
-Provides:	R-cran-survival = %{survival_version}
-Obsoletes:	R-contrib
-Obsoletes:	R-cran-KernSmooth
-Obsoletes:	R-cran-MASS
-Obsoletes:	R-cran-VR
-Obsoletes:	R-cran-boot
-Obsoletes:	R-cran-class
-Obsoletes:	R-cran-cluster
-Obsoletes:	R-cran-foreign
-Obsoletes:	R-cran-lattice
-Obsoletes:	R-cran-mgcv
-Obsoletes:	R-cran-nlme
-Obsoletes:	R-cran-nnet
-Obsoletes:	R-cran-rpart
-Obsoletes:	R-cran-spatial
-Obsoletes:	R-cran-survival
-
-%description recommended
-Packages which extend the capabilities of the R base distribution and
-are distributed on the Comprehensive R Archive Network (CRAN).
-
-%description recommended -l pl.UTF-8
-Pakiety rozszerzające możliwości podstawowej dystrybucji języka R,
-dystrubuowane w archiwum CRAN (Comprehensive R Archive Network).
 
 %prep
 %setup -q
@@ -312,6 +293,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/library/utils
 
 %{_pkgconfigdir}/*.pc
-
-%files recommended
-%defattr(644,root,root,755)
