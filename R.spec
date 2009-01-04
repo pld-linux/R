@@ -301,13 +301,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/library/mgcv
 %{_libdir}/%{name}/library/nlme
 %{_libdir}/%{name}/library/nnet
-%{_libdir}/%{name}/library/rcompgen
 %{_libdir}/%{name}/library/rpart
 %{_libdir}/%{name}/library/spatial
-%{_libdir}/%{name}/library/survival
 %{_libdir}/%{name}/library/splines
 %{_libdir}/%{name}/library/stats
 %{_libdir}/%{name}/library/stats4
+%{_libdir}/%{name}/library/survival
 %{_libdir}/%{name}/library/tcltk
 %{_libdir}/%{name}/library/tools
 %{_libdir}/%{name}/library/utils
