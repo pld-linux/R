@@ -182,7 +182,7 @@ oprogramowania w S będzie działała bez zmian w R.
 
 %{__make}
 %if %{with tests}
-export LC_ALL=C export LANG=C %{__make} check
+%{__make} check
 %endif
 %{__make} docs help pdf html info
 
