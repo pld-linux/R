@@ -7,6 +7,9 @@
 # - /etc/localtime must be present for tests to work
 #
 # TODO:
+# - faulty build on i486 (test stats-Ex.R):
+#	error in optim(init[mask], getLike, method = "L-BFGS-B", lower = rep(0,  :
+#          non-finite value supplied by optim
 # - script for rpm to autoprovides/autorequires R internals
 #
 %define	KernSmooth_version	2.22r22
@@ -65,34 +68,6 @@ BuildRequires:	xorg-lib-libXt-devel
 BuildRequires:	zip
 BuildRequires:	zlib-devel >= 1.1.3
 #Requires:	lpr
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%description
-A system for statistical computation and graphics. R consists of a
-language plus a run-time environment with graphics, a debugger, access
-to certain system functions, and the ability to run programs stored in
-script files.
-
-The design of R has been heavily influenced by two existing languages:
-Becker, Chambers & Wilks' S and Sussman's Scheme. Whereas the
-resulting language is very similar in appearance to S, the underlying
-implementation and semantics are derived from Scheme.
-
-%description -l pl.UTF-8
-System do obliczeń statystycznych i grafiki. R składa się z języka
-oraz środowiska uruchomieniowego z grafiką, debuggerem, dostępem do
-niektórych funkcji systemowych oraz możliwością uruchamiania programów
-zapisanych w skryptach.
-
-Język R był zainspirowany dwoma istniejącymi językami: S (Beckera,
-Chambersa i Wilksa) oraz Scheme (Sussmana). R jest podobny do S, ale
-implementacja i semantyka wywodzi się ze Scheme.
-
-%package base
-Summary:	The R base distribution
-Summary(pl.UTF-8):	Podstawowa dystrybucja R
-License:	GPL v2 / LGPL
-Group:		Development/Languages
 Requires(post):	perl-base
 Requires(post):	textutils
 Provides:	R-cran-base
@@ -121,6 +96,7 @@ Provides:	R-cran-tcltk
 Provides:	R-cran-tools
 Provides:	R-cran-utils
 Provides:	R-cran-VR = %{VR_version}
+Obsoletes:	R-base
 Obsoletes:	R-contrib
 Obsoletes:	R-cran-boot
 Obsoletes:	R-cran-class
@@ -137,21 +113,28 @@ Obsoletes:	R-cran-spatial
 Obsoletes:	R-cran-survival
 Obsoletes:	R-cran-VR
 Obsoletes:	R-recommended
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%description base
-R is a language and run-time environment for carrying out interactive
-statistical data analysis. It is not entirely dissimilar to the S
-language developed at AT&T Bell Laboratories (and now Lucent
-Technologies). Indeed, S users will find the environment quite
-familiar and a good deal of S software will run without change under
-R.
+%description
+A system for statistical computation and graphics. R consists of a
+language plus a run-time environment with graphics, a debugger, access
+to certain system functions, and the ability to run programs stored in
+script files.
 
-%description base -l pl.UTF-8
-R jest językiem i środowiskiem uruchomieniowym do interaktywnej
-analizy danych statystycznych. R nie jest całkowicie zgodny z językiem
-S opracowanym w AT&T Bell Laboratiories (a teraz Lucent Technologies),
-mimo to użytkownicy S zauważą zbliżone środowisko, a duża część
-oprogramowania w S będzie działała bez zmian w R.
+The design of R has been heavily influenced by two existing languages:
+Becker, Chambers & Wilks' S and Sussman's Scheme. Whereas the
+resulting language is very similar in appearance to S, the underlying
+implementation and semantics are derived from Scheme.
+
+%description -l pl.UTF-8
+System do obliczeń statystycznych i grafiki. R składa się z języka
+oraz środowiska uruchomieniowego z grafiką, debuggerem, dostępem do
+niektórych funkcji systemowych oraz możliwością uruchamiania programów
+zapisanych w skryptach.
+
+Język R był zainspirowany dwoma istniejącymi językami: S (Beckera,
+Chambersa i Wilksa) oraz Scheme (Sussmana). R jest podobny do S, ale
+implementacja i semantyka wywodzi się ze Scheme.
 
 %prep
 %setup -q
@@ -230,7 +213,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %postun	-p /sbin/ldconfig
 
-%files base
+%files
 %defattr(644,root,root,755)
 %doc NEWS README doc/{AUTHORS,COPYRIGHTS,FAQ,RESOURCES,THANKS}
 
