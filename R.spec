@@ -30,6 +30,7 @@ Group:		Development/Languages
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-2/%{name}-%{version}.tar.gz
 # Source0-md5:	acd40621b8942a2464daa2f9cef3273d
 Source1:	%{name}.desktop
+Patch0:		%{name}-libicuuc.patch
 URL:		http://www.r-project.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -170,8 +171,11 @@ dystrubuowane w archiwum CRAN (Comprehensive R Archive Network).
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
+%{__aclocal} -I m4
+%{__autoconf}
 %configure \
 	--enable-R-shlib \
 	--enable-linux-lfs \
@@ -206,7 +210,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/R,%{_includedir},%{_desktopdir}}
 install -d $RPM_BUILD_ROOT%{perl_vendorlib}/{R,Text}
 
-%{__make} install \
+%{__make} -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
