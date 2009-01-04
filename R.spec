@@ -17,6 +17,8 @@
 %define	rpart_version		3.1r42
 %define	survival_version	2.34r1
 
+%undefine	_clean_env
+
 %include	/usr/lib/rpm/macros.perl
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
