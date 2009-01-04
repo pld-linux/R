@@ -12,23 +12,12 @@
 #          non-finite value supplied by optim
 # - script for rpm to autoprovides/autorequires R internals
 #
-%define	KernSmooth_version	2.22r22
-%define	VR_version		7.2r45
-%define	boot_version		1.2r34
-%define	cluster_version		1.11.11
-%define	foreign_version		0.8r29
-%define	lattice_version		0.17r17
-%define	mgcv_version		1.4r1.1
-%define	nlme_version		3.1r89
-%define	rpart_version		3.1r42
-%define	survival_version	2.34r1
-
 %include	/usr/lib/rpm/macros.perl
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
 Version:	2.8.1
-Release:	1.1
+Release:	1.2
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
@@ -70,48 +59,8 @@ BuildRequires:	zlib-devel >= 1.1.3
 #Requires:	lpr
 Requires(post):	perl-base
 Requires(post):	textutils
-Provides:	R-cran-base
-Provides:	R-cran-boot = %{boot_version}
-Provides:	R-cran-class = %{VR_version}
-Provides:	R-cran-cluster = %{cluster_version}
-Provides:	R-cran-datasets
-Provides:	R-cran-foreign = %{foreign_version}
-Provides:	R-cran-graphics
-Provides:	R-cran-grDevices
-Provides:	R-cran-grid
-Provides:	R-cran-KernSmooth = %{KernSmooth_version}
-Provides:	R-cran-lattice = %{lattice_version}
-Provides:	R-cran-MASS = %{VR_version}
-Provides:	R-cran-methods
-Provides:	R-cran-mgcv = %{mgcv_version}
-Provides:	R-cran-nlme = %{nlme_version}
-Provides:	R-cran-nnet = %{VR_version}
-Provides:	R-cran-rpart = %{rpart_version}
-Provides:	R-cran-spatial = %{VR_version}
-Provides:	R-cran-splines
-Provides:	R-cran-stats
-Provides:	R-cran-stats4
-Provides:	R-cran-survival = %{survival_version}
-Provides:	R-cran-tcltk
-Provides:	R-cran-tools
-Provides:	R-cran-utils
-Provides:	R-cran-VR = %{VR_version}
 Obsoletes:	R-base
 Obsoletes:	R-contrib
-Obsoletes:	R-cran-boot
-Obsoletes:	R-cran-class
-Obsoletes:	R-cran-cluster
-Obsoletes:	R-cran-foreign
-Obsoletes:	R-cran-KernSmooth
-Obsoletes:	R-cran-lattice
-Obsoletes:	R-cran-MASS
-Obsoletes:	R-cran-mgcv
-Obsoletes:	R-cran-nlme
-Obsoletes:	R-cran-nnet
-Obsoletes:	R-cran-rpart
-Obsoletes:	R-cran-spatial
-Obsoletes:	R-cran-survival
-Obsoletes:	R-cran-VR
 Obsoletes:	R-recommended
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
