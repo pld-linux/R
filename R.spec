@@ -16,15 +16,14 @@
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
-Version:	2.8.1
-Release:	1.2
+Version:	2.9.1
+Release:	1
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-2/%{name}-%{version}.tar.gz
-# Source0-md5:	acd40621b8942a2464daa2f9cef3273d
+# Source0-md5:	54a79eebdf0cec3fd2c489fc94d99b00
 Source1:	%{name}.desktop
-Patch0:		%{name}-libicuuc.patch
 URL:		http://www.r-project.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -87,7 +86,6 @@ implementacja i semantyka wywodzi się ze Scheme.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__aclocal} -I m4
