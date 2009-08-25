@@ -192,6 +192,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_libdir}/%{name}/library/KernSmooth
 %{_libdir}/%{name}/library/MASS
+%{_libdir}/%{name}/library/Matrix
 %{_libdir}/%{name}/library/base
 %{_libdir}/%{name}/library/boot
 %{_libdir}/%{name}/library/class
