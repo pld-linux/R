@@ -89,7 +89,7 @@ implementacja i semantyka wywodzi się ze Scheme.
 
 %build
 %{__aclocal} -I m4
-%{__autoconf}
+#%{__autoconf}
 %configure \
 	--enable-R-shlib \
 	--enable-linux-lfs \
