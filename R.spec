@@ -17,7 +17,7 @@ Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
 Version:	2.10.0
-Release:	1
+Release:	2
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
@@ -89,7 +89,7 @@ implementacja i semantyka wywodzi się ze Scheme.
 
 %build
 %{__aclocal} -I m4
-#%{__autoconf}
+%{__autoconf}
 %configure \
 	--enable-R-shlib \
 	--enable-linux-lfs \
@@ -117,7 +117,7 @@ implementacja i semantyka wywodzi się ze Scheme.
 %if %{with tests}
 %{__make} check
 %endif
-%{__make} docs help pdf html info
+%{__make} docs pdf html info
 
 %install
 rm -rf $RPM_BUILD_ROOT
