@@ -43,6 +43,7 @@ BuildRequires:	libxml2-devel >= 2.6.26
 BuildRequires:	pango-devel
 BuildRequires:	pcre-devel
 BuildRequires:	perl-base >= 1:5.6
+BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
 BuildRequires:	rpm-perlprov
 %{?with_tcl:BuildRequires:	tcl-devel}
