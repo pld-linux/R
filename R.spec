@@ -17,7 +17,7 @@ Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
 Version:	2.11.0
-Release:	1
+Release:	2
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
@@ -54,6 +54,7 @@ BuildRequires:	tetex-pdftex
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXmu-devel
 BuildRequires:	xorg-lib-libXt-devel
+BuildRequires:	xz-devel
 BuildRequires:	zip
 BuildRequires:	zlib-devel >= 1.1.3
 #Requires:	lpr
@@ -97,6 +98,7 @@ implementacja i semantyka wywodzi się ze Scheme.
 	--with-system-zlib \
 	--with-system-bzlib \
 	--with-system-pcre \
+	--with-system-xz \
 	--with-libpng \
 	--with-jpeglib \
 	--with-blas \
