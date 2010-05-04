@@ -60,6 +60,7 @@ BuildRequires:	zlib-devel >= 1.1.3
 #Requires:	lpr
 Requires(post):	perl-base
 Requires(post):	textutils
+Suggests:	rkward
 Obsoletes:	R-base
 Obsoletes:	R-contrib
 Obsoletes:	R-recommended
