@@ -117,9 +117,9 @@ implementacja i semantyka wywodzi się ze Scheme.
 	--with-x \
 	--with-recommended-packages
 
-%{__make} -j1
+%{__make}
 %if %{with tests}
-%{__make} -j1 check
+%{__make} check
 %endif
 %{__make} docs pdf info
 
