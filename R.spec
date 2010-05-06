@@ -125,7 +125,7 @@ implementacja i semantyka wywodzi się ze Scheme.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/{R},%{_includedir},%{_desktopdir}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/R,%{_includedir},%{_desktopdir}}
 install -d $RPM_BUILD_ROOT%{perl_vendorlib}/{R,Text}
 
 %{__make} -j1 install \
