@@ -17,7 +17,7 @@ Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
 Version:	2.11.0
-Release:	2
+Release:	3
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
@@ -125,7 +125,7 @@ implementacja i semantyka wywodzi się ze Scheme.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/R,%{_includedir},%{_desktopdir}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/{R},%{_includedir},%{_desktopdir}}
 install -d $RPM_BUILD_ROOT%{perl_vendorlib}/{R,Text}
 
 %{__make} -j1 install \
@@ -140,10 +140,6 @@ ln -sf %{_includedir}/R $RPM_BUILD_ROOT%{_libdir}/R/include
 (cd $RPM_BUILD_ROOT%{_libdir}/%{name}/share/perl/R/
 for f in * ; do
   ln -s %{_libdir}/%{name}/share/perl/R/$f $RPM_BUILD_ROOT%{perl_vendorlib}/R/
-done)
-(cd $RPM_BUILD_ROOT%{_libdir}/%{name}/share/perl/Text
-for f in * ; do
-  ln -s %{_libdir}/%{name}/share/perl/Text/$f $RPM_BUILD_ROOT%{perl_vendorlib}/Text/
 done)
 
 rm -r $RPM_BUILD_ROOT%{perl_vendorlib}/R
