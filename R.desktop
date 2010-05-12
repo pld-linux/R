@@ -6,4 +6,5 @@ Icon=
 Exec=R
 Terminal=true
 Type=Application
+Categories=Education;Science;Math;
 # vi: encoding=utf-8
