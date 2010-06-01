@@ -7,9 +7,6 @@
 # - /etc/localtime must be present for tests to work
 #
 # TODO:
-# - faulty build on i486 (test stats-Ex.R):
-#	error in optim(init[mask], getLike, method = "L-BFGS-B", lower = rep(0,  :
-#          non-finite value supplied by optim
 # - script for rpm to autoprovides/autorequires R internals
 #
 %include	/usr/lib/rpm/macros.perl
