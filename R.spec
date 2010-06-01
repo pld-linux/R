@@ -16,13 +16,13 @@
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
-Version:	2.11.0
-Release:	5
+Version:	2.11.1
+Release:	1
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-2/%{name}-%{version}.tar.gz
-# Source0-md5:	c6c1e866299f533617750889c729bfb3
+# Source0-md5:	7421108ade3e9223263394b9bbe277ce
 Source1:	%{name}.desktop
 URL:		http://www.r-project.org/
 BuildRequires:	autoconf
@@ -30,7 +30,6 @@ BuildRequires:	automake
 BuildRequires:	blas-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	cairo-devel
-BuildRequires:	gcc-c++
 BuildRequires:	gcc-fortran
 BuildRequires:	gettext-devel
 BuildRequires:	lapack-devel >= 3.1.1-4
