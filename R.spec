@@ -14,13 +14,14 @@ Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
 Version:	2.11.1
-Release:	1
+Release:	2
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-2/%{name}-%{version}.tar.gz
 # Source0-md5:	7421108ade3e9223263394b9bbe277ce
 Source1:	%{name}.desktop
+Source2:	%{name}.xpm
 URL:		http://www.r-project.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -121,13 +122,14 @@ implementacja i semantyka wywodzi się ze Scheme.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/R,%{_includedir},%{_desktopdir}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/R,%{_includedir},%{_desktopdir},%{_pixmapsdir}}
 install -d $RPM_BUILD_ROOT%{perl_vendorlib}/{R,Text}
 
 %{__make} -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
+install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 mv $RPM_BUILD_ROOT%{_libdir}/R/lib/libR*.so $RPM_BUILD_ROOT%{_libdir}
 mv $RPM_BUILD_ROOT%{_libdir}/%{name}/include $RPM_BUILD_ROOT%{_includedir}/R
@@ -177,7 +179,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/R/doc/html/packages-head*.html
 %{_libdir}/R/doc/html/*.jpg
 %ghost %{_libdir}/R/doc/html/packages.html
-%{_desktopdir}/*.desktop
+%{_desktopdir}/R.desktop
+%{_pixmapsdir}/R.xpm
 
 %{perl_vendorlib}/R
 
