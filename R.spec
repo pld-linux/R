@@ -13,28 +13,29 @@
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
-Version:	2.11.1
-Release:	2
+Version:	2.12.0
+Release:	1
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-2/%{name}-%{version}.tar.gz
-# Source0-md5:	7421108ade3e9223263394b9bbe277ce
+# Source0-md5:	aa003654d238d70bf5bc7433b8257aac
 Source1:	%{name}.desktop
 Source2:	%{name}.xpm
 URL:		http://www.r-project.org/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
-BuildRequires:	blas-devel
+BuildRequires:	blas-devel >= 3.2.2-2
 BuildRequires:	bzip2-devel
 BuildRequires:	cairo-devel
 BuildRequires:	gcc-fortran
 BuildRequires:	gettext-devel
-BuildRequires:	lapack-devel >= 3.1.1-4
+BuildRequires:	lapack-devel >= 3.2.2-2
 BuildRequires:	libicu-devel
 BuildRequires:	libjpeg-devel >= 6b
 BuildRequires:	libpng-devel >= 1.0.5
 BuildRequires:	libstdc++-devel
+BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.6.26
 BuildRequires:	pango-devel
@@ -57,6 +58,7 @@ BuildRequires:	zlib-devel >= 1.1.3
 #Requires:	lpr
 Requires(post):	perl-base
 Requires(post):	textutils
+Requires:	blas >= 3.2.2-2
 Suggests:	rkward
 Obsoletes:	R-base
 Obsoletes:	R-contrib
@@ -93,26 +95,20 @@ implementacja i semantyka wywodzi się ze Scheme.
 %configure \
 	--enable-R-shlib \
 	--enable-linux-lfs \
-	--with-system-zlib \
+	--with-ICU \
+	--with-blas \
+	--with-cairo \
+	--with-jpeglib \
+	--with-lapack \
+	--with-libpng \
+	--with-readline \
+	--with-recommended-packages \
 	--with-system-bzlib \
 	--with-system-pcre \
 	--with-system-xz \
-	--with-libpng \
-	--with-jpeglib \
-	--with-blas \
-	--with-lapack \
-	--with-readline \
-	--with%{!?with_tcl:out}-tcltk \
-	--with-cairo \
-	--with-libpng \
-	--with-jpeglib \
 	--with-system-zlib \
-	--with-system-bzlib \
-	--with-system-pcre \
-	--with-iconv \
-	--with-ICU \
-	--with-x \
-	--with-recommended-packages
+	--with%{!?with_tcl:out}-tcltk \
+	--with-x
 
 %{__make}
 %if %{with tests}
@@ -123,7 +119,6 @@ implementacja i semantyka wywodzi się ze Scheme.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/R,%{_includedir},%{_desktopdir},%{_pixmapsdir}}
-install -d $RPM_BUILD_ROOT%{perl_vendorlib}/{R,Text}
 
 %{__make} -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -135,41 +130,23 @@ mv $RPM_BUILD_ROOT%{_libdir}/R/lib/libR*.so $RPM_BUILD_ROOT%{_libdir}
 mv $RPM_BUILD_ROOT%{_libdir}/%{name}/include $RPM_BUILD_ROOT%{_includedir}/R
 ln -sf %{_includedir}/R $RPM_BUILD_ROOT%{_libdir}/R/include
 
-(cd $RPM_BUILD_ROOT%{_libdir}/%{name}/share/perl/R/
-for f in * ; do
-  ln -s %{_libdir}/%{name}/share/perl/R/$f $RPM_BUILD_ROOT%{perl_vendorlib}/R/
-done)
-
-rm -r $RPM_BUILD_ROOT%{perl_vendorlib}/R
-rm -r $RPM_BUILD_ROOT%{_libdir}/R/share/perl/File
-mv    $RPM_BUILD_ROOT%{_libdir}/R/share/perl/R $RPM_BUILD_ROOT%{perl_vendorlib}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
 %doc NEWS README doc/{AUTHORS,COPYRIGHTS,FAQ,RESOURCES,THANKS}
-
-%{_mandir}/man1/R.1*
-%{_mandir}/man1/Rscript*
 %attr(755,root,root) %{_bindir}/R
 %attr(755,root,root) %{_bindir}/Rscript
-%dir %{_libdir}/R
-%attr(755,root,root) %{_libdir}/R/bin
 %attr(755,root,root) %{_libdir}/libR*.so
-%{_libdir}/R/etc
-%{_libdir}/R/include
-%{_includedir}/R
-%{_libdir}/R/share
+%dir %{_libdir}/R
 %{_libdir}/R/COPYING
 %{_libdir}/R/NEWS
 %{_libdir}/R/SVN-REVISION
-%dir %{_libdir}/R/library
-%{_libdir}/%{name}/library/R.css
+%attr(755,root,root) %{_libdir}/R/bin
 # %{_libdir}/R/doc %except %{_libdir}/R/doc/html/{packages.html,search/index.txt}
 %dir %{_libdir}/R/doc
 %{_libdir}/R/doc/[KRm]*
@@ -179,39 +156,42 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/R/doc/html/packages-head*.html
 %{_libdir}/R/doc/html/*.jpg
 %ghost %{_libdir}/R/doc/html/packages.html
+%{_libdir}/R/etc
+%{_libdir}/R/include
+%dir %{_libdir}/R/library
+%{_libdir}/R/library/R.css
+%{_libdir}/R/library/KernSmooth
+%{_libdir}/R/library/MASS
+%{_libdir}/R/library/Matrix
+%{_libdir}/R/library/base
+%{_libdir}/R/library/boot
+%{_libdir}/R/library/class
+%{_libdir}/R/library/cluster
+%{_libdir}/R/library/codetools
+%{_libdir}/R/library/datasets
+%{_libdir}/R/library/foreign
+%{_libdir}/R/library/grDevices
+%{_libdir}/R/library/graphics
+%{_libdir}/R/library/grid
+%{_libdir}/R/library/lattice
+%{_libdir}/R/library/methods
+%{_libdir}/R/library/mgcv
+%{_libdir}/R/library/nlme
+%{_libdir}/R/library/nnet
+%{_libdir}/R/library/rpart
+%{_libdir}/R/library/spatial
+%{_libdir}/R/library/splines
+%{_libdir}/R/library/stats
+%{_libdir}/R/library/stats4
+%{_libdir}/R/library/survival
+%{_libdir}/R/library/tcltk
+%{_libdir}/R/library/tools
+%{_libdir}/R/library/utils
+%attr(755,root,root) %{_libdir}/R/modules
+%{_libdir}/R/share
 %{_desktopdir}/R.desktop
 %{_pixmapsdir}/R.xpm
-
-%{perl_vendorlib}/R
-
-%attr(755,root,root) %{_libdir}/%{name}/modules
-
-%{_libdir}/%{name}/library/KernSmooth
-%{_libdir}/%{name}/library/MASS
-%{_libdir}/%{name}/library/Matrix
-%{_libdir}/%{name}/library/base
-%{_libdir}/%{name}/library/boot
-%{_libdir}/%{name}/library/class
-%{_libdir}/%{name}/library/cluster
-%{_libdir}/%{name}/library/codetools
-%{_libdir}/%{name}/library/datasets
-%{_libdir}/%{name}/library/foreign
-%{_libdir}/%{name}/library/grDevices
-%{_libdir}/%{name}/library/graphics
-%{_libdir}/%{name}/library/grid
-%{_libdir}/%{name}/library/lattice
-%{_libdir}/%{name}/library/methods
-%{_libdir}/%{name}/library/mgcv
-%{_libdir}/%{name}/library/nlme
-%{_libdir}/%{name}/library/nnet
-%{_libdir}/%{name}/library/rpart
-%{_libdir}/%{name}/library/spatial
-%{_libdir}/%{name}/library/splines
-%{_libdir}/%{name}/library/stats
-%{_libdir}/%{name}/library/stats4
-%{_libdir}/%{name}/library/survival
-%{_libdir}/%{name}/library/tcltk
-%{_libdir}/%{name}/library/tools
-%{_libdir}/%{name}/library/utils
-
-%{_pkgconfigdir}/*.pc
+%{_includedir}/R
+%{_pkgconfigdir}/libR.pc
+%{_mandir}/man1/R.1*
+%{_mandir}/man1/Rscript*
