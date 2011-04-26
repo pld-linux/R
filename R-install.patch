@@ -1,0 +1,14 @@
+--- R-2.13.0/configure.ac~	2011-03-31 00:05:02.000000000 +0200
++++ R-2.13.0/configure.ac	2011-04-26 11:11:24.466666842 +0200
+@@ -538,9 +538,9 @@
+ AC_PATH_PROG(GETWD, pwd, pwd)
+ AC_MSG_CHECKING([whether builddir is srcdir])
+ if test "`cd \"${srcdir}\" && ${GETWD}`" = "`${GETWD}`"; then
+-  BUILDDIR_IS_SRCDIR=yes
+-else
+   BUILDDIR_IS_SRCDIR=no
++else
++  BUILDDIR_IS_SRCDIR=yes
+ fi
+ AC_SUBST(BUILDDIR_IS_SRCDIR)
+ AC_MSG_RESULT([${BUILDDIR_IS_SRCDIR}])
