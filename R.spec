@@ -13,15 +13,16 @@
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
-Version:	2.12.2
-Release:	2
+Version:	2.13.0
+Release:	1
 License:	Mixed (distributable), mostly GPL
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-2/%{name}-%{version}.tar.gz
-# Source0-md5:	bc70b51dddab8aa39066710624e55d5e
+# Source0-md5:	ecfb928067cfd932e75135f8b8bba3e7
 Source1:	%{name}.desktop
 Source2:	%{name}.xpm
+Patch0:		%{name}-install.patch
 URL:		http://www.r-project.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
@@ -48,6 +49,7 @@ BuildRequires:	rpm-perlprov
 BuildRequires:	tetex-dvips
 BuildRequires:	tetex-latex
 BuildRequires:	tetex-pdftex
+BuildRequires:	texinfo-texi2dvi
 %{?with_tcl:BuildRequires:	tk-devel}
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXmu-devel
@@ -88,13 +90,14 @@ implementacja i semantyka wywodzi się ze Scheme.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__aclocal} -I m4
 %{__autoconf}
 %configure \
 	--enable-R-shlib \
-	--enable-linux-lfs \
+	--enable-largefile \
 	--with-ICU \
 	--with-blas \
 	--with-cairo \
@@ -159,7 +162,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/R/etc
 %{_libdir}/R/include
 %dir %{_libdir}/R/library
-%{_libdir}/R/library/R.css
 %{_libdir}/R/library/KernSmooth
 %{_libdir}/R/library/MASS
 %{_libdir}/R/library/Matrix
@@ -168,6 +170,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/R/library/class
 %{_libdir}/R/library/cluster
 %{_libdir}/R/library/codetools
+%{_libdir}/R/library/compiler
 %{_libdir}/R/library/datasets
 %{_libdir}/R/library/foreign
 %{_libdir}/R/library/grDevices
