@@ -13,16 +13,15 @@
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
-Version:	2.13.1
-Release:	3
+Version:	2.13.2
+Release:	1
 License:	Mixed (distributable), mostly GPL v2+
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-2/%{name}-%{version}.tar.gz
-# Source0-md5:	28dd0d68ac3a0eab93fe7035565a1c30
+# Source0-md5:	fbad74f6415385f86425d0f3968dd684
 Source1:	%{name}.desktop
 Source2:	%{name}.xpm
-Patch0:		%{name}-install.patch
 URL:		http://www.r-project.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
@@ -90,12 +89,13 @@ implementacja i semantyka wywodzi się ze Scheme.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__aclocal} -I m4
 %{__autoconf}
-%configure \
+install -d build
+cd build
+../%configure \
 	--enable-R-shlib \
 	--enable-largefile \
 	--with-ICU \
@@ -114,16 +114,18 @@ implementacja i semantyka wywodzi się ze Scheme.
 	--with-x
 
 %{__make}
+
 %if %{with tests}
 %{__make} check
 %endif
+
 %{__make} docs pdf info
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/R,%{_includedir},%{_desktopdir},%{_pixmapsdir}}
 
-%{__make} -j1 install \
+%{__make} -C build -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
