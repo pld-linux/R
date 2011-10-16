@@ -23,39 +23,39 @@ Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-2/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 Source2:	%{name}.xpm
 URL:		http://www.r-project.org/
-BuildRequires:	autoconf >= 2.60
+BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake
 BuildRequires:	blas-devel >= 3.2.2-2
-BuildRequires:	bzip2-devel
+BuildRequires:	bzip2-devel >= 1.0.6
 BuildRequires:	cairo-devel >= 1.6
 BuildRequires:	gcc-fortran
 BuildRequires:	gettext-devel
 BuildRequires:	lapack-devel >= 3.2.2-2
 BuildRequires:	libicu-devel
 BuildRequires:	libjpeg-devel >= 6b
-BuildRequires:	libpng-devel >= 1.0.5
+BuildRequires:	libpng-devel >= 1.2.7
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
-BuildRequires:	libtool
+BuildRequires:	libtool >= 2:2.0
 BuildRequires:	libxml2-devel >= 2.6.26
 BuildRequires:	pango-devel
-BuildRequires:	pcre-devel
+BuildRequires:	pcre-devel >= 7.6
 BuildRequires:	perl-base >= 1:5.6
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
 BuildRequires:	rpm-perlprov
-%{?with_tcl:BuildRequires:	tcl-devel}
+%{?with_tcl:BuildRequires:	tcl-devel >= 8.4}
 BuildRequires:	tetex-dvips
 BuildRequires:	tetex-latex
 BuildRequires:	tetex-pdftex
-BuildRequires:	texinfo-texi2dvi
-%{?with_tcl:BuildRequires:	tk-devel}
+BuildRequires:	texinfo-texi2dvi >= 4.7
+%{?with_tcl:BuildRequires:	tk-devel >= 8.4}
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXmu-devel
 BuildRequires:	xorg-lib-libXt-devel
 BuildRequires:	xz-devel >= 4.999
 BuildRequires:	zip
-BuildRequires:	zlib-devel >= 1.1.3
+BuildRequires:	zlib-devel >= 1.2.3
 #Requires:	lpr
 Requires(post):	perl-base
 Requires(post):	textutils
