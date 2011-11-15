@@ -7,19 +7,21 @@
 # - /etc/localtime must be present for tests to work
 #
 # TODO:
+# - 755 for %{_libdir}/R/library/*/libs/*.so
+# - %lang( ) for %{_libdir}/R/library/*/po/* dirs
 # - script for rpm to autoprovides/autorequires R internals
 #
 %include	/usr/lib/rpm/macros.perl
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
-Version:	2.13.2
+Version:	2.14.0
 Release:	1
 License:	Mixed (distributable), mostly GPL v2+
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-2/%{name}-%{version}.tar.gz
-# Source0-md5:	fbad74f6415385f86425d0f3968dd684
+# Source0-md5:	98cf8fe74e512e1061caf1ee0c2043a8
 Source1:	%{name}.desktop
 Source2:	%{name}.xpm
 URL:		http://www.r-project.org/
@@ -146,7 +148,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc NEWS README doc/{AUTHORS,COPYRIGHTS,FAQ,RESOURCES,THANKS}
 %attr(755,root,root) %{_bindir}/R
 %attr(755,root,root) %{_bindir}/Rscript
-%attr(755,root,root) %{_libdir}/libR*.so
+%attr(755,root,root) %{_libdir}/libR.so
 %dir %{_libdir}/R
 %{_libdir}/R/COPYING
 %{_libdir}/R/NEWS
@@ -183,6 +185,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/R/library/mgcv
 %{_libdir}/R/library/nlme
 %{_libdir}/R/library/nnet
+%{_libdir}/R/library/parallel
 %{_libdir}/R/library/rpart
 %{_libdir}/R/library/spatial
 %{_libdir}/R/library/splines
@@ -193,7 +196,30 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/R/library/tools
 %{_libdir}/R/library/utils
 %attr(755,root,root) %{_libdir}/R/modules
-%{_libdir}/R/share
+%dir %{_libdir}/R/share
+%{_libdir}/R/share/R
+%{_libdir}/R/share/encodings
+%{_libdir}/R/share/java
+%{_libdir}/R/share/licenses
+%dir %{_libdir}/R/share/locale
+%lang(de) %{_libdir}/R/share/locale/de
+%lang(en) %{_libdir}/R/share/locale/en
+%lang(en) %{_libdir}/R/share/locale/en@quot
+%lang(en_GB) %{_libdir}/R/share/locale/en_GB
+%lang(es) %{_libdir}/R/share/locale/es
+%lang(fr) %{_libdir}/R/share/locale/fr
+%lang(it) %{_libdir}/R/share/locale/it
+%lang(ja) %{_libdir}/R/share/locale/ja
+%lang(ko) %{_libdir}/R/share/locale/ko
+%lang(nn) %{_libdir}/R/share/locale/nn
+%lang(pt_BR) %{_libdir}/R/share/locale/pt_BR
+%lang(ru) %{_libdir}/R/share/locale/ru
+%lang(tr) %{_libdir}/R/share/locale/tr
+%lang(zh_CN) %{_libdir}/R/share/locale/zh_CN
+%lang(zh_TW) %{_libdir}/R/share/locale/zh_TW
+%{_libdir}/R/share/make
+%{_libdir}/R/share/sh
+%{_libdir}/R/share/texmf
 %{_desktopdir}/R.desktop
 %{_pixmapsdir}/R.xpm
 %{_includedir}/R
