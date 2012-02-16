@@ -16,7 +16,7 @@ Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
 Version:	2.14.1
-Release:	5
+Release:	6
 License:	Mixed (distributable), mostly GPL v2+
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
@@ -133,6 +133,8 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/R,%{_includedir
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
+ln -sf %{_libdir}/R/lib/libR.so $RPM_BUILD_ROOT%{_libdir}
+
 mv $RPM_BUILD_ROOT%{_libdir}/%{name}/include $RPM_BUILD_ROOT%{_includedir}/R
 ln -sf %{_includedir}/R $RPM_BUILD_ROOT%{_libdir}/R/include
 
@@ -181,6 +183,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/R
 %dir %{_libdir}/R/lib
 %attr(755,root,root) %{_libdir}/R/lib/libR.so
+%{_libdir}/libR.so
 %{_libdir}/R/COPYING
 %{_libdir}/R/NEWS
 %{_libdir}/R/SVN-REVISION
