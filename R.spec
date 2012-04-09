@@ -7,8 +7,6 @@
 # - /etc/localtime must be present for tests to work
 #
 # TODO:
-# - 755 for %{_libdir}/R/library/*/libs/*.so
-# - %lang( ) for %{_libdir}/R/library/*/po/* dirs
 # - script for rpm to autoprovides/autorequires R internals
 #
 %include	/usr/lib/rpm/macros.perl
@@ -183,7 +181,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/R
 %dir %{_libdir}/R/lib
 %attr(755,root,root) %{_libdir}/R/lib/libR.so
-%{_libdir}/libR.so
+%attr(755,root,root) %{_libdir}/libR.so
 %{_libdir}/R/COPYING
 %{_libdir}/R/NEWS
 %{_libdir}/R/SVN-REVISION
