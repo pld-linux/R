@@ -96,6 +96,8 @@ implementacja i semantyka wywodzi się ze Scheme.
 install -d build
 cd build
 ../%configure \
+	F77=gfortran \
+	FC=gfortran \
 	--enable-R-shlib \
 	--enable-largefile \
 	--with-ICU \
