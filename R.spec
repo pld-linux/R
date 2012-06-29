@@ -29,7 +29,7 @@ BuildRequires:	blas-devel >= 3.2.2-2
 BuildRequires:	bzip2-devel >= 1.0.6
 BuildRequires:	cairo-devel >= 1.6
 BuildRequires:	gcc-fortran
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-devel >= 0.14.5
 BuildRequires:	lapack-devel >= 3.2.2-2
 BuildRequires:	libicu-devel
 BuildRequires:	libjpeg-devel >= 6b
