@@ -115,7 +115,7 @@ cd build
 	--with%{!?with_tcl:out}-tcltk \
 	--with-x
 
-%{__make}
+%{__make} -j1
 
 %if %{with tests}
 %{__make} check
