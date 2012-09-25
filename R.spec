@@ -7,6 +7,7 @@
 # - /etc/localtime must be present for tests to work
 #
 # TODO:
+# - move javareconf to java-tools subpackage
 # - script for rpm to autoprovides/autorequires R internals
 #
 %include	/usr/lib/rpm/macros.perl
@@ -14,7 +15,7 @@ Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
 Version:	2.15.1
-Release:	5
+Release:	5.1
 License:	Mixed (distributable), mostly GPL v2+
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
@@ -87,12 +88,12 @@ Język R był zainspirowany dwoma istniejącymi językami: S (Beckera,
 Chambersa i Wilksa) oraz Scheme (Sussmana). R jest podobny do S, ale
 implementacja i semantyka wywodzi się ze Scheme.
 
-%package java
-Summary:	R Java classes
-Group:		Development/Libraries
+%package java-tools
+Summary:	R Java tools
+Group:		Development/Languages
 Requires:	%{name} = %{version}-%{release}
 
-%description java
+%description java-tools
 R Java classes.
 
 %prep
@@ -226,6 +227,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/R.1*
 %{_mandir}/man1/Rscript*
 
-%files java
+%files java-tools
 %defattr(644,root,root,755)
 %{_libdir}/R/share/java
