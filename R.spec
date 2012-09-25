@@ -90,7 +90,7 @@ implementacja i semantyka wywodzi się ze Scheme.
 %package java
 Summary:	R Java classes
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description java
 R Java classes.
