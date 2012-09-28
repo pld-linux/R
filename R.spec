@@ -1,13 +1,13 @@
 #
 # Conditional build
 %bcond_without	tcl		# disable tcl support
-%bcond_without	tests		# do not run "make check"
+%bcond_without	tests	# do not run "make check"
+%bcond_without	docs	# do not build documentation
 #
 # NOTE:
 # - /etc/localtime must be present for tests to work
 #
 # TODO:
-# - move javareconf to java-tools subpackage
 # - script for rpm to autoprovides/autorequires R internals
 #
 %include	/usr/lib/rpm/macros.perl
@@ -46,10 +46,12 @@ BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
 BuildRequires:	rpm-perlprov
 %{?with_tcl:BuildRequires:	tcl-devel >= 8.4}
+%if %{with docs}
 BuildRequires:	tetex-dvips
 BuildRequires:	tetex-latex
 BuildRequires:	tetex-pdftex
 BuildRequires:	texinfo-texi2dvi >= 4.7
+%endif
 %{?with_tcl:BuildRequires:	tk-devel >= 8.4}
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXmu-devel
@@ -90,7 +92,7 @@ implementacja i semantyka wywodzi się ze Scheme.
 
 %package java-tools
 Summary:	R Java tools
-Group:		Development/Languages
+Group:		Development/Tools
 Requires:	%{name} = %{version}-%{release}
 
 %description java-tools
@@ -130,7 +132,9 @@ cd build
 %{__make} check
 %endif
 
+%if %{with docs}
 %{__make} docs pdf info
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -197,6 +201,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/R/NEWS
 %{_libdir}/R/SVN-REVISION
 %attr(755,root,root) %{_libdir}/R/bin
+%exclude %{_libdir}/R/bin/javareconf
 # %{_libdir}/R/doc %except %{_libdir}/R/doc/html/{packages.html,search/index.txt}
 %dir %{_libdir}/R/doc
 %{_libdir}/R/doc/[KRm]*
@@ -229,4 +234,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files java-tools
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/R/bin/javareconf
 %{_libdir}/R/share/java
