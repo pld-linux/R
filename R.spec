@@ -15,7 +15,7 @@ Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
 Version:	2.15.1
-Release:	6
+Release:	7
 License:	Mixed (distributable), mostly GPL v2+
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
@@ -45,14 +45,16 @@ BuildRequires:	perl-base >= 1:5.6
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
 BuildRequires:	rpm-perlprov
-%{?with_tcl:BuildRequires:	tcl-devel >= 8.4}
+%if %{with tcl}
+BuildRequires:	tcl-devel >= 8.4
+BuildRequires:	tk-devel >= 8.4
+%endif
 %if %{with docs}
 BuildRequires:	tetex-dvips
 BuildRequires:	tetex-latex
 BuildRequires:	tetex-pdftex
 BuildRequires:	texinfo-texi2dvi >= 4.7
 %endif
-%{?with_tcl:BuildRequires:	tk-devel >= 8.4}
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXmu-devel
 BuildRequires:	xorg-lib-libXt-devel
@@ -123,7 +125,13 @@ cd build
 	--with-system-pcre \
 	--with-system-xz \
 	--with-system-zlib \
-	--with%{!?with_tcl:out}-tcltk \
+%if %{with tcl}
+	--with-tcltk \
+	--with-tcl-config=/usr/lib/tclConfig.sh \
+	--with-tk-config=/usr/lib/tkConfig.sh \
+%else
+	--without-tcltk \
+%endif
 	--with-x
 
 %{__make} -j1
