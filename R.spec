@@ -94,11 +94,15 @@ implementacja i semantyka wywodzi się ze Scheme.
 
 %package java-tools
 Summary:	R Java tools
+Summary(pl.UTF-8):	Narzędzia R w Javie
 Group:		Development/Tools
 Requires:	%{name} = %{version}-%{release}
 
 %description java-tools
 R Java classes.
+
+%description java-tools -l pl.UTF-8
+Narzędzia R w Javie.
 
 %prep
 %setup -q
