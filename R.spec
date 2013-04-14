@@ -175,23 +175,44 @@ gen_lang() {
 for moddir in $RPM_BUILD_ROOT%{_libdir}/R/library/* ; do
 	module=$(basename $moddir)
 	echo "%dir %{_libdir}/R/library/${module}"
-	for f in $moddir/* ; do
-		bf=$(basename $f)
-		case "$bf" in
-		  po)
-			echo "%dir %{_libdir}/R/library/${module}/po"
-			gen_lang %{_libdir}/R/library/${module}/po
-			;;
-		  libs)
-			echo "%dir %{_libdir}/R/library/${module}/libs"
-			echo "%attr(755,root,root) %{_libdir}/R/library/${module}/libs/*.so"
-			;;
-		  *)
-			echo "%{_libdir}/R/library/${module}/${bf}"
-			;;
-		esac
-	done
+	if [ "$module" = "translations" ]; then
+		for f in $moddir/* ; do
+			bf=$(basename $f)
+			case "$bf" in
+			  DESCRIPTION|en|en@quot)
+				echo "%{_libdir}/R/library/${module}/${bf}"
+				;;
+			  *)
+				echo "%lang(${bf}) %{_libdir}/R/library/${module}/${bf}"
+				;;
+			esac
+		done
+	else
+		for f in $moddir/* ; do
+			bf=$(basename $f)
+			case "$bf" in
+			  po)
+				echo "%dir %{_libdir}/R/library/${module}/po"
+				gen_lang %{_libdir}/R/library/${module}/po
+				;;
+			  libs)
+				echo "%dir %{_libdir}/R/library/${module}/libs"
+				echo "%attr(755,root,root) %{_libdir}/R/library/${module}/libs/*.so"
+				;;
+			  *)
+				echo "%{_libdir}/R/library/${module}/${bf}"
+				;;
+			esac
+		done
+	fi
 done > R.files
+
+# just GPL
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/R/doc/COPYING
+# packaged as %doc
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/R/doc/{AUTHORS,COPYRIGHTS,FAQ,NEWS.rds,THANKS}
+# pdf versino of NEWS
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/R/NEWS.pdf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -216,10 +237,12 @@ rm -rf $RPM_BUILD_ROOT
 # %{_libdir}/R/doc %except %{_libdir}/R/doc/html/{packages.html,search/index.txt}
 %dir %{_libdir}/R/doc
 %{_libdir}/R/doc/[KRm]*
+%{_libdir}/R/doc/CRAN_mirrors.csv
 %dir %{_libdir}/R/doc/html
 %{_libdir}/R/doc/html/*.css
-%{_libdir}/R/doc/html/[Ra-lr-u]*.html
+%{_libdir}/R/doc/html/[NRSa-lr-u]*.html
 %{_libdir}/R/doc/html/packages-head*.html
+%{_libdir}/R/doc/html/favicon.ico
 %{_libdir}/R/doc/html/*.jpg
 %ghost %{_libdir}/R/doc/html/packages.html
 %{_libdir}/R/etc
@@ -229,6 +252,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/R/modules
 %dir %{_libdir}/R/share
 %{_libdir}/R/share/R
+%{_libdir}/R/share/dictionaries
 %{_libdir}/R/share/encodings
 %{_libdir}/R/share/licenses
 %{_libdir}/R/share/make
