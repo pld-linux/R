@@ -211,6 +211,8 @@ done > R.files
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/R/doc/COPYING
 # packaged as %doc
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/R/doc/{AUTHORS,COPYRIGHTS,FAQ,NEWS.rds,THANKS}
+# pdf version of NEWS
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/R/NEWS.pdf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
