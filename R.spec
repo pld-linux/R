@@ -14,13 +14,13 @@
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
-Version:	3.0.3
-Release:	2
+Version:	3.1.0
+Release:	1
 License:	Mixed (distributable), mostly GPL v2+
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-3/%{name}-%{version}.tar.gz
-# Source0-md5:	f9025976863847f2d0502254d0f0dbf2
+# Source0-md5:	a1ee52446bee81820409661e6d114ab1
 Source1:	%{name}.desktop
 Source2:	%{name}.xpm
 URL:		http://www.r-project.org/
@@ -213,7 +213,7 @@ done > R.files
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/R/doc/{AUTHORS,COPYRIGHTS,FAQ,NEWS.rds,THANKS}
 %if %{with docs}
 # pdf version of NEWS
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/R/NEWS.pdf
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/R/doc/NEWS.pdf
 %endif
 
 %clean
@@ -224,7 +224,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f R.files
 %defattr(644,root,root,755)
-%doc NEWS* README doc/{AUTHORS,COPYRIGHTS,FAQ,RESOURCES,THANKS}
+%doc README doc/{AUTHORS,COPYRIGHTS,FAQ,NEWS,NEWS.[012],RESOURCES,THANKS}
 %attr(755,root,root) %{_bindir}/R
 %attr(755,root,root) %{_bindir}/Rscript
 %dir %{_libdir}/R
@@ -232,7 +232,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/R/lib/libR.so
 %attr(755,root,root) %{_libdir}/libR.so
 %{_libdir}/R/COPYING
-%{_libdir}/R/NEWS*
 %{_libdir}/R/SVN-REVISION
 %attr(755,root,root) %{_libdir}/R/bin
 %exclude %{_libdir}/R/bin/javareconf
@@ -240,6 +239,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/R/doc
 %{_libdir}/R/doc/[KRm]*
 %{_libdir}/R/doc/CRAN_mirrors.csv
+%{_libdir}/R/doc/NEWS*
 %dir %{_libdir}/R/doc/html
 %{_libdir}/R/doc/html/*.css
 %{_libdir}/R/doc/html/[NRSa-lr-u]*.html
