@@ -1,6 +1,7 @@
 #
 # Conditional build
-%bcond_without	tcl		# disable tcl support
+%bcond_without	openmp	# OpenMP support
+%bcond_without	tcl	# Tcl/Tk support
 %bcond_without	tests	# do not run "make check"
 %bcond_without	docs	# do not build documentation
 #
@@ -14,13 +15,13 @@
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
-Version:	3.1.2
-Release:	6
-License:	Mixed (distributable), mostly GPL v2+
+Version:	3.2.3
+Release:	1
+License:	mixed (distributable), mostly GPL v2+
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-3/%{name}-%{version}.tar.gz
-# Source0-md5:	3af29ec06704cbd08d4ba8d69250ae74
+# Source0-md5:	1ba3dac113efab69e706902810cc2970
 Source1:	%{name}.desktop
 Source2:	%{name}.xpm
 URL:		http://www.r-project.org/
@@ -31,9 +32,11 @@ BuildRequires:	automake
 BuildRequires:	blas-devel >= 3.2.2-2
 BuildRequires:	bzip2-devel >= 1.0.6
 BuildRequires:	cairo-devel >= 1.6
+BuildRequires:	curl-devel >= 7.28.0
 BuildRequires:	gcc-fortran
-BuildRequires:	gettext-tools >= 0.14.5
+BuildRequires:	gettext-tools >= 0.16.1
 BuildRequires:	lapack-devel >= 3.2.2-2
+%{?with_openmp:BuildRequires:	libgomp-devel}
 BuildRequires:	libicu-devel
 BuildRequires:	libjpeg-devel >= 6b
 BuildRequires:	libpng-devel >= 1.2.7
@@ -42,7 +45,7 @@ BuildRequires:	libtiff-devel
 BuildRequires:	libtool >= 2:2.0
 BuildRequires:	libxml2-devel >= 2.6.26
 BuildRequires:	pango-devel
-BuildRequires:	pcre-devel >= 7.6
+BuildRequires:	pcre-devel >= 8.10
 BuildRequires:	perl-base >= 1:5.6
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
@@ -51,6 +54,7 @@ BuildRequires:	rpm-perlprov
 BuildRequires:	tcl-devel >= 8.4
 BuildRequires:	tk-devel >= 8.4
 %endif
+BuildRequires:	tre-devel
 %if %{with docs}
 BuildRequires:	tetex-dvips
 BuildRequires:	tetex-latex
@@ -60,13 +64,18 @@ BuildRequires:	texinfo-texi2dvi >= 4.7
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXmu-devel
 BuildRequires:	xorg-lib-libXt-devel
-BuildRequires:	xz-devel >= 4.999
+BuildRequires:	xz-devel >= 5.0.3
 BuildRequires:	zip
 BuildRequires:	zlib-devel >= 1.2.3
 #Requires:	lpr
 Requires(post):	perl-base
 Requires(post):	textutils
 Requires:	blas >= 3.2.2-2
+Requires:	bzip2 >= 1.0.6
+Requires:	curl-libs >= 7.28.0
+Requires:	pcre >= 8.10
+Requires:	xz-libs >= 5.0.3
+Requires:	zlib >= 1.2.3
 Suggests:	rkward
 Obsoletes:	R-base
 Obsoletes:	R-contrib
@@ -119,6 +128,7 @@ cd build
 	FC=gfortran \
 	--enable-R-shlib \
 	--enable-largefile \
+	%{!?with_openmp:--disable-openmp} \
 	--with-internal-tzcode \
 	--with-ICU \
 	--with-blas \
@@ -130,6 +140,7 @@ cd build
 	--with-recommended-packages \
 	--with-system-bzlib \
 	--with-system-pcre \
+	--with-system-tre \
 	--with-system-xz \
 	--with-system-zlib \
 %if %{with tcl}
@@ -241,6 +252,7 @@ rm -rf $RPM_BUILD_ROOT
 # %{_libdir}/R/doc %except %{_libdir}/R/doc/html/{packages.html,search/index.txt}
 %dir %{_libdir}/R/doc
 %{_libdir}/R/doc/[KRm]*
+%{_libdir}/R/doc/BioC_mirrors.csv
 %{_libdir}/R/doc/CRAN_mirrors.csv
 %{_libdir}/R/doc/NEWS*
 %dir %{_libdir}/R/doc/html
@@ -257,6 +269,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/R/modules
 %dir %{_libdir}/R/share
 %{_libdir}/R/share/R
+%{_libdir}/R/share/Rd
 %{_libdir}/R/share/dictionaries
 %{_libdir}/R/share/encodings
 %{_libdir}/R/share/licenses
