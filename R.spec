@@ -15,13 +15,13 @@
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
-Version:	3.2.5
-Release:	6
+Version:	3.4.0
+Release:	1
 License:	mixed (distributable), mostly GPL v2+
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-3/%{name}-%{version}.tar.gz
-# Source0-md5:	7b23ee70cfb383be3bd4360e3c71d8c3
+# Source0-md5:	75083c23d507b9c16d5c6afbd7a827e7
 Source1:	%{name}.desktop
 Source2:	%{name}.xpm
 URL:		http://www.r-project.org/
@@ -138,11 +138,7 @@ cd build
 	--with-libpng \
 	--with-readline \
 	--with-recommended-packages \
-	--with-system-bzlib \
-	--with-system-pcre \
 	--with-system-tre \
-	--with-system-xz \
-	--with-system-zlib \
 %if %{with tcl}
 	--with-tcltk \
 	--with-tcl-config=/usr/lib/tclConfig.sh \
