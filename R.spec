@@ -15,13 +15,13 @@
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
-Version:	3.4.0
+Version:	3.4.3
 Release:	1
 License:	mixed (distributable), mostly GPL v2+
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-3/%{name}-%{version}.tar.gz
-# Source0-md5:	75083c23d507b9c16d5c6afbd7a827e7
+# Source0-md5:	bc55db54f992fda9049201ca62d2a584
 Source1:	%{name}.desktop
 Source2:	%{name}.xpm
 URL:		http://www.r-project.org/
@@ -45,7 +45,7 @@ BuildRequires:	libtiff-devel
 BuildRequires:	libtool >= 2:2.0
 BuildRequires:	libxml2-devel >= 2.6.26
 BuildRequires:	pango-devel
-BuildRequires:	pcre-devel >= 8.10
+BuildRequires:	pcre-devel >= 8.20
 BuildRequires:	perl-base >= 1:5.6
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
@@ -73,7 +73,7 @@ Requires(post):	textutils
 Requires:	blas >= 3.2.2-2
 Requires:	bzip2 >= 1.0.6
 Requires:	curl-libs >= 7.28.0
-Requires:	pcre >= 8.10
+Requires:	pcre >= 8.20
 Requires:	xz-libs >= 5.0.3
 Requires:	zlib >= 1.2.3
 Suggests:	rkward
