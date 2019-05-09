@@ -15,19 +15,19 @@
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
-Version:	3.5.2
-Release:	2
+Version:	3.6.0
+Release:	1
 License:	mixed (distributable), mostly GPL v2+
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-3/%{name}-%{version}.tar.gz
-# Source0-md5:	3e4b40b2bbd4a2f8133ac45dbef6a485
+# Source0-md5:	65601eac6d353f7efb5b48c29097c2fb
 Source1:	%{name}.desktop
 Source2:	%{name}.xpm
 URL:		http://www.r-project.org/
 # yes, it is, or tests will fail
 BuildRequires:	/etc/localtime
-BuildRequires:	autoconf >= 2.62
+BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake
 BuildRequires:	blas-devel >= 3.2.2-2
 BuildRequires:	bzip2-devel >= 1.0.6
@@ -45,7 +45,9 @@ BuildRequires:	libtiff-devel
 BuildRequires:	libtool >= 2:2.0
 BuildRequires:	libxml2-devel >= 2.6.26
 BuildRequires:	pango-devel
-BuildRequires:	pcre-devel >= 8.20
+BuildRequires:	pcre-devel >= 8.32
+# actually not used
+#BuildRequires:	pcre2-8-devel
 BuildRequires:	perl-base >= 1:5.6
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
@@ -73,7 +75,7 @@ Requires(post):	textutils
 Requires:	blas >= 3.2.2-2
 Requires:	bzip2 >= 1.0.6
 Requires:	curl-libs >= 7.28.0
-Requires:	pcre >= 8.20
+Requires:	pcre >= 8.32
 Requires:	xz-libs >= 5.0.3
 Requires:	zlib >= 1.2.3
 Suggests:	rkward
@@ -170,7 +172,7 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 ln -sf %{_libdir}/R/lib/libR.so $RPM_BUILD_ROOT%{_libdir}
 
-mv $RPM_BUILD_ROOT%{_libdir}/%{name}/include $RPM_BUILD_ROOT%{_includedir}/R
+%{__mv} $RPM_BUILD_ROOT%{_libdir}/%{name}/include $RPM_BUILD_ROOT%{_includedir}/R
 ln -sf %{_includedir}/R $RPM_BUILD_ROOT%{_libdir}/R/include
 
 gen_lang() {
@@ -252,6 +254,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/R/doc/CRAN_mirrors.csv
 %{_libdir}/R/doc/NEWS*
 %dir %{_libdir}/R/doc/html
+%{_libdir}/R/doc/html/Rlogo.svg
 %{_libdir}/R/doc/html/*.css
 %{_libdir}/R/doc/html/[NRSa-lr-u]*.html
 %{_libdir}/R/doc/html/packages-head*.html
