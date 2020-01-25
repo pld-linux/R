@@ -11,7 +11,6 @@
 # TODO:
 # - script for rpm to autoprovides/autorequires R internals
 #
-%include	/usr/lib/rpm/macros.perl
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
