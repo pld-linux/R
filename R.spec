@@ -14,13 +14,13 @@
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
-Version:	3.6.1
+Version:	3.6.3
 Release:	1
 License:	mixed (distributable), mostly GPL v2+
 Group:		Development/Languages
 # CRAN master site: ftp://cran.r-project.org/pub/R/src/
 Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-3/%{name}-%{version}.tar.gz
-# Source0-md5:	f5003472d58a3d3765a1c537fdae71d5
+# Source0-md5:	506c9576ba33e1262ad5b5624db9d96a
 Source1:	%{name}.desktop
 Source2:	%{name}.xpm
 URL:		http://www.r-project.org/
@@ -57,10 +57,10 @@ BuildRequires:	tk-devel >= 8.4
 %endif
 BuildRequires:	tre-devel
 %if %{with docs}
-BuildRequires:	tetex-dvips
-BuildRequires:	tetex-latex
-BuildRequires:	tetex-pdftex
 BuildRequires:	texinfo-texi2dvi >= 4.7
+BuildRequires:	texlive-dvips
+BuildRequires:	texlive-latex
+BuildRequires:	texlive-pdftex
 %endif
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXmu-devel
