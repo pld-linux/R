@@ -1,0 +1,65 @@
+--- R-3.6.3/src/library/base/R/datetime.R.orig	2019-03-29 00:02:16.000000000 +0100
++++ R-3.6.3/src/library/base/R/datetime.R	2020-04-26 21:37:03.276695328 +0200
+@@ -70,62 +70,6 @@
+         } else tzdir <- ""
+     }
+ 
+-    ## First try timedatectl: should work on any modern Linux
+-    ## as part of systemd (and probably nowhere else)
+-    if (nzchar(Sys.which("timedatectl"))) {
+-        inf <- system("timedatectl", intern = TRUE)
+-        ## typical format:
+-        ## "       Time zone: Europe/London (GMT, +0000)"
+-        ## "       Time zone: Europe/Vienna (CET, +0100)"
+-        lines <- grep("Time zone: ", inf)
+-        if (length(lines)) {
+-            tz <- sub(" .*", "", sub(" *Time zone: ", "", inf[lines[1L]]))
+-            ## quick sanity check
+-            if(nzchar(tzdir)) {
+-                if(file.exists(file.path(tzdir, tz))) {
+-                    cacheIt(tz)
+-                    return(tz)
+-                } else
+-                    warning(sprintf("%s indicates the non-existent timezone name %s",
+-                                    sQuote("timedatectl"), sQuote(tz)),
+-                            call. = FALSE, immediate. = TRUE, domain = NA)
+-            } else {
+-                cacheIt(tz)
+-                return(tz)
+-            }
+-        }
+-    }
+-
+-    ## Debian/Ubuntu Linux do things differently, so try that next.
+-    ## Derived loosely from PR#17186
+-    ## As the Java sources say
+-    ##
+-    ## 'There's no spec of the file format available. This parsing
+-    ## assumes that there's one line of an Olson tzid followed by a
+-    ## '\n', no leading or trailing spaces, no comments.'
+-    ##
+-    ## but we do trim whitespace and do a sanity check (Java does not)
+-    if (grepl("linux", R.Version()$platform, ignore.case = TRUE) &&
+-        file.exists("/etc/timezone")) {
+-        tz0 <- try(readLines("/etc/timezone"))
+-        if(!inherits(tz0, "try-error") && length(tz0) == 1L) {
+-            tz <- trimws(tz0)
+-            ## quick sanity check
+-            if(nzchar(tzdir)) {
+-                if(file.exists(file.path(tzdir, tz))) {
+-                    cacheIt(tz)
+-                    return(tz)
+-                } else
+-                    warning(sprintf("%s indicates the non-existent timezone name %s",
+-                                    sQuote("/etc/timezone"), sQuote(tz)),
+-                            call. = FALSE, immediate. = TRUE, domain = NA)
+-            } else {
+-                cacheIt(tz)
+-                return(tz)
+-            }
+-        }
+-    }
+-
+     ## non-Debian Linux (if not covered above), macOS, *BSD, ...
+     ## According to the glibc's (at least 2.26)
+     ##   manual/time.texi, it can be configured to use
