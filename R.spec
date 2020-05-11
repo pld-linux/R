@@ -3,7 +3,7 @@
 %bcond_without	openmp	# OpenMP support
 %bcond_without	tcl	# Tcl/Tk support
 %bcond_without	tests	# do not run "make check"
-%bcond_without	docs	# do not build documentation
+%bcond_without	doc	# do not build documentation
 #
 # NOTE:
 # - /etc/localtime must be present for tests to work
@@ -57,7 +57,7 @@ BuildRequires:	tcl-devel >= 8.4
 BuildRequires:	tk-devel >= 8.4
 %endif
 BuildRequires:	tre-devel
-%if %{with docs}
+%if %{with doc}
 BuildRequires:	texinfo-texi2dvi >= 4.7
 BuildRequires:	texlive-dvips
 BuildRequires:	texlive-latex
@@ -157,7 +157,7 @@ cd build
 %{__make} check
 %endif
 
-%if %{with docs}
+%if %{with doc}
 %{__make} docs pdf info
 %endif
 
@@ -224,7 +224,7 @@ done > R.files
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/R/doc/COPYING
 # packaged as %doc
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/R/doc/{AUTHORS,COPYRIGHTS,FAQ,NEWS.rds,THANKS}
-%if %{with docs}
+%if %{with doc}
 # pdf version of NEWS
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/R/doc/NEWS.pdf
 %endif
