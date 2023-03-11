@@ -18,13 +18,12 @@ Version:	3.6.3
 Release:	7
 License:	mixed (distributable), mostly GPL v2+
 Group:		Development/Languages
-# CRAN master site: ftp://cran.r-project.org/pub/R/src/
-Source0:	ftp://stat.ethz.ch/R-CRAN/src/base/R-3/%{name}-%{version}.tar.gz
+Source0:	https://cran.r-project.org/src/base/R-3/%{name}-%{version}.tar.gz
 # Source0-md5:	506c9576ba33e1262ad5b5624db9d96a
 Source1:	%{name}.desktop
 Source2:	%{name}.xpm
 Patch0:		%{name}-timezone.patch
-URL:		http://www.r-project.org/
+URL:		https://www.r-project.org/
 # yes, it is, or tests will fail
 BuildRequires:	/etc/localtime
 BuildRequires:	autoconf >= 2.69
