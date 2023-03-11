@@ -14,12 +14,12 @@
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
-Version:	3.6.3
-Release:	7
+Version:	4.1.3
+Release:	1
 License:	mixed (distributable), mostly GPL v2+
 Group:		Development/Languages
-Source0:	https://cran.r-project.org/src/base/R-3/%{name}-%{version}.tar.gz
-# Source0-md5:	506c9576ba33e1262ad5b5624db9d96a
+Source0:	https://cran.r-project.org/src/base/R-4/%{name}-%{version}.tar.gz
+# Source0-md5:	409bc782b1a42c8247712f6446d7d640
 Source1:	%{name}.desktop
 Source2:	%{name}.xpm
 Patch0:		%{name}-timezone.patch
@@ -41,12 +41,10 @@ BuildRequires:	libjpeg-devel >= 6b
 BuildRequires:	libpng-devel >= 1.2.7
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
+BuildRequires:	libtirpc-devel
 BuildRequires:	libtool >= 2:2.0
-BuildRequires:	libxml2-devel >= 2.6.26
 BuildRequires:	pango-devel
-BuildRequires:	pcre-devel >= 8.32
-# actually not used
-#BuildRequires:	pcre2-8-devel
+BuildRequires:	pcre2-8-devel
 BuildRequires:	perl-base >= 1:5.6
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
@@ -55,11 +53,13 @@ BuildRequires:	rpm-perlprov
 BuildRequires:	tcl-devel >= 8.4
 BuildRequires:	tk-devel >= 8.4
 %endif
-BuildRequires:	tre-devel
+# 0.8.0 is too old currently (checking for tre_regncompb in -ltre... no)
+#BuildRequires:	tre-devel >= ?
 %if %{with doc}
 BuildRequires:	texinfo-texi2dvi >= 4.7
 BuildRequires:	texlive-dvips
 BuildRequires:	texlive-latex
+BuildRequires:	texlive-latex-ae
 BuildRequires:	texlive-pdftex
 %endif
 BuildRequires:	xorg-lib-libX11-devel
