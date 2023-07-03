@@ -39,7 +39,7 @@ BuildRequires:	lapack-devel >= 3.2.2-2
 %{?with_openmp:BuildRequires:	libgomp-devel}
 BuildRequires:	libicu-devel
 BuildRequires:	libjpeg-devel >= 6b
-BuildRequires:	libpng-devel >= 1.2.7
+BuildRequires:	libpng-devel >= 2:1.2.7
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtirpc-devel
