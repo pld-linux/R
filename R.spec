@@ -23,6 +23,7 @@ Source0:	https://cran.r-project.org/src/base/R-4/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 Source2:	%{name}.xpm
 Patch0:		%{name}-timezone.patch
+Patch1:		curl8.patch
 URL:		https://www.r-project.org/
 # yes, it is, or tests will fail
 BuildRequires:	/etc/localtime
@@ -119,6 +120,7 @@ Narzędzia R w Javie.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p0
 
 %build
 %{__aclocal} -I m4
