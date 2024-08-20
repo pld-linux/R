@@ -14,12 +14,12 @@
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
-Version:	4.1.3
-Release:	3
+Version:	4.2.3
+Release:	1
 License:	mixed (distributable), mostly GPL v2+
 Group:		Development/Languages
 Source0:	https://cran.r-project.org/src/base/R-4/%{name}-%{version}.tar.gz
-# Source0-md5:	409bc782b1a42c8247712f6446d7d640
+# Source0-md5:	ebfc90b1552581f2b7c9a50f934e6bb0
 Source1:	%{name}.desktop
 Source2:	%{name}.xpm
 Patch0:		%{name}-timezone.patch
