@@ -2,8 +2,8 @@
 # Conditional build
 %bcond_without	openmp	# OpenMP support
 %bcond_without	tcl	# Tcl/Tk support
-%bcond_without	tests	# do not run "make check"
-%bcond_without	doc	# do not build documentation
+%bcond_without	tests	# test suite
+%bcond_without	doc	# PDF documentation
 #
 # NOTE:
 # - /etc/localtime must be present for tests to work
@@ -14,16 +14,15 @@
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
-Version:	4.2.3
+Version:	4.3.3
 Release:	1
 License:	mixed (distributable), mostly GPL v2+
 Group:		Development/Languages
-Source0:	https://cran.r-project.org/src/base/R-4/%{name}-%{version}.tar.gz
-# Source0-md5:	ebfc90b1552581f2b7c9a50f934e6bb0
+Source0:	https://cran.r-project.org/src/base/R-4/%{name}-%{version}.tar.xz
+# Source0-md5:	5602f5996107c346dba12a16e866d2e2
 Source1:	%{name}.desktop
 Source2:	%{name}.xpm
 Patch0:		%{name}-timezone.patch
-Patch1:		curl8.patch
 URL:		https://www.r-project.org/
 # yes, it is, or tests will fail
 BuildRequires:	/etc/localtime
@@ -120,7 +119,6 @@ Narzędzia R w Javie.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p0
 
 %build
 %{__aclocal} -I m4
