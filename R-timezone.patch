@@ -1,12 +1,13 @@
---- R-3.6.3/src/library/base/R/datetime.R.orig	2019-03-29 00:02:16.000000000 +0100
-+++ R-3.6.3/src/library/base/R/datetime.R	2020-04-26 21:37:03.276695328 +0200
-@@ -70,62 +70,6 @@
+--- R-4.3.3/src/library/base/R/datetime.R.orig	2024-08-18 22:04:40.459721089 +0200
++++ R-4.3.3/src/library/base/R/datetime.R	2024-08-19 06:21:30.138228198 +0200
+@@ -91,63 +91,6 @@ Sys.timezone <- function(location = TRUE
          } else tzdir <- ""
      }
  
 -    ## First try timedatectl: should work on any modern Linux
 -    ## as part of systemd (and probably nowhere else)
--    if (nzchar(Sys.which("timedatectl"))) {
+-    ## https://www.freedesktop.org/software/systemd/man/sd_booted.html
+-    if (dir.exists("/run/systemd/system") && nzchar(Sys.which("timedatectl"))) {
 -        inf <- system("timedatectl", intern = TRUE)
 -        ## typical format:
 -        ## "       Time zone: Europe/London (GMT, +0000)"
