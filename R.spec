@@ -14,12 +14,12 @@
 Summary:	A language for data analysis and graphics
 Summary(pl.UTF-8):	Język do analizy danych oraz grafiki
 Name:		R
-Version:	4.4.1
+Version:	4.4.3
 Release:	1
 License:	mixed (distributable), mostly GPL v2+
 Group:		Development/Languages
 Source0:	https://cran.r-project.org/src/base/R-4/%{name}-%{version}.tar.xz
-# Source0-md5:	7e8bce91f0ed90931cf9b73d6ac64aeb
+# Source0-md5:	4d87af81f83f992456a7d68d07bbbbf4
 Source1:	%{name}.desktop
 Source2:	%{name}.xpm
 Patch0:		%{name}-timezone.patch
@@ -49,6 +49,7 @@ BuildRequires:	perl-base >= 1:5.6
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
 BuildRequires:	rpm-perlprov
+BuildRequires:	rpmbuild(macros) >= 2.043
 %if %{with tcl}
 BuildRequires:	tcl-devel >= 8.4
 BuildRequires:	tk-devel >= 8.4
@@ -58,6 +59,7 @@ BuildRequires:	tk-devel >= 8.4
 %if %{with doc}
 BuildRequires:	texinfo-texi2dvi >= 4.7
 BuildRequires:	texlive-dvips
+BuildRequires:	texlive-fonts-rsfs
 BuildRequires:	texlive-latex
 BuildRequires:	texlive-latex-ae
 BuildRequires:	texlive-pdftex
@@ -118,14 +120,15 @@ Narzędzia R w Javie.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__aclocal} -I m4
 %{__autoconf}
 install -d build
 cd build
-../%configure \
+%define	configuredir ..
+%configure \
 	F77=gfortran \
 	FC=gfortran \
 	--enable-R-shlib \
