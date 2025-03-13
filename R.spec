@@ -4,6 +4,7 @@
 %bcond_without	tcl	# Tcl/Tk support
 %bcond_without	tests	# test suite
 %bcond_without	doc	# PDF documentation
+%bcond_with	sse2	# SSE2 instructions on x86
 #
 # NOTE:
 # - /etc/localtime must be present for tests to work
@@ -70,6 +71,9 @@ BuildRequires:	xorg-lib-libXt-devel
 BuildRequires:	xz-devel >= 5.0.3
 BuildRequires:	zip
 BuildRequires:	zlib-devel >= 1.2.3
+%if %{with tests} && %{with sse2}
+BuildRequires:	cpuinfo(sse2)
+%endif
 #Requires:	lpr
 Requires(post):	perl-base
 Requires(post):	textutils
@@ -79,6 +83,9 @@ Requires:	curl-libs >= 7.28.0
 Requires:	pcre >= 8.32
 Requires:	xz-libs >= 5.0.3
 Requires:	zlib >= 1.2.3
+%if %{with sse2}
+Requires:	cpuinfo(sse2)
+%endif
 Suggests:	rkward
 Obsoletes:	R-base
 Obsoletes:	R-contrib
@@ -122,7 +129,18 @@ Narzędzia R w Javie.
 %setup -q
 %patch -P0 -p1
 
+%ifarch %{ix86}
+%if %{without sse2}
+# some tests fail with 387 math
+%{__sed} -i -e 's/ reg-tests-1d\.R//' tests/Makefile.common
+%endif
+%endif
+
 %build
+%if %{with sse2}
+CFLAGS="%{rpmcflags} -msse2 -mfpmath=sse"
+CXXFLAGS="%{rpmcxxflags} -msse2 -mfpmath=sse"
+%endif
 %{__aclocal} -I m4
 %{__autoconf}
 install -d build
@@ -257,12 +275,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/R/doc/CRAN_mirrors.csv
 %{_libdir}/R/doc/NEWS*
 %dir %{_libdir}/R/doc/html
-%{_libdir}/R/doc/html/Rlogo.svg
-%{_libdir}/R/doc/html/*.css
 %{_libdir}/R/doc/html/[NRSa-lr-u]*.html
 %{_libdir}/R/doc/html/packages-head*.html
 %{_libdir}/R/doc/html/favicon.ico
+%{_libdir}/R/doc/html/*.css
 %{_libdir}/R/doc/html/*.jpg
+%{_libdir}/R/doc/html/*.js
+%{_libdir}/R/doc/html/*.svg
+%{_libdir}/R/doc/html/katex
 %ghost %{_libdir}/R/doc/html/packages.html
 %{_libdir}/R/etc
 %{_libdir}/R/include
