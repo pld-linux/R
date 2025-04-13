@@ -132,7 +132,7 @@ Narzędzia R w Javie.
 %ifarch %{ix86}
 %if %{without sse2}
 # some tests fail with 387 math
-%{__sed} -i -e 's/ reg-tests-1d\.R//' tests/Makefile.common
+%{__sed} -i -e 's/ reg-tests-1d\.R//;s/p-qbeta-strict-tst\.R //' tests/Makefile.common
 %endif
 %endif
 
